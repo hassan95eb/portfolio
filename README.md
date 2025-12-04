@@ -1,36 +1,116 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Portfolio Website
 
-## Getting Started
+A modern, luxury-themed personal portfolio website built with Next.js 15, React 19, and Tailwind CSS. This project showcases your work, skills, and professional experience with an elegant and sophisticated design.
 
-First, run the development server:
+## 🚀 Tech Stack
+
+- **Framework**: Next.js 15.5.7 (App Router)
+- **React**: 19.1.0
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS v4
+- **Fonts**: Geist Sans & Geist Mono (Google Fonts)
+- **Build Tool**: Turbopack
+
+## 🎨 Design Theme
+
+The portfolio features a luxury color palette:
+
+- **Luxury Teal** (#0a4d4a) - Primary background
+- **Luxury Gold** (#d4af37) - Accent color
+- **Luxury Rose Gold** (#b76e79) - Secondary accent
+- **Luxury Silver** (#c0c0c0) - Additional accents
+- **Dark Gray** (#1c1c1c) - Text and dark elements
+- **Light Gray** (#f5f5f5) - Light backgrounds
+
+## 📁 Project Structure
+
+```
+portfolio/
+├── src/
+│   └── app/
+│       ├── layout.tsx      # Root layout with metadata
+│       ├── page.tsx        # Home page
+│       ├── loading.tsx     # Loading component
+│       └── globals.css     # Global styles and theme
+├── public/                 # Static assets
+├── package.json           # Dependencies and scripts
+└── README.md              # Project documentation
+```
+
+## 🛠️ Getting Started
+
+### Prerequisites
+
+- Node.js 18+ installed
+- npm or yarn package manager
+
+### Installation
+
+1. Clone the repository:
+
+```bash
+git clone <your-repo-url>
+cd portfolio
+```
+
+2. Install dependencies:
+
+```bash
+npm install
+```
+
+3. Run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+4. Open [http://localhost:3000](http://localhost:3000) in your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📜 Available Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `npm run dev` - Start development server with Turbopack
+- `npm run build` - Build the production-ready application
+- `npm start` - Start the production server
+- `npm run lint` - Run ESLint to check code quality
 
-## Learn More
+## 🎯 Planned Features
 
-To learn more about Next.js, take a look at the following resources:
+This portfolio project is designed to include:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Home Section** - Hero section with introduction
+- **About Section** - Personal background and skills
+- **Projects Section** - Showcase of your work and projects
+- **Experience Section** - Professional experience and timeline
+- **Contact Section** - Ways to get in touch
+- **Responsive Design** - Mobile-first, fully responsive layout
+- **Smooth Animations** - Engaging user interactions
+- **SEO Optimization** - Meta tags and structured data
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🚧 Development Status
 
-## Deploy on Vercel
+Currently in initial setup phase. The foundation is ready with:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- ✅ Next.js 15 with App Router configured
+- ✅ TypeScript setup
+- ✅ Tailwind CSS v4 with custom luxury theme
+- ✅ Basic layout structure
+- ✅ Font configuration (Geist Sans & Mono)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 📝 Next Steps
+
+1. Design and implement the home page hero section
+2. Create reusable components (Header, Footer, Navigation)
+3. Build out individual sections (About, Projects, Experience, Contact)
+4. Add animations and transitions
+5. Implement dark/light mode toggle (optional)
+6. Optimize images and assets
+7. Add analytics and performance monitoring
+
+## 📄 License
+
+This project is private and personal.
+
+---
+
+Built with ❤️ using Next.js and Tailwind CSS
