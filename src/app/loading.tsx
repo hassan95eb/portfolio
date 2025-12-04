@@ -1,5 +1,10 @@
+import MotionLoader from "@/components/MotionLoader";
 import React from "react";
 
 export default function loading() {
-  return <div>loading</div>;
+  return (
+    <div className="h-screen w-full ">
+      <MotionLoader />
+    </div>
+  );
 }

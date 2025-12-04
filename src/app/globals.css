@@ -1,27 +1,39 @@
 @import "tailwindcss";
 
 :root {
-  --luxury-teal: #0a4d4a;
-  --luxury-black: #000000;
-  --luxury-gold: #d4af37;
-  --luxury-rosegold: #b76e79;
-  --luxury-darkgray: #1c1c1c;
-  --luxury-lightgray: #f5f5f5;
-  --luxury-silver: #c0c0c0;
-  --luxury-white: #ffffff;
+    --luxury-teal: #0a4d4a;
+    --luxury-black: #000000;
+    --luxury-gold: #d4af37;
+    --luxury-rosegold: #b76e79;
+    --luxury-darkgray: #1c1c1c;
+    --luxury-lightgray: #f5f5f5;
+    --luxury-silver: #c0c0c0;
+    --luxury-white: #ffffff;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-luxury-teal: var(--luxury-teal);
-  --color-luxury-black: var(--luxury-black);
-  --color-luxury-gold: var(--luxury-gold);
-  --color-luxury-rosegold: var(--luxury-rosegold);
-  --color-luxury-darkgray: var(--luxury-darkgray);
-  --color-luxury-lightgray: var(--luxury-lightgray);
-  --color-luxury-silver: var(--luxury-silver);
-  --color-luxury-white: var(--luxury-white);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
+    --color-luxury-teal: var(--luxury-teal);
+    --color-luxury-black: var(--luxury-black);
+    --color-luxury-gold: var(--luxury-gold);
+    --color-luxury-rosegold: var(--luxury-rosegold);
+    --color-luxury-darkgray: var(--luxury-darkgray);
+    --color-luxury-lightgray: var(--luxury-lightgray);
+    --color-luxury-silver: var(--luxury-silver);
+    --color-luxury-white: var(--luxury-white);
+    --font-sans: var(--font-geist-sans);
+    --font-mono: var(--font-geist-mono);
+    --animate-custom_pluse: h-pulse 1s ease-in-out infinite;
+    @keyframes h-pulse {
+        0% {
+            opacity: 1;
+        }
+        50% {
+            opacity: 0.25;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
 }
