@@ -10,19 +10,19 @@
 
     "social_links": [
         {
-            "id": "linkedin",
+            "id": "Hassan Amini linkedin",
             "url": "https://linkedin.com/in/hassanaminidev",
-            "icon": "linkedin"
+            "icon": "./linkedin.svg"
         },
         {
-            "id": "github",
+            "id": "Hassan Amini github",
             "url": "https://github.com/hassan95eb",
-            "icon": "github"
+            "icon": "./github.svg"
         },
         {
-            "id": "email",
+            "id": "Hassan Amini email",
             "url": "mailto:hassanaminidev@gmail.com",
-            "icon": "email"
+            "icon": "./gmail.svg"
         }
     ]
 }

@@ -6,8 +6,8 @@ import SocialWidget from "./SocialWidget";
 
 export default function SideBar() {
     return (
-        <aside className="px-4 py-7 w-full h-full bg-secondary border-r border-action">
-            <div className="w-full h-full flex flex-col justify-between items-center">
+        <aside className="px-4 py-7 bg-secondary border-r border-action h-full ">
+            <div className=" flex flex-col justify-between items-center h-full">
                 <div className="mx-auto text-center w-1/2">
                     <Image
                         src="/profile.jpg"
