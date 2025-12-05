@@ -1,0 +1,28 @@
+{
+    "navigation": [
+        {
+            "id": "blog",
+            "title": "Blog",
+            "url": "/blog",
+            "icon": "/blog.png"
+        }
+    ],
+
+    "social_links": [
+        {
+            "id": "linkedin",
+            "url": "https://linkedin.com/in/hassanaminidev",
+            "icon": "linkedin"
+        },
+        {
+            "id": "github",
+            "url": "https://github.com/hassan95eb",
+            "icon": "github"
+        },
+        {
+            "id": "email",
+            "url": "mailto:hassanaminidev@gmail.com",
+            "icon": "email"
+        }
+    ]
+}
