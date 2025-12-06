@@ -33,7 +33,7 @@ const ScrollLink: React.FC<ScrollLinkProps> = ({
         <a
             href={href}
             onClick={handleClick}
-            className="group flex items-center justify-start gap-3 px-4 py-2.5 rounded-lg transition-all duration-200  hover:bg-action  cursor-pointer"
+            className="group flex items-center justify-between gap-3 px-4 py-2.5 rounded-lg transition-all duration-200  hover:bg-action  cursor-pointer"
         >
             <div className="shrink-0 opacity-70 group-hover:opacity-100 transition-opacity">
                 <Image

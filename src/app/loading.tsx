@@ -3,7 +3,7 @@ import React from "react";
 
 export default function loading() {
     return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-gradient-to-br from-action via-action/80 to-background">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-action">
             <Image
                 src="/logo-Hassan-Amini-min.png"
                 alt="لوگو"

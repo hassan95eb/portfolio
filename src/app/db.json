@@ -24,5 +24,124 @@
             "url": "mailto:hassanaminidev@gmail.com",
             "icon": "./gmail.svg"
         }
-    ]
+    ],
+
+    "metadata": {
+        "title": "نام و نام خانوادگی | پورتفولیو",
+        "description": "من یک توسعه‌دهنده فرانت‌اند هستم و این پورتفولیوی من است. در اینجا می‌توانید نمونه‌کارهای من را مشاهده کنید.",
+        "author": "نام و نام خانوادگی",
+        "keywords": "پورتفولیو, توسعه وب, فرانت‌اند, react, next.js",
+        "lang": "fa"
+    },
+    "home": {
+        "id": "home",
+        "greeting": "سلام، من",
+        "name": "نام شما",
+        "role": "توسعه‌دهنده فرانت‌اند",
+        "shortBio": "با علاقه به ساخت تجربیات کاربری زیبا و کارآمد با تکنولوژی‌های مدرن وب.",
+        "cta": {
+            "primary": {
+                "text": "مشاهده نمونه‌کارها",
+                "href": "#projects"
+            },
+            "secondary": {
+                "text": "دانلود رزومه",
+                "href": "/files/resume.pdf"
+            }
+        },
+        "socialLinks": [
+            {
+                "platform": "github",
+                "url": "https://github.com/your-username"
+            },
+            {
+                "platform": "linkedin",
+                "url": "https://linkedin.com/in/your-profile"
+            },
+            {
+                "platform": "twitter",
+                "url": "https://twitter.com/your-username"
+            }
+        ]
+    },
+    "about": {
+        "id": "about",
+        "title": "درباره من",
+        "subtitle": "داستانی کوتاه از مسیر حرفه‌ای من",
+        "paragraphs": [
+            "من یک توسعه‌دهنده فرانت‌اند با [تعداد] سال تجربه در ساخت وب‌سایت‌ها و اپلیکیشن‌های واکنش‌گرا و تعاملی هستم. علاقه‌مندم تا ایده‌های خلاقانه را به کدهای تمیز و کارآمد تبدیل کنم.",
+            "در طول مسیر حرفه‌ای خود، با تکنولوژی‌های مختلفی مانند React, Next.js, TypeScript و ابزارهای استایل‌دهی مانند Tailwind CSS کار کرده‌ام و همواره به دنبال یادگیری و به‌روزرسانی دانش خود هستم.",
+            "هدف من این است که با همکاری در تیم‌های خلاق، محصولاتی بسازم که نه تنها ظاهری جذاب دارند، بلکه تجربه‌ای روان و لذت‌بخش برای کاربران فراهم می‌کنند."
+        ],
+        "skills": {
+            "title": "مهارت‌های من",
+            "list": [
+                "HTML5 & CSS3",
+                "JavaScript (ES6+)",
+                "TypeScript",
+                "React & Next.js",
+                "Tailwind CSS",
+                "Git & GitHub",
+                "Responsive Design",
+                "REST APIs"
+            ]
+        }
+    },
+    "projects": {
+        "id": "projects",
+        "title": "نمونه‌کارها",
+        "subtitle": "برخی از پروژه‌هایی که با علاقه روی آن‌ها کار کرده‌ام",
+        "items": [
+            {
+                "id": 1,
+                "title": "عنوان پروژه اول",
+                "description": "توضیح کوتاهی در مورد این پروژه و چالش‌هایی که در آن حل شده است. این پروژه با استفاده از تکنولوژی‌های X و Y ساخته شده است.",
+                "image": "/images/project1.jpg",
+                "techStack": [
+                    "React",
+                    "Next.js",
+                    "Tailwind CSS"
+                ],
+                "links": {
+                    "live": "https://example-project1.com",
+                    "source": "https://github.com/your-username/project1"
+                }
+            },
+            {
+                "id": 2,
+                "title": "عنوان پروژه دوم",
+                "description": "توضیح کوتاهی در مورد این پروژه. این یک اپلیکیشن وب است که به کاربران اجازه می‌دهد کار X را انجام دهند.",
+                "image": "/images/project2.jpg",
+                "techStack": [
+                    "JavaScript",
+                    "HTML",
+                    "CSS",
+                    "API"
+                ],
+                "links": {
+                    "live": "https://example-project2.com",
+                    "source": "https://github.com/your-username/project2"
+                }
+            },
+            {
+                "id": 3,
+                "title": "عنوان پروژه سوم",
+                "description": "یک پروژه دیگر که مهارت‌های من در زمینه [موضوع خاص] را به نمایش می‌گذارد.",
+                "image": "/images/project3.jpg",
+                "techStack": [
+                    "Next.js",
+                    "TypeScript",
+                    "Prisma"
+                ],
+                "links": {
+                    "live": null,
+                    "source": "https://github.com/your-username/project3"
+                }
+            }
+        ]
+    },
+    "footer": {
+        "copyright": "© {year} نام شما. تمامی حقوق محفوظ است.",
+        "madeWith": "ساخته شده با ❤️ و Next.js"
+    }
 }
