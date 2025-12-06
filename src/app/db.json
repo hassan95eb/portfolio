@@ -38,40 +38,17 @@
     "greeting": "Hi, I'm",
     "name": "Hassan Amini",
     "role": "Frontend Developer",
-    "shortBio": "Passionate about building beautiful and efficient user experiences with modern web technologies.",
-    "cta": {
-      "primary": {
-        "text": "View Projects",
-        "href": "#projects"
-      },
-      "secondary": {
-        "text": "Download Resume",
-        "href": "/files/resume.pdf"
-      }
-    },
-    "socialLinks": [
-      {
-        "platform": "github",
-        "url": "https://github.com/your-username"
-      },
-      {
-        "platform": "linkedin",
-        "url": "https://linkedin.com/in/your-profile"
-      },
-      {
-        "platform": "twitter",
-        "url": "https://twitter.com/your-username"
-      }
-    ]
+    "shortBio": "I build modern, fast and scalable web applications with Vue, React and Next.js."
   },
   "about": {
     "id": "about",
     "title": "About Me",
     "subtitle": "A short story of my professional journey",
     "paragraphs": [
-      "I am a frontend developer with [number] years of experience in building responsive and interactive websites and applications. I am passionate about turning creative ideas into clean and efficient code.",
-      "Throughout my professional journey, I have worked with various technologies such as React, Next.js, TypeScript, and styling tools like Tailwind CSS, and I am always seeking to learn and update my knowledge.",
-      "My goal is to collaborate with creative teams to build products that not only have an attractive appearance but also provide a smooth and enjoyable experience for users."
+      "I am a front-end developer in building responsive, interactive, and user-focused websites and applications. I am passionate about transforming creative concepts into clean, efficient, and scalable code.",
+      "Throughout my professional journey, I have worked extensively with modern technologies such as React, Next.js, Vue.js, TypeScript, and styling frameworks like Tailwind CSS and Bootstrap. I enjoy staying up-to-date with the latest frontend trends and continuously improving my skills to deliver high-quality products.",
+      "I have hands-on experience collaborating with designers, backend developers, and product teams to bring ideas to life—from initial concept to final deployment. My approach focuses on performance, accessibility, maintainability, and creating meaningful user experiences.",
+      "My goal is to work with innovative and creative teams to build digital products that not only look great, but also feel smooth, intuitive, and enjoyable for users. I'm always excited to take on new challenges and contribute to projects that make an impact."
     ],
     "skills": {
       "title": "My Skills",

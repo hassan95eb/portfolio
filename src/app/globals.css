@@ -1,30 +1,42 @@
 @import "tailwindcss";
 
 :root {
-    --background: #faf6f3;
-    --primary-text: #3a3a3a;
-    --secondary: #d9c9be;
-    --action: #006a4e;
+  --background: #faf6f3;
+  --primary-text: #3a3a3a;
+  --secondary: #d9c9be;
+  --action: #006a4e;
 }
 
 @theme inline {
-    --color-background: var(--background);
-    --color-primary-text: var(--primary-text);
-    --color-secondary: var(--background-secondary);
-    --color-action: var(--action);
+  --color-background: var(--background);
+  --color-primary-text: var(--primary-text);
+  --color-secondary: var(--background-secondary);
+  --color-action: var(--action);
 
-    --font-sans: var(--font-geist-sans);
-    --font-mono: var(--font-geist-mono);
-    --animate-custom_pluse: h-pulse 1s ease-in-out infinite;
-    @keyframes h-pulse {
-        0% {
-            opacity: 1;
-        }
-        50% {
-            opacity: 0.25;
-        }
-        100% {
-            opacity: 1;
-        }
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --animate-custom_pluse: h-pulse 1s ease-in-out infinite;
+  @keyframes h-pulse {
+    0% {
+      opacity: 1;
     }
+    50% {
+      opacity: 0.25;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+}
+
+/* Global icon hover styles */
+svg {
+  transition: color 0.2s ease-in-out;
+}
+
+/* Icon hover color change */
+.group:hover svg,
+a:hover svg,
+button:hover svg {
+  color: #d9c9be !important;
 }
