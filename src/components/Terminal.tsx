@@ -10,8 +10,6 @@ interface TerminalProps {
 }
 
 const Terminal: React.FC<TerminalProps> = ({ children, typingSpeed = 50 }) => {
-  // Convert children to string for typing animation
-  // The children prop ensures content is in HTML for SEO
   const text = typeof children === "string" ? children : String(children);
 
   const [displayedText, setDisplayedText] = useState("");
