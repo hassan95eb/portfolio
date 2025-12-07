@@ -1,116 +1,137 @@
 # Portfolio Website
 
-A modern, luxury-themed personal portfolio website built with Next.js 15, React 19, and Tailwind CSS. This project showcases your work, skills, and professional experience with an elegant and sophisticated design.
+A modern, luxury-themed personal portfolio website built with Next.js (App Router), React, TypeScript, and Tailwind CSS. The repo provides a clean starting point and a set of reusable components to build a responsive, animated portfolio.
 
 ## 🚀 Tech Stack
 
-- **Framework**: Next.js 15.5.7 (App Router)
-- **React**: 19.1.0
-- **Language**: TypeScript
-- **Styling**: Tailwind CSS v4
-- **Fonts**: Geist Sans & Geist Mono (Google Fonts)
-- **Build Tool**: Turbopack
+-  **Next.js**: 15.5.7 (App Router)
+-  **React**: 19.1.0
+-  **TypeScript**: ^5
+-  **Styling**: Tailwind CSS v4
+-  **Animations**: Framer Motion
+-  **Utilities**: `react-icons`, `canvas-confetti`, `@formspree/react`
+-  **Build**: Turbopack (used in dev/build scripts)
 
-## 🎨 Design Theme
+## 🎨 Theme
 
-The portfolio features a luxury color palette:
+This project uses a luxury-inspired palette (teal / gold / rose gold accents) and custom fonts (Geist Sans & Geist Mono). The visual system is implemented via Tailwind utility classes in `src/app/globals.css`.
 
-- **Luxury Teal** (#0a4d4a) - Primary background
-- **Luxury Gold** (#d4af37) - Accent color
-- **Luxury Rose Gold** (#b76e79) - Secondary accent
-- **Luxury Silver** (#c0c0c0) - Additional accents
-- **Dark Gray** (#1c1c1c) - Text and dark elements
-- **Light Gray** (#f5f5f5) - Light backgrounds
-
-## 📁 Project Structure
+## 📁 Project Structure (selected)
 
 ```
-portfolio/
-├── src/
-│   └── app/
-│       ├── layout.tsx      # Root layout with metadata
-│       ├── page.tsx        # Home page
-│       ├── loading.tsx     # Loading component
-│       └── globals.css     # Global styles and theme
-├── public/                 # Static assets
-├── package.json           # Dependencies and scripts
-└── README.md              # Project documentation
+.
+├── package.json
+├── public/
+└── src/
+		└── app/
+				├── layout.tsx
+				├── page.tsx
+				├── loading.tsx
+				├── not-found.tsx
+				├── globals.css
+				└── db.json
+		└── components/
+				├── AboutSection.tsx
+				├── AboutSectionSocial.tsx
+				├── AnimatedBackground.tsx
+				├── ContactMe.tsx
+				├── ContactMeForm.tsx
+				├── HomeSection.tsx
+				├── MobileNav.tsx
+				├── MouseParticles.tsx
+				├── ScrollLink.tsx
+				├── SidbarLinks.tsx
+				├── SideBar.tsx
+				├── SocialWidget.tsx
+				└── Terminal.tsx
 ```
 
-## 🛠️ Getting Started
+## 🛠️ Prerequisites
 
-### Prerequisites
+-  Node.js 18 or newer
+-  npm (or yarn)
 
-- Node.js 18+ installed
-- npm or yarn package manager
+## 🔧 Installation & Local Development
 
-### Installation
-
-1. Clone the repository:
+Clone and install dependencies:
 
 ```bash
 git clone <your-repo-url>
 cd portfolio
-```
-
-2. Install dependencies:
-
-```bash
 npm install
 ```
 
-3. Run the development server:
+Run the development server (Turbopack):
 
 ```bash
 npm run dev
 ```
 
-4. Open [http://localhost:3000](http://localhost:3000) in your browser to see the result.
+Open `http://localhost:3000` in your browser.
 
-## 📜 Available Scripts
+## 📜 Scripts
 
-- `npm run dev` - Start development server with Turbopack
-- `npm run build` - Build the production-ready application
-- `npm start` - Start the production server
-- `npm run lint` - Run ESLint to check code quality
+```json
+{
+   "dev": "next dev --turbopack",
+   "build": "next build --turbopack",
+   "start": "next start",
+   "lint": "eslint"
+}
+```
+
+-  **dev**: Starts the Next.js dev server using Turbopack
+-  **build**: Builds the production app
+-  **start**: Starts the production server after build
+-  **lint**: Run ESLint checks
+
+## 📦 Dependencies (high level)
+
+-  `next` 15.5.7, `react` 19.1.0, `react-dom` 19.1.0
+-  `tailwindcss` v4 for styling
+-  `framer-motion` for animations
+-  `react-icons` for iconography
+-  `canvas-confetti`, `@formspree/react` for fun/utility integrations
+
+See `package.json` for the full list and exact versions.
+
+## ✅ Current Status
+
+-  Project scaffolded with Next.js + App Router
+-  TypeScript configured
+-  Tailwind CSS v4 integrated
+-  Several UI components implemented under `src/components`
 
 ## 🎯 Planned Features
 
-This portfolio project is designed to include:
+-  Hero/Home section with animated background
+-  About section with social integrations
+-  Projects and Experience sections
+-  Contact form (Formspree integration)
+-  Smooth animations and responsive interactions
 
-- **Home Section** - Hero section with introduction
-- **About Section** - Personal background and skills
-- **Projects Section** - Showcase of your work and projects
-- **Experience Section** - Professional experience and timeline
-- **Contact Section** - Ways to get in touch
-- **Responsive Design** - Mobile-first, fully responsive layout
-- **Smooth Animations** - Engaging user interactions
-- **SEO Optimization** - Meta tags and structured data
+## 🧭 Development Notes
 
-## 🚧 Development Status
+-  Global styles and fonts are defined in `src/app/globals.css`.
+-  The app entry is `src/app/layout.tsx` and the home page is `src/app/page.tsx`.
+-  Component list lives in `src/components/` and is intentionally small and reusable.
 
-Currently in initial setup phase. The foundation is ready with:
+## Contributing / Next Steps
 
-- ✅ Next.js 15 with App Router configured
-- ✅ TypeScript setup
-- ✅ Tailwind CSS v4 with custom luxury theme
-- ✅ Basic layout structure
-- ✅ Font configuration (Geist Sans & Mono)
+-  Work on the remaining page sections (Projects, Experience)
+-  Add unit / integration tests if desired
+-  Add CI for linting and build checks
 
-## 📝 Next Steps
+If you'd like, I can:
 
-1. Design and implement the home page hero section
-2. Create reusable components (Header, Footer, Navigation)
-3. Build out individual sections (About, Projects, Experience, Contact)
-4. Add animations and transitions
-5. Implement dark/light mode toggle (optional)
-6. Optimize images and assets
-7. Add analytics and performance monitoring
+-  Add a detailed component README
+-  Wire up a sample project entry page
+-  Add basic unit tests and a GitHub Actions CI workflow
 
-## 📄 License
+## License
 
-This project is private and personal.
+Private — personal portfolio.
 
 ---
 
-Built with ❤️ using Next.js and Tailwind CSS
+Built with ❤️ using Next.js, React and Tailwind CSS
