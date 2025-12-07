@@ -1,19 +1,20 @@
 "use client";
 
 import React from "react";
-import { HiHome, HiUser, HiFolder } from "react-icons/hi";
+import { HiHome, HiUser } from "react-icons/hi";
+import { MdOutlineAlternateEmail } from "react-icons/md";
 
 interface ScrollLinkProps {
   href: string;
   children: React.ReactNode;
-  iconType: "home" | "about" | "projects";
+  iconType: "home" | "about" | "contact";
   onClick?: () => void;
 }
 
 const iconMap = {
   home: HiHome,
   about: HiUser,
-  projects: HiFolder,
+  projects: MdOutlineAlternateEmail,
 };
 
 const ScrollLink: React.FC<ScrollLinkProps> = ({
@@ -22,7 +23,8 @@ const ScrollLink: React.FC<ScrollLinkProps> = ({
   iconType,
   onClick,
 }) => {
-  const IconComponent = iconMap[iconType];
+  const IconComponent =
+    iconMap[iconType as keyof typeof iconMap] || MdOutlineAlternateEmail;
 
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();

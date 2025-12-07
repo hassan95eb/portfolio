@@ -1,6 +1,7 @@
 import HomeSection from "@/components/HomeSection";
 import db from "./db.json";
 import AboutSection from "@/components/AboutSection";
+import ContactMe from "@/components/ContactMe";
 
 async function Home() {
   return (
@@ -10,6 +11,9 @@ async function Home() {
       </section>
       <section>
         <AboutSection data={db.about} />
+      </section>
+      <section>
+        <ContactMe />
       </section>
     </div>
   );

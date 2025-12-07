@@ -47,7 +47,7 @@ const Terminal: React.FC<TerminalProps> = ({ children, typingSpeed = 50 }) => {
         <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-green-500"></div>
       </div>
       <div className="bg-gray-900 text-green-400 p-3 sm:p-4 rounded-b-lg shadow-2xl min-h-[120px] sm:min-h-[150px] overflow-hidden">
-        <pre className="whitespace-pre-wrap break-words overflow-hidden w-full">
+        <pre className="whitespace-pre-wrap wrap-break-word overflow-hidden w-full">
           <code className="block w-full">
             {displayedText}
 

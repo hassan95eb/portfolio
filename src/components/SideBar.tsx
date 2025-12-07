@@ -25,8 +25,8 @@ export default function SideBar() {
           <ScrollLink href="#about" iconType="about">
             About
           </ScrollLink>
-          <ScrollLink href="#projects" iconType="projects">
-            Projects
+          <ScrollLink href="#contact" iconType="contact">
+            Contact Me
           </ScrollLink>
           <SidbarLinks />
         </ul>

@@ -5,8 +5,7 @@ export default function Custom404() {
   const router = useRouter();
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-950 via-purple-900 to-pink-900 overflow-hidden relative flex items-center justify-center px-4">
-      {/* Animated Background Particles */}
+    <div className="min-h-screen bg-linear-to-br from-indigo-950 via-purple-900 to-pink-900 overflow-hidden relative flex items-center justify-center px-4">
       <div className="absolute inset-0 overflow-hidden">
         <div className="particle particle-1"></div>
         <div className="particle particle-2"></div>
@@ -16,10 +15,8 @@ export default function Custom404() {
         <div className="particle particle-6"></div>
       </div>
 
-      {/* Main Content */}
       <div className="relative z-10 max-w-4xl w-full">
         <div className="text-center space-y-8 animate-fadeInUp">
-          {/* Animated SVG Illustration */}
           <div className="flex justify-center mb-8">
             <svg
               className="w-64 h-64 md:w-80 md:h-80 animate-float"
@@ -27,7 +24,6 @@ export default function Custom404() {
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
             >
-              {/* Lost Astronaut Illustration */}
               <defs>
                 <linearGradient
                   id="astronautGradient"
@@ -52,7 +48,6 @@ export default function Custom404() {
               />
               <circle cx="100" cy="80" r="30" fill="#1e1b4b" opacity="0.8" />
 
-              {/* Visor Reflection */}
               <ellipse
                 cx="95"
                 cy="75"
@@ -64,7 +59,6 @@ export default function Custom404() {
                 style={{ animationDuration: "2s" }}
               />
 
-              {/* Body */}
               <rect
                 x="75"
                 y="110"
@@ -74,7 +68,6 @@ export default function Custom404() {
                 fill="url(#astronautGradient)"
               />
 
-              {/* Arms */}
               <rect
                 x="55"
                 y="120"
@@ -94,7 +87,6 @@ export default function Custom404() {
                 fill="url(#astronautGradient)"
               />
 
-              {/* Legs */}
               <rect
                 x="80"
                 y="165"
@@ -112,7 +104,6 @@ export default function Custom404() {
                 fill="url(#astronautGradient)"
               />
 
-              {/* Floating Stars */}
               <g className="animate-twinkle">
                 <circle cx="30" cy="40" r="2" fill="#fbbf24" />
                 <circle cx="170" cy="60" r="2" fill="#fbbf24" />
@@ -120,7 +111,6 @@ export default function Custom404() {
                 <circle cx="160" cy="140" r="2" fill="#fbbf24" />
               </g>
 
-              {/* Question Marks */}
               <text
                 x="140"
                 y="50"
@@ -154,19 +144,17 @@ export default function Custom404() {
             </svg>
           </div>
 
-          {/* 404 Text with Animation */}
           <div className="relative">
-            <h1 className="text-8xl md:text-9xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 animate-gradient">
+            <h1 className="text-8xl md:text-9xl font-bold text-transparent bg-clip-text bg-linear-to-r from-blue-400 via-purple-400 to-pink-400 animate-gradient">
               404
             </h1>
             <div className="absolute inset-0 blur-2xl opacity-50">
-              <h1 className="text-8xl md:text-9xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400">
+              <h1 className="text-8xl md:text-9xl font-bold text-transparent bg-clip-text bg-linear-to-r from-blue-400 via-purple-400 to-pink-400">
                 404
               </h1>
             </div>
           </div>
 
-          {/* Error Message */}
           <div
             className="space-y-4 animate-fadeInUp"
             style={{ animationDelay: "0.2s" }}
@@ -180,14 +168,13 @@ export default function Custom404() {
             </p>
           </div>
 
-          {/* Action Buttons */}
           <div
             className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fadeInUp"
             style={{ animationDelay: "0.6s" }}
           >
             <button
               onClick={() => router.push("/")}
-              className="group relative px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold rounded-xl overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/50"
+              className="group relative px-8 py-4 bg-linear-to-r from-blue-500 to-purple-600 text-white font-semibold rounded-xl overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/50"
             >
               <span className="relative z-10 flex items-center gap-2">
                 <svg
@@ -205,7 +192,7 @@ export default function Custom404() {
                 </svg>
                 Return Home
               </span>
-              <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div className="absolute inset-0 bg-linear-to-r from-purple-600 to-pink-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </button>
 
             <button
