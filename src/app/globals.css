@@ -29,14 +29,25 @@
   }
 }
 
-/* Global icon hover styles */
 svg {
   transition: color 0.2s ease-in-out;
 }
 
-/* Icon hover color change */
 .group:hover svg,
 a:hover svg,
 button:hover svg {
   color: #d9c9be !important;
+}
+.animated-grid-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 200%;
+  z-index: 0;
+  opacity: 0.15;
+  pointer-events: none;
+
+  background-image: radial-gradient(#333333 1px, transparent 1px);
+  background-size: 50px 50px;
 }

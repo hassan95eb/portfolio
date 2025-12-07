@@ -21,15 +21,15 @@ export default function AboutSection({ data }: AboutSectionProps) {
   return (
     <section
       id={data.id}
-      className="flex flex-col items-center justify-center min-h-screen py-16 px-4"
+      className="flex flex-col items-center justify-center min-h-screen py-8 md:py-16 px-4 sm:px-6"
       aria-label="About section"
     >
       <div className="max-w-4xl w-full">
-        <article className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-primary-text">
+        <article className="text-center mb-8 md:mb-12">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 md:mb-4 text-primary-text">
             {data.title}
           </h2>
-          <p className="text-lg md:text-xl text-muted-foreground mb-8">
+          <p className="text-base sm:text-lg md:text-xl text-muted-foreground mb-6 md:mb-8">
             {data.subtitle}
           </p>
         </article>

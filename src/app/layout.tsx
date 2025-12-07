@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import SideBar from "@/components/SideBar";
+import MobileNav from "@/components/MobileNav";
+import MouseParticles from "@/components/MouseParticles";
 import data from "./db.json";
 
 const geistSans = Geist({
@@ -39,12 +41,14 @@ export default function RootLayout({
   return (
     <html lang={data.metadata.lang}>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased flex relative`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased flex relative overflow-x-hidden`}
       >
-        <div className="h-screen fixed top-0 left-0 bottom-0 w-64 hidden md:block">
+        <MouseParticles />
+        <div className="h-screen fixed top-0 left-0 bottom-0 w-64 hidden md:block z-20">
           <SideBar />
         </div>
-        <div className="w-full ml-0 md:ml-64">{children}</div>
+        <MobileNav />
+        <div className="w-full ml-0 md:ml-64 overflow-x-hidden">{children}</div>
       </body>
     </html>
   );

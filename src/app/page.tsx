@@ -5,7 +5,7 @@ import AboutSection from "@/components/AboutSection";
 async function Home() {
   return (
     <div className="font-sans bg-background">
-      <section id="#home" className="h-screen">
+      <section id="home" className="h-screen">
         <HomeSection data={db.home} />
       </section>
       <section>

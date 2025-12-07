@@ -10,7 +10,6 @@ import {
   SiReact,
   SiNextdotjs,
   SiTailwindcss,
-  SiGit,
   SiGithub,
 } from "react-icons/si";
 import { MdDevices, MdApi } from "react-icons/md";
@@ -48,7 +47,6 @@ const getSkillIcon = (skill: string) => {
   if (skillLower.includes("git") && skillLower.includes("github")) {
     return (
       <>
-        <SiGit className="w-5 h-5" />
         <SiGithub className="w-5 h-5" />
       </>
     );
@@ -65,7 +63,6 @@ const getSkillIcon = (skill: string) => {
   if (skillLower.includes("next")) return <SiNextdotjs className="w-5 h-5" />;
   if (skillLower.includes("tailwind"))
     return <SiTailwindcss className="w-5 h-5" />;
-  if (skillLower.includes("git")) return <SiGit className="w-5 h-5" />;
   if (skillLower.includes("github")) return <SiGithub className="w-5 h-5" />;
   if (skillLower.includes("responsive") || skillLower.includes("design"))
     return <MdDevices className="w-5 h-5" />;
@@ -103,12 +100,12 @@ export default function AboutSectionSocial({
   };
 
   return (
-    <div className="mt-12">
-      <h3 className="text-2xl md:text-3xl font-bold mb-6 text-primary-text text-center">
+    <div className="mt-8 md:mt-12">
+      <h3 className="text-xl sm:text-2xl md:text-3xl font-bold mb-4 md:mb-6 text-primary-text text-center px-2">
         {skills.title}
       </h3>
       <motion.div
-        className="flex flex-wrap gap-3 justify-center"
+        className="flex flex-wrap gap-2 sm:gap-3 justify-center px-2"
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
@@ -122,10 +119,10 @@ export default function AboutSectionSocial({
               variants={itemVariants}
               whileHover={{ scale: 1.1, y: -5 }}
               whileTap={{ scale: 0.95 }}
-              className="px-4 py-2 bg-secondary text-primary-text rounded-full text-sm md:text-base font-medium flex items-center gap-2 cursor-pointer transition-colors hover:bg-action group"
+              className="px-3 sm:px-4 py-1.5 sm:py-2 bg-secondary text-primary-text rounded-full text-xs sm:text-sm md:text-base font-medium flex items-center gap-1.5 sm:gap-2 cursor-pointer transition-colors hover:bg-action group"
             >
               <span className="group-hover:[&_svg]:text-[#d9c9be]">{icon}</span>
-              {skill}
+              <span className="whitespace-nowrap">{skill}</span>
             </motion.span>
           );
         })}

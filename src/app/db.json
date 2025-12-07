@@ -45,20 +45,25 @@
     "title": "About Me",
     "subtitle": "A short story of my professional journey",
     "paragraphs": [
-      "I am a front-end developer in building responsive, interactive, and user-focused websites and applications. I am passionate about transforming creative concepts into clean, efficient, and scalable code.",
-      "Throughout my professional journey, I have worked extensively with modern technologies such as React, Next.js, Vue.js, TypeScript, and styling frameworks like Tailwind CSS and Bootstrap. I enjoy staying up-to-date with the latest frontend trends and continuously improving my skills to deliver high-quality products.",
-      "I have hands-on experience collaborating with designers, backend developers, and product teams to bring ideas to life—from initial concept to final deployment. My approach focuses on performance, accessibility, maintainability, and creating meaningful user experiences.",
-      "My goal is to work with innovative and creative teams to build digital products that not only look great, but also feel smooth, intuitive, and enjoyable for users. I'm always excited to take on new challenges and contribute to projects that make an impact."
+      "I am a front-end developer focused on building responsive, interactive, and user-centered websites and applications. I enjoy turning creative ideas into clean, efficient, and scalable code.",
+
+      "Throughout my journey, I have worked with modern technologies such as React, Next.js, Vue.js, TypeScript, and styling tools like Tailwind CSS and Bootstrap. I stay up-to-date with frontend trends and continuously improve my skills to deliver high-quality results.",
+
+      "I have experience collaborating with designers, backend developers, and product teams to bring ideas from concept to deployment. My work emphasizes performance, accessibility, and creating smooth, meaningful user experiences.",
+
+      "My goal is to work with innovative teams to build digital products that look great and feel intuitive. I’m always ready for new challenges and opportunities to make an impact."
     ],
     "skills": {
       "title": "My Skills",
       "list": [
-        "HTML5 & CSS3",
+        "HTML5",
+        "CSS3",
         "JavaScript (ES6+)",
         "TypeScript",
-        "React & Next.js",
+        "React",
+        "Next.js",
         "Tailwind CSS",
-        "Git & GitHub",
+        "GitHub",
         "Responsive Design",
         "REST APIs"
       ]

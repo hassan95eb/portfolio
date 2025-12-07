@@ -7,6 +7,7 @@ interface ScrollLinkProps {
   href: string;
   children: React.ReactNode;
   iconType: "home" | "about" | "projects";
+  onClick?: () => void;
 }
 
 const iconMap = {
@@ -19,6 +20,7 @@ const ScrollLink: React.FC<ScrollLinkProps> = ({
   href,
   children,
   iconType,
+  onClick,
 }) => {
   const IconComponent = iconMap[iconType];
 
@@ -32,6 +34,9 @@ const ScrollLink: React.FC<ScrollLinkProps> = ({
         block: "start",
       });
       window.history.pushState(null, "", href);
+    }
+    if (onClick) {
+      onClick();
     }
   };
   return (

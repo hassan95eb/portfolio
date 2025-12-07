@@ -42,13 +42,13 @@ const Terminal: React.FC<TerminalProps> = ({ children, typingSpeed = 50 }) => {
   };
 
   return (
-    <div className="w-full max-w-2xl mx-auto font-mono text-sm">
-      <div className="bg-gray-800 rounded-t-lg flex items-center px-4 py-2 space-x-2">
-        <div className="w-3 h-3 rounded-full bg-red-500"></div>
-        <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-        <div className="w-3 h-3 rounded-full bg-green-500"></div>
+    <div className="w-full max-w-2xl mx-auto font-mono text-xs sm:text-sm">
+      <div className="bg-gray-800 rounded-t-lg flex items-center px-3 sm:px-4 py-2 space-x-2">
+        <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-red-500"></div>
+        <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-yellow-500"></div>
+        <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-green-500"></div>
       </div>
-      <div className="bg-gray-900 text-green-400 p-4 rounded-b-lg shadow-2xl min-h-[150px] overflow-hidden">
+      <div className="bg-gray-900 text-green-400 p-3 sm:p-4 rounded-b-lg shadow-2xl min-h-[120px] sm:min-h-[150px] overflow-hidden">
         <pre className="whitespace-pre-wrap break-words overflow-hidden w-full">
           <code className="block w-full">
             {displayedText}
@@ -56,7 +56,7 @@ const Terminal: React.FC<TerminalProps> = ({ children, typingSpeed = 50 }) => {
             <motion.span
               variants={cursorVariants}
               animate="blinking"
-              className="inline-block w-2 h-4 bg-green-400 ml-1 align-middle"
+              className="inline-block w-1.5 h-3 sm:w-2 sm:h-4 bg-green-400 ml-1 align-middle"
             />
           </code>
         </pre>
