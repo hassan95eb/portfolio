@@ -3,11 +3,11 @@ import {
    Geist,
    Geist_Mono,
 } from "next/font/google";
-import "./globals.css";
 import SideBar from "@/components/SideBar";
 import MobileNav from "@/components/MobileNav";
 import MouseParticles from "@/components/MouseParticles";
 import data from "./db.json";
+import "./globals.css";
 
 const geistSans = Geist({
    variable: "--font-geist-sans",
@@ -18,6 +18,7 @@ const geistMono = Geist_Mono({
    variable: "--font-geist-mono",
    subsets: ["latin"],
 });
+
 export const metadata: Metadata = {
    title: data.metadata.title,
    description: data.metadata.description,

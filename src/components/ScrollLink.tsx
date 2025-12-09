@@ -1,12 +1,13 @@
 "use client";
 
 import React from "react";
-import { HiHome, HiUser } from "react-icons/hi";
 import { MdOutlineAlternateEmail } from "react-icons/md";
 import {
    useRouter,
    usePathname,
 } from "next/navigation";
+import { FaUserTie } from "react-icons/fa";
+import { BsHouseFill } from "react-icons/bs";
 
 interface ScrollLinkProps {
    href: string;
@@ -16,9 +17,9 @@ interface ScrollLinkProps {
 }
 
 const iconMap = {
-   home: HiHome,
-   about: HiUser,
-   projects: MdOutlineAlternateEmail,
+   home: BsHouseFill,
+   about: FaUserTie,
+   contact: MdOutlineAlternateEmail,
 };
 
 const ScrollLink: React.FC<ScrollLinkProps> = ({

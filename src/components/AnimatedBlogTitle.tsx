@@ -7,41 +7,52 @@ export default function AnimatedBlogTitle({
 }: {
    children: React.ReactNode;
 }) {
-   const titleRef = useRef(null);
+   const titleRef = useRef<HTMLDivElement>(null);
 
    useEffect(() => {
       const ctx = gsap.context(() => {
-         const tl = gsap.timeline();
+         gsap.set(".title-line", {
+            opacity: 0,
+            x: -80,
+            transformOrigin: "left center",
+            willChange: "transform, opacity",
+         });
 
-         // Initial entrance animation
-         tl.fromTo(
-            ".title-line",
-            { opacity: 0, x: -100 },
-            {
-               opacity: 1,
-               x: 0,
-               duration: 0.8,
-               stagger: 0.15,
-               ease: "power3.out",
-            }
-         );
+         const tl = gsap.timeline({
+            defaults: { ease: "power3.out" },
+         });
 
-         // Floating animation starts after entrance completes
+         tl.to(".title-line", {
+            opacity: 1,
+            x: 0,
+            duration: 0.9,
+            stagger: 0.12,
+         });
+
          tl.to(
             ".title-line",
             {
-               y: 8,
-               duration: 3,
+               y: 30,
+               duration: 2.4,
                repeat: -1,
                yoyo: true,
                ease: "sine.inOut",
-               stagger: 0.1,
+               stagger: {
+                  each: 0.12,
+                  from: "start",
+               },
+               force3D: true,
             },
-            0 // Start at the beginning but will wait for previous animation
+            "-=0.6"
          );
       }, titleRef);
 
       return () => ctx.revert();
    }, []);
-   return <div ref={titleRef}>{children}</div>;
+
+   return (
+      <div ref={titleRef} className="">
+         {children}
+      </div>
+   );
 }
