@@ -27,7 +27,7 @@ export default function Blog() {
                {data.blog.posts.map((post) => {
                   return (
                      <Link
-                        href={`/blog/${post.seo_and_management_notes.internal_links_suggested[0].target_url}`}
+                        href={`/blog/${post.url}`}
                         key={post.id}
                         className="mb-8 p-6 rounded-lg w-full hover:shadow-lg transition-shadow duration-300"
                      >

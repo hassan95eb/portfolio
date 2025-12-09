@@ -134,6 +134,7 @@
          {
             "id": 1,
             "image": "/react-performance-optimization.png",
+            "url": "react-performance-optimization",
             "article_metadata": {
                "meta_title": "React Performance Optimization: Advanced Techniques for Faster Apps",
                "meta_description": "Master React performance optimization with memoization, code splitting, virtualization, and bundle analysis. Build lightning-fast React applications.",
@@ -203,6 +204,7 @@
          {
             "id": 2,
             "image": "/modern-css-layout.png",
+            "url": "modern-css-layout",
             "article_metadata": {
                "meta_title": "Modern CSS Layout: Mastering Grid and Flexbox Techniques",
                "meta_description": "Learn advanced CSS Grid and Flexbox techniques for responsive, accessible web layouts. Master modern CSS layout best practices with practical examples.",
@@ -269,78 +271,11 @@
                ]
             }
          },
+
          {
             "id": 3,
-            "image": "/advanced-css-grid.png",
-            "article_metadata": {
-               "meta_title": "Modern CSS Layout: Mastering Grid and Flexbox Techniques",
-               "meta_description": "Learn advanced CSS Grid and Flexbox techniques for responsive, accessible web layouts. Master modern CSS layout best practices with practical examples.",
-               "primary_keyword": "CSS layout",
-               "secondary_keywords": [
-                  "CSS Grid",
-                  "Flexbox",
-                  "responsive design"
-               ],
-               "target_topic": "Advanced CSS Grid and Flexbox techniques for modern web layout implementation",
-               "estimated_word_count": "880",
-               "estimated_read_time": "3-4 min read"
-            },
-            "article_content": {
-               "title": "Modern CSS Layout: Mastering Grid and Flexbox for Production",
-               "introduction": "The evolution of CSS layout systems has revolutionized how we build web interfaces. Moving beyond floats and positioning, modern CSS layout techniques using Grid and Flexbox provide powerful, semantic tools for creating complex, responsive designs. This guide explores advanced implementation strategies that combine both systems to solve real-world layout challenges efficiently.",
-               "key_takeaways": {
-                  "heading": "Key Takeaways",
-                  "content": "CSS Grid excels at two-dimensional layouts while Flexbox handles one-dimensional content flow. Combining Grid and Flexbox creates robust, maintainable layouts. Accessibility and responsive design are integral to modern CSS layout. Practical naming conventions and fallback strategies ensure production readiness."
-               },
-               "article_body": "Understanding the Layout Landscape\n\nModern CSS layout revolves around two complementary systems: CSS Grid for two-dimensional layouts (rows and columns simultaneously) and Flexbox for one-dimensional content distribution. Understanding when to use each is fundamental to effective CSS layout strategy. Grid handles overall page structure and complex component layouts, while Flexbox manages content within those containers.\n\n[Image: Visual comparison of CSS Grid vs Flexbox layout structures. Alt: Modern CSS layout comparison between Grid and Flexbox techniques.]\n\nCSS Grid: Beyond the Basics\n\nCSS Grid offers unprecedented control over two-dimensional layouts. Beyond basic grid-template-columns and rows, master advanced features like grid-template-areas for semantic layout definition. Named grid areas create self-documenting layouts that are easier to maintain and modify.\n\nAuto-fill and auto-fit with minmax() create truly responsive grids without media queries. For example: grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); This creates columns that automatically adjust based on container size. The fr unit (fractional unit) distributes remaining space proportionally, making CSS layout more flexible than fixed measurements.\n\n[Image: Complex CSS Grid layout with named areas and responsive columns. Alt: Advanced CSS Grid layout with template areas and responsive design.]\n\nFlexbox Deep Dive\n\nWhile CSS Grid handles macro layouts, Flexbox excels at micro layouts within components. Master the justify-content, align-items, and align-content properties for precise content alignment. The gap property (now supported in both Grid and Flexbox) eliminates the need for margin hacks, creating consistent spacing in your CSS layout.\n\nFlexbox's order property allows visual rearrangement without changing HTML structure, crucial for responsive design. However, use it judiciously as it can create accessibility issues when the visual order differs significantly from DOM order. Always test keyboard navigation and screen reader output when reordering content.\n\nCombining Grid and Flexbox\n\nThe most powerful modern CSS layout approach combines both systems. Use CSS Grid for the overall page structure—header, main content, sidebar, footer—then employ Flexbox for components within those regions. This layered approach creates maintainable, scalable layouts.\n\nFor example, create a card grid with CSS Grid for the container layout, then use Flexbox inside each card for content alignment. This separation of concerns makes your CSS layout more modular and easier to debug. Each system handles what it does best, resulting in cleaner code and better performance.\n\nResponsive Design Patterns\n\nModern CSS layout must be inherently responsive. CSS Grid's auto-fill/auto-fit capabilities reduce media query reliance. However, strategic breakpoints still play a crucial role. Use mobile-first approach with min-width media queries, enhancing layouts as screen space increases.\n\nContainer queries represent the next evolution in responsive CSS layout. While not yet universally supported, they allow components to adapt based on their container size rather than viewport. This enables truly modular, reusable components. Use @container with fallbacks for progressive enhancement.\n\nAccessibility Considerations\n\nAccessible CSS layout goes beyond visual presentation. Ensure proper reading order by maintaining logical DOM structure. CSS Grid and Flexbox's visual reordering capabilities should not compromise keyboard navigation. Test tab order and screen reader output thoroughly.\n\nUse semantic HTML elements as grid and flex containers when appropriate. For instance, using <main> as a grid container for primary content or <nav> for navigation layouts. This enhances both accessibility and SEO while making your CSS layout more meaningful.\n\n[Image: Accessible CSS layout showing proper semantic structure with Grid. Alt: Accessible CSS layout implementation with semantic HTML and Grid.]\n\nPerformance and Best Practices\n\nModern CSS layout techniques are generally performant, but certain practices can impact rendering. Minimize layout thrashing by avoiding frequent style changes that trigger reflow. Use transform and opacity for animations as they don't affect layout.\n\nImplement naming conventions for grid areas and CSS custom properties (variables) for consistent spacing. For example: --spacing-unit: 1rem; grid-gap: var(--spacing-unit); This creates maintainable, scalable CSS layout systems. Browser developer tools now include excellent Grid and Flexbox inspectors—use them extensively during development.\n\nFallback Strategies\n\nWhile modern CSS layout features enjoy excellent browser support (over 95% globally), consider fallbacks for critical layouts. Feature detection with @supports allows progressive enhancement. For example: @supports (display: grid) { /* Grid styles */ } else { /* Fallback styles */ }\n\nFor maximum compatibility, consider a mobile-first approach where simpler layouts work everywhere, enhanced with Grid and Flexbox where supported. This ensures your CSS layout remains functional across all browsers while providing enhanced experiences where possible.\n\nCommon Layout Patterns Solved\n\nModern CSS layout elegantly solves previously complex patterns. Holy Grail layouts (header, footer, three columns) become trivial with CSS Grid. Sticky footers, equal-height columns, and vertical centering—once CSS headaches—are now simple with Flexbox. Card grids with dynamic item counts maintain perfect alignment automatically.\n\nThe aspect-ratio property, combined with object-fit, solves responsive media containers. This is particularly valuable in image galleries and video embeds within your CSS layout. These solutions reduce JavaScript dependencies, improving performance and maintainability.",
-               "conclusion": "Mastering modern CSS layout requires understanding both Grid and Flexbox as complementary tools in your development arsenal. By combining their strengths—Grid for structure, Flexbox for content—you can create sophisticated, responsive, and accessible layouts with cleaner, more maintainable code. The evolution of CSS layout systems has finally given developers the proper tools for the complex interfaces users expect today. Implement these techniques systematically, always considering performance, accessibility, and browser support to create robust production-ready layouts.",
-               "faq_section": {
-                  "heading": "Frequently Asked Questions",
-                  "questions": [
-                     {
-                        "question": "When should I choose CSS Grid over Flexbox for layout?",
-                        "answer": "Use CSS Grid for two-dimensional layouts where you need control over both rows and columns simultaneously, like overall page structure or complex card grids. Use Flexbox for one-dimensional content distribution within those containers, like navigation bars or form controls."
-                     },
-                     {
-                        "question": "How do I make CSS Grid layouts responsive without many media queries?",
-                        "answer": "Use auto-fill/auto-fit with minmax() values: grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); This creates columns that automatically adjust based on available space. Add strategic breakpoints only for major layout shifts."
-                     },
-                     {
-                        "question": "What are the accessibility concerns with modern CSS layout techniques?",
-                        "answer": "Visual reordering (order property in Flexbox, grid placement in Grid) can disconnect visual order from DOM order, confusing keyboard and screen reader users. Always test navigation flow and maintain logical HTML structure regardless of visual presentation."
-                     }
-                  ]
-               }
-            },
-            "seo_and_management_notes": {
-               "keyword_usage_report": {
-                  "primary_keyword_count": "12",
-                  "secondary_keyword_coverage": "CSS Grid appears 8 times, Flexbox appears 7 times, responsive design appears 4 times"
-               },
-               "internal_links_suggested": [
-                  {
-                     "anchor_text": "CSS custom properties guide",
-                     "target_url": "/blog/css-custom-properties-advanced"
-                  },
-                  {
-                     "anchor_text": "Responsive images techniques",
-                     "target_url": "/blog/responsive-images-best-practices"
-                  },
-                  {
-                     "anchor_text": "Front-end performance optimization",
-                     "target_url": "/blog/frontend-performance-guide"
-                  }
-               ],
-               "publishing_tips": [
-                  "Include interactive CodePen examples demonstrating key techniques",
-                  "Share on CSS-Tricks, Dev.to CSS tag, and front-end development communities",
-                  "Create a companion CSS layout cheatsheet for quick reference"
-               ]
-            }
-         },
-         {
-            "id": 4,
             "image": "/web-accessibility.png",
+            "url": "web-accessibility-aria-semantics-testing",
             "article_metadata": {
                "meta_title": "Web Accessibility: ARIA Roles, Semantics & Testing Guide",
                "meta_description": "Master web accessibility with ARIA roles, semantic HTML, and comprehensive testing strategies. Build inclusive web experiences for all users.",
