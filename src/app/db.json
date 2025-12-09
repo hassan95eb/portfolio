@@ -128,8 +128,8 @@
    },
    "blog": {
       "id": "blog",
-      "title": "Blog",
-      "subtitle": "Read my latest articles and tutorials on web development",
+      "title": "Let's Read",
+      "subtitle": "Curated Articles for Inspiration, Insight, and Growth",
       "posts": [
          {
             "id": 1,
