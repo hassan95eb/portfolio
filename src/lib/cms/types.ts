@@ -1,0 +1,81 @@
+/**
+ * The shape the UI consumes.
+ *
+ * These types are the contract between the pages and whatever is behind
+ * `getCms()` — today a mock module, later WPGraphQL. Nothing in `app/`
+ * should ever import from a concrete source; it imports these types and
+ * calls the adapter.
+ */
+
+export type BlogTone = "default" | "wide" | "dark";
+
+export type Category = {
+  /** Stable identifier. Never translated — filters and URLs key off this. */
+  slug: string;
+  /** Display name in the requested language. */
+  name: string;
+};
+
+export type Project = {
+  slug: string;
+  title: string;
+  summary: string;
+  description: string;
+  role: string;
+  year: string;
+  stack: string[];
+  highlights: string[];
+  /** Hex colour driving the card treatment. */
+  accent: string;
+};
+
+export type BlogPost = {
+  slug: string;
+  title: string;
+  description: string;
+  /** Category *slug*, not its label. Resolve with `getCategories()`. */
+  category: string;
+  readTime: string;
+  date: string;
+  /** Layout intent for the curated grid. */
+  tone: BlogTone;
+  accent: string;
+};
+
+export type ExperienceItem = {
+  role: string;
+  company: string;
+  period: string;
+  summary: string;
+  points: string[];
+};
+
+export type Achievement = {
+  title: string;
+  body: string;
+};
+
+export type Testimonial = {
+  name: string;
+  role: string;
+  quote: string;
+};
+
+export type Certification = {
+  title: string;
+  provider: string;
+  date: string;
+};
+
+/** Everything one language's content set contains. */
+export type CmsData = {
+  projects: Project[];
+  featuredPost: BlogPost;
+  posts: BlogPost[];
+  categories: Category[];
+  experience: ExperienceItem[];
+  achievements: Achievement[];
+  achievementsPlaceholder: Achievement[];
+  testimonials: Testimonial[];
+  certifications: Certification[];
+};
