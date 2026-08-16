@@ -35,6 +35,10 @@ const en = {
     readArticle: "Read Article",
     moreAboutMe: "More About Me",
     downloadResume: "Download Resume",
+    themeToLight: "Switch to light mode",
+    themeToDark: "Switch to dark mode",
+    openMenu: "Open menu",
+    closeMenu: "Close menu",
   },
   languageToggle: {
     en: "EN",
@@ -255,6 +259,10 @@ const fa: typeof en = {
     readArticle: "خواندن مقاله",
     moreAboutMe: "بیشتر درباره من",
     downloadResume: "دانلود رزومه",
+    themeToLight: "تغییر به حالت روشن",
+    themeToDark: "تغییر به حالت تاریک",
+    openMenu: "باز کردن منو",
+    closeMenu: "بستن منو",
   },
   languageToggle: {
     en: "EN",

@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { LANGS, dirOf, isLang, type Lang } from "@/lib/i18n/config";
 import { fontVariables } from "@/lib/fonts";
+import { getUi } from "@/i18n/ui";
+import { Header } from "@/components/Header";
+import { Footer } from "@/components/Footer";
 import "../globals.css";
 
 /**
@@ -80,6 +83,7 @@ export default async function RootLayout({
   if (!isLang(lang)) notFound();
 
   const typed: Lang = lang;
+  const ui = getUi(typed);
 
   return (
     <html
@@ -92,9 +96,16 @@ export default async function RootLayout({
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
       <body className="flex min-h-screen flex-col bg-background antialiased">
-        {/* Header goes here in step 3 */}
+        {/* Only the strings the header actually renders cross into the client
+            bundle, rather than the whole ui object. */}
+        <Header
+          lang={typed}
+          nav={ui.nav}
+          common={ui.common}
+          languageToggle={ui.languageToggle}
+        />
         <main className="flex-1">{children}</main>
-        {/* Footer goes here in step 3 */}
+        <Footer lang={typed} />
       </body>
     </html>
   );
