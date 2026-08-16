@@ -1,57 +1,331 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:is(.dark *));
+
 :root {
-   --background: #faf6f3;
-   --primary-text: #3a3a3a;
-   --secondary: #d9c9be;
-   --action: #006a4e;
+  --font-size: 16px;
+
+  /* ── Hassan Amini brand palette ─────────────────────────── */
+  --primary: #25201C;      /* deep espresso — dark sections, footer, type */
+  --background: #FFFFFF;   /* clean white — main background */
+  --surface: #FBF6EF;      /* soft cream — cards, panels, forms */
+  --secondary: #BFAF9F;    /* mature neutral — muted panels, timelines */
+  --accent: #B96B4A;       /* terracotta — CTAs, highlights, active states */
+  --text-main: #1C1815;    /* near-black warm — primary text */
+  --text-muted: #746A62;   /* muted taupe — secondary text */
+  --border: #D8CBBE;       /* soft warm border */
+
+  /* Fonts */
+  --font-heading: var(--font-space-grotesk), system-ui, sans-serif;
+  --font-body: var(--font-manrope), system-ui, sans-serif;
+
+  /* ── Semantic mappings for shadcn/ui + tailwind ─────────── */
+  --foreground: var(--text-main);
+  --card: var(--surface);
+  --card-foreground: var(--text-main);
+  --popover: var(--surface);
+  --popover-foreground: var(--text-main);
+  --primary-foreground: #FBF6EF;
+  --secondary-foreground: var(--primary);
+  --muted: #EDE3D7;
+  --muted-foreground: var(--text-muted);
+  --accent-foreground: #FBF6EF;
+  --destructive: #A23A28;
+  --destructive-foreground: #ffffff;
+  --input: transparent;
+  --input-background: #FFFFFF;
+  --switch-background: var(--secondary);
+  --font-weight-medium: 600;
+  --font-weight-normal: 400;
+  --ring: var(--accent);
+  --radius: 0.5rem;
+
+  color-scheme: light;
+}
+
+/* ── Dark mode ──────────────────────────────────────────────
+   Same warm brand family, inverted into an espresso-dark theme.
+   Backgrounds move from cream/white to deep warm espressos, text
+   flips to warm off-whites, and the terracotta accent is nudged a
+   touch brighter so it keeps its punch on dark surfaces. Because the
+   app is built almost entirely on these semantic tokens, overriding
+   them here re-themes the whole site with minimal per-component work. */
+.dark {
+  --primary: #0E0B08;      /* deepest wells — footer, testimonials, hero card */
+  --background: #17120E;   /* main background */
+  --surface: #201A15;      /* cards, panels, forms */
+  --secondary: #8A7A69;    /* mid warm taupe — kept light for washes & avatars */
+  --accent: #C67B58;       /* terracotta, brightened for dark surfaces */
+  --text-main: #F3EAE0;    /* warm off-white — primary text */
+  --text-muted: #A99C90;   /* muted warm taupe — secondary text */
+  --border: #362C24;       /* soft warm dark border */
+
+  --foreground: var(--text-main);
+  --card: var(--surface);
+  --card-foreground: var(--text-main);
+  --popover: var(--surface);
+  --popover-foreground: var(--text-main);
+  --primary-foreground: #FBF6EF;
+  --secondary-foreground: #201A15;
+  --muted: #2A221C;
+  --muted-foreground: var(--text-muted);
+  --accent-foreground: #1A130F;
+  --destructive: #E06A54;
+  --destructive-foreground: #1A130F;
+  --input: transparent;
+  --input-background: #201A15;
+  --switch-background: #45392F;
+  --ring: var(--accent);
+
+  color-scheme: dark;
+}
+
+/* ── Persian / RTL ──────────────────────────────────────────
+   When the document switches to Persian, redirect the brand font
+   variables to Vazirmatn. Because the whole app renders type through
+   var(--font-heading) / var(--font-body), this re-fonts every heading,
+   body copy, button, and input without touching a single component —
+   and keeps the exact same size/weight hierarchy. Latin fallbacks stay
+   in place so embedded technical terms (React, TypeScript…) render clean. */
+[dir="rtl"] {
+  --font-heading: var(--font-vazirmatn), var(--font-space-grotesk), system-ui, sans-serif;
+  --font-body: var(--font-vazirmatn), var(--font-manrope), system-ui, sans-serif;
 }
 
 @theme inline {
-   --color-background: var(--background);
-   --color-primary-text: var(--primary-text);
-   --color-secondary: var(--secondary);
-   --color-action: var(--action);
+  --font-heading: var(--font-heading);
+  --font-body: var(--font-body);
 
-   --font-sans: var(--font-geist-sans);
-   --font-mono: var(--font-geist-mono);
-   --animate-custom_pluse: h-pulse 1s ease-in-out
-      infinite;
-   @keyframes h-pulse {
-      0% {
-         opacity: 1;
-      }
-      50% {
-         opacity: 0.25;
-      }
-      100% {
-         opacity: 1;
-      }
-   }
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-input-background: var(--input-background);
+  --color-switch-background: var(--switch-background);
+  --color-ring: var(--ring);
+  --color-text-main: var(--text-main);
+  --color-text-muted: var(--text-muted);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
 }
 
-svg {
-   transition: color 0.2s ease-in-out;
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  html {
+    font-size: var(--font-size);
+    scroll-behavior: smooth;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+  }
+
+  h1 {
+    font-size: var(--text-2xl);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.5;
+  }
+
+  h2 {
+    font-size: var(--text-xl);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.5;
+  }
+
+  h3 {
+    font-size: var(--text-lg);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.5;
+  }
+
+  h4 {
+    font-size: var(--text-base);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.5;
+  }
+
+  label {
+    font-size: var(--text-base);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.5;
+  }
+
+  button {
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.5;
+  }
+
+  input, textarea, select {
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    font-weight: var(--font-weight-normal);
+    line-height: 1.5;
+  }
 }
 
-.group:hover svg,
-a:hover svg,
-button:hover svg {
-   color: #d9c9be !important;
+/* Inlined brand logo: force the raw SVG to fit its container height. */
+.logo-mark {
+  display: inline-flex;
 }
-.animated-grid-layer {
-   position: absolute;
-   top: 0;
-   left: 0;
-   width: 200%;
-   height: 200%;
-   z-index: 0;
-   opacity: 0.15;
-   pointer-events: none;
+.logo-mark svg {
+  height: 100%;
+  width: auto;
+  display: block;
+}
+/* Nav hover — a hand-drawn "colored pencil" line that weaves over and under the
+   letterforms left-to-right. It sits above the text at low opacity (so the label
+   stays readable), is roughened by an SVG turbulence filter for a crayon grain,
+   and draws itself in from left to right on hover with a calm ease-out. */
+.nav-stroke path {
+  fill: none;
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  /* Fully hidden at rest — opacity:0 kills the rounded-cap artifact the crayon
+     filter would otherwise smear into view before hover. */
+  opacity: 0;
+  /* pathLength=1 makes the draw resolution-independent: hidden at rest… */
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  transition:
+    stroke-dashoffset 720ms cubic-bezier(0.33, 1, 0.68, 1),
+    opacity 120ms linear;
+}
 
-   background-image: radial-gradient(
-      #333333 1px,
-      transparent 1px
-   );
-   background-size: 50px 50px;
+/* …and drawn in like a pencil stroke on hover / keyboard focus. */
+.group\/nav:hover .nav-stroke path,
+.group\/nav:focus-visible .nav-stroke path {
+  opacity: 1;
+  stroke-dashoffset: 0;
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-stroke path {
+    transition-duration: 1ms;
+  }
+}
+
+/* Skills cards begin slightly enlarged and softly out of focus, then settle
+   into their exact resting size once they enter the viewport. */
+.skill-card-reveal {
+  filter: blur(3px);
+  transform: scale(1.085);
+  transform-origin: center center;
+  transition:
+    transform 760ms cubic-bezier(0.16, 1, 0.3, 1),
+    filter 680ms cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, filter;
+}
+
+.skill-card-reveal--visible {
+  filter: blur(0);
+  transform: scale(1);
+}
+
+/* Sequential rhythm without inline styles or scroll-time calculation. */
+.skill-card-reveal:nth-child(2) { transition-delay: 90ms, 90ms; }
+.skill-card-reveal:nth-child(3) { transition-delay: 180ms, 180ms; }
+.skill-card-reveal:nth-child(4) { transition-delay: 270ms, 270ms; }
+.skill-card-reveal:nth-child(5) { transition-delay: 360ms, 360ms; }
+.skill-card-reveal:nth-child(6) { transition-delay: 450ms, 450ms; }
+
+@media (prefers-reduced-motion: reduce) {
+  .skill-card-reveal {
+    filter: none;
+    transform: none;
+    transition: none;
+    will-change: auto;
+  }
+}
+
+/* Who I Am primary action. */
+.who-i-am-cta {
+  background: #B96B4A;
+  border-color: #B96B4A;
+  color: #FBF6EF;
+  box-shadow: 0 10px 24px rgba(185, 107, 74, 0.32);
+}
+
+.who-i-am-cta:hover {
+  background: #A2573A;
+  border-color: #A2573A;
+  color: #FBF6EF;
+  box-shadow: 0 14px 30px rgba(185, 107, 74, 0.42);
+}
+
+.dark .who-i-am-cta {
+  background: #B96B4A;
+  border-color: #B96B4A;
+  color: #FBF6EF;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.45);
+}
+
+.dark .who-i-am-cta:hover {
+  background: #C97C58;
+  border-color: #C97C58;
+  color: #FBF6EF;
+}
+
+.who-i-am-arrow path {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+}
+
+.who-i-am-arrow__line {
+  animation: who-i-am-arrow-draw 3.8s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+}
+
+.who-i-am-arrow__tip {
+  animation: who-i-am-arrow-draw 3.8s 130ms cubic-bezier(0.22, 1, 0.36, 1) infinite;
+}
+
+@keyframes who-i-am-arrow-draw {
+  0%, 14% { stroke-dashoffset: 1; opacity: 0; }
+  18% { opacity: 1; }
+  48%, 76% { stroke-dashoffset: 0; opacity: 1; }
+  84%, 100% { stroke-dashoffset: 1; opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .who-i-am-arrow__line,
+  .who-i-am-arrow__tip {
+    animation: none;
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+}
+
