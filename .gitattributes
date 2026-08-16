@@ -1,0 +1,8 @@
+# Normalise line endings so a Windows checkout does not show every file as
+# modified. Without this, globals.d.ts and friends appear dirty on every clone.
+* text=auto eol=lf
+
+*.png binary
+*.jpg binary
+*.ico binary
+*.svg text eol=lf
