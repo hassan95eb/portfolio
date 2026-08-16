@@ -1,6 +1,4 @@
 import { notFound } from "next/navigation";
-import { ThemeToggle } from "@/components/ThemeToggle";
-import { LangToggle } from "@/components/LangToggle";
 import { isLang } from "@/lib/i18n/config";
 import { getUi } from "@/i18n/ui";
 import { getProfile } from "@/content/profile";
@@ -61,10 +59,6 @@ export default async function Page({
         {ui.hero.description}
       </p>
 
-      <div className="mb-14 flex flex-wrap gap-3">
-        <ThemeToggle label={ui.common.viewProjects} />
-        <LangToggle lang={lang} label={ui.languageToggle[lang === "fa" ? "en" : "fa"]} />
-      </div>
 
       <section className="mb-12">
         <h2 className="mb-4 font-heading text-xl text-text-main">

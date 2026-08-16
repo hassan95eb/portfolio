@@ -73,7 +73,7 @@ Then open http://localhost:3000 — it redirects to `/en` or `/fa`.
 
 1. ✅ Scaffold: Next.js, Tailwind v4, brand tokens, fonts, `[lang]` routing
 2. ✅ Content layer: UI copy, profile content and CMS entities separated
-3. Shared chrome: Header, Footer, theme toggle
+3. ✅ Shared chrome: Header, Footer, theme and language toggles
 4. Static pages: About, Experience, Achievements, Testimonials, Certifications
 5. Home
 6. Projects + `projects/[slug]`
