@@ -8,7 +8,7 @@ import { Logo } from "./Logo";
 import { CTAButton } from "./primitives";
 import { ThemeToggle } from "./ThemeToggle";
 import { LanguageToggle } from "./LanguageToggle";
-import { NAV_PATHS } from "@/lib/site";
+import { NAV_PATHS, SHOW_LANGUAGE_TOGGLE } from "@/lib/site";
 import type { Lang } from "@/lib/i18n/config";
 import type { Ui } from "@/i18n/ui";
 
@@ -144,15 +144,20 @@ export function Header({
         </nav>
 
         <div className="flex items-center gap-3">
-          <LanguageToggle
-            lang={lang}
-            label={languageToggle[toggleTarget]}
-            ariaLabel={
-              toggleTarget === "fa"
-                ? languageToggle.switchToPersian
-                : languageToggle.switchToEnglish
-            }
-          />
+          {/* Hidden, not deleted — see SHOW_LANGUAGE_TOGGLE in lib/site.ts.
+              /fa stays reachable by URL, so links already shared keep
+              working while the Persian copy is under review. */}
+          {SHOW_LANGUAGE_TOGGLE && (
+            <LanguageToggle
+              lang={lang}
+              label={languageToggle[toggleTarget]}
+              ariaLabel={
+                toggleTarget === "fa"
+                  ? languageToggle.switchToPersian
+                  : languageToggle.switchToEnglish
+              }
+            />
+          )}
           <ThemeToggle toLight={common.themeToLight} toDark={common.themeToDark} />
           <div className="hidden lg:block">
             <CTAButton href={`/${lang}/contact`}>

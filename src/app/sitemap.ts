@@ -11,9 +11,13 @@ import { cms } from "@/lib/cms";
  * sees /en/about and /fa/about as competing pages rather than as two
  * languages of one page.
  *
- * Only routes that exist and are indexable are listed. `/blog` is a
- * placeholder carrying `noindex`, and `/contact` is not built yet — listing
- * either would advertise a URL that cannot be served or should not rank.
+ * Only routes that exist and are indexable are listed. `/blog` stays out
+ * while it is a placeholder carrying `noindex` — listing it would advertise
+ * a URL that should not rank.
+ *
+ * The /fa entries stay listed even though the header's language switch is
+ * hidden: the routes are still built and served, and dropping them from the
+ * sitemap would orphan pages a crawler has already seen.
  */
 
 /** Paths without a language prefix. "" is the home page. */
@@ -25,6 +29,7 @@ const STATIC_PATHS = [
   "/achievements",
   "/testimonials",
   "/certifications",
+  "/contact",
 ] as const;
 
 function urlFor(lang: Lang, path: string) {
