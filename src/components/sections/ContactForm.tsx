@@ -1,26 +1,30 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
-import { Download, Send } from "lucide-react";
+import { Download, Loader2, Send } from "lucide-react";
 import { CTAButton } from "@/components/primitives";
 import { CONTACT, RESUME_PATH } from "@/lib/site";
 import type { Ui } from "@/i18n/ui";
 
 /**
- * The contact form, backed by `mailto:` rather than by a server.
+ * The contact form.
  *
- * There is no backend yet — WordPress is still to be connected — and a form
- * that POSTs nowhere while showing "message sent" loses real enquiries
- * silently. Handing the composed message to the visitor's own mail client
- * keeps the copy honest: nothing is claimed as delivered, and the message
- * survives in their Sent folder either way.
+ * It posts to `/api/contact`, which sends the mail server-side — the visitor
+ * needs no mail client configured, and nothing about the send depends on what
+ * their machine has installed.
  *
- * When the API lands, `submit` is the only function that changes.
+ * Every failure path ends with the address on screen. A contact form that
+ * swallows a message is worse than no form at all, so when the send fails the
+ * copy says so and hands over the direct route rather than leaving the
+ * visitor to guess whether it arrived.
  */
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-type Status = { tone: "error" | "success"; text: string } | null;
+type Status =
+  | { state: "idle" }
+  | { state: "sending" }
+  | { state: "done"; tone: "error" | "success"; text: string };
 
 export function ContactForm({
   copy,
@@ -34,10 +38,24 @@ export function ContactForm({
   const [email, setEmail] = useState("");
   const [projectType, setProjectType] = useState("");
   const [message, setMessage] = useState("");
-  const [status, setStatus] = useState<Status>(null);
+  // Honeypot. Never shown, never filled by a person; a bot that completes
+  // every input gives itself away.
+  const [company, setCompany] = useState("");
+  const [status, setStatus] = useState<Status>({ state: "idle" });
 
-  function submit(event: FormEvent<HTMLFormElement>) {
+  const sending = status.state === "sending";
+
+  function fail(template: string) {
+    setStatus({
+      state: "done",
+      tone: "error",
+      text: template.replace("{email}", CONTACT.email),
+    });
+  }
+
+  async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (sending) return;
 
     const trimmed = {
       name: name.trim(),
@@ -45,47 +63,57 @@ export function ContactForm({
       message: message.trim(),
     };
 
+    // Checked here for a fast, translated answer, and again on the server,
+    // which is the only check that actually protects anything.
     if (!trimmed.name || !trimmed.email || !trimmed.message) {
-      setStatus({ tone: "error", text: copy.toastError });
+      setStatus({ state: "done", tone: "error", text: copy.toastError });
       return;
     }
     if (!EMAIL_PATTERN.test(trimmed.email)) {
-      setStatus({ tone: "error", text: copy.toastInvalidEmail });
+      setStatus({ state: "done", tone: "error", text: copy.toastInvalidEmail });
       return;
     }
 
-    const subject = projectType
-      ? `${projectType} — ${trimmed.name}`
-      : copy.mailSubject.replace("{name}", trimmed.name);
+    setStatus({ state: "sending" });
 
-    // A blank line before the signature so it reads as a signature and not
-    // as another paragraph of the message.
-    const body = [trimmed.message, "", `— ${trimmed.name}`, trimmed.email].join(
-      "\n",
-    );
-
-    const href = `mailto:${CONTACT.email}?subject=${encodeURIComponent(
-      subject,
-    )}&body=${encodeURIComponent(body)}`;
-
+    let response: Response;
     try {
-      window.location.href = href;
-      setStatus({ tone: "success", text: copy.toastSuccess });
-    } catch {
-      // Some hardened browsers refuse to hand off protocol links at all.
-      setStatus({
-        tone: "error",
-        text: copy.toastBlocked.replace("{email}", CONTACT.email),
+      response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...trimmed, projectType, company }),
       });
+    } catch {
+      // Offline, or the request never left the machine.
+      fail(copy.toastFailed);
+      return;
     }
+
+    if (response.ok) {
+      setStatus({ state: "done", tone: "success", text: copy.toastSuccess });
+      setName("");
+      setEmail("");
+      setProjectType("");
+      setMessage("");
+      return;
+    }
+
+    const error = await response
+      .json()
+      .then((body: { error?: string }) => body.error)
+      .catch(() => undefined);
+
+    if (error === "rate_limited") fail(copy.toastRateLimited);
+    else if (error === "invalid") setStatus({ state: "done", tone: "error", text: copy.toastError });
+    else fail(copy.toastFailed);
   }
 
   const field =
-    "w-full rounded-md border border-border bg-background px-4 py-2.5 text-sm text-text-main outline-none transition-colors placeholder:text-text-muted/70 focus:border-accent";
+    "w-full rounded-md border border-border bg-background px-4 py-2.5 text-sm text-text-main outline-none transition-colors placeholder:text-text-muted/70 focus:border-accent disabled:opacity-60";
   const label = "mb-2 block text-xs uppercase tracking-[0.16em] text-text-muted";
 
   return (
-    <form onSubmit={submit} noValidate className="flex flex-col gap-5">
+    <form onSubmit={submit} noValidate className="relative flex flex-col gap-5">
       <div className="grid gap-5 sm:grid-cols-2">
         <div>
           <label className={label} htmlFor="contact-name">
@@ -98,6 +126,8 @@ export function ContactForm({
             onChange={(event) => setName(event.target.value)}
             placeholder={copy.form.namePlaceholder}
             autoComplete="name"
+            maxLength={120}
+            disabled={sending}
             required
             className={field}
           />
@@ -118,6 +148,8 @@ export function ContactForm({
             onChange={(event) => setEmail(event.target.value)}
             placeholder={copy.form.emailPlaceholder}
             autoComplete="email"
+            maxLength={200}
+            disabled={sending}
             required
             className={`${field} text-start`}
           />
@@ -133,6 +165,7 @@ export function ContactForm({
           name="projectType"
           value={projectType}
           onChange={(event) => setProjectType(event.target.value)}
+          disabled={sending}
           className={field}
         >
           <option value="">{copy.form.projectTypePlaceholder}</option>
@@ -155,21 +188,48 @@ export function ContactForm({
           value={message}
           onChange={(event) => setMessage(event.target.value)}
           placeholder={copy.form.messagePlaceholder}
+          maxLength={5000}
+          disabled={sending}
           required
           className={`${field} resize-y`}
         />
       </div>
 
+      {/* Honeypot. `aria-hidden` and `tabIndex={-1}` keep it away from screen
+          readers and the tab order; it is positioned off-screen rather than
+          `display: none`, which some bots skip. */}
+      <div aria-hidden className="absolute -left-[9999px] top-0 h-0 w-0 overflow-hidden">
+        <label htmlFor="contact-company">Company</label>
+        <input
+          id="contact-company"
+          name="company"
+          type="text"
+          tabIndex={-1}
+          autoComplete="off"
+          value={company}
+          onChange={(event) => setCompany(event.target.value)}
+        />
+      </div>
+
       <div className="flex flex-wrap items-center gap-3">
-        <CTAButton type="submit">
-          {copy.form.send} <Send size={16} />
+        <CTAButton type="submit" disabled={sending}>
+          {sending ? (
+            <>
+              {copy.form.sending}
+              <Loader2 size={16} className="animate-spin" />
+            </>
+          ) : (
+            <>
+              {copy.form.send} <Send size={16} />
+            </>
+          )}
         </CTAButton>
         <CTAButton external={RESUME_PATH} download variant="ghost">
           <Download size={16} /> {copy.form.downloadResume}
         </CTAButton>
       </div>
 
-      <p className="text-xs text-text-muted">{copy.mailtoNote}</p>
+      <p className="text-xs text-text-muted">{copy.formNote}</p>
 
       {/* Always in the DOM so a screen reader announces the change rather
           than a region appearing from nowhere. */}
@@ -177,10 +237,12 @@ export function ContactForm({
         role="status"
         aria-live="polite"
         className={`min-h-5 text-sm ${
-          status?.tone === "error" ? "text-accent" : "text-text-main"
+          status.state === "done" && status.tone === "error"
+            ? "text-accent"
+            : "text-text-main"
         }`}
       >
-        {status?.text ?? ""}
+        {status.state === "done" ? status.text : ""}
       </p>
     </form>
   );

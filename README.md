@@ -88,11 +88,68 @@ Then open http://localhost:3000 — it redirects to `/en` or `/fa`.
 7. 🚧 Blog — placeholder page is live and `noindex`; the index and
    `blog/[slug]` are still to build
 8. ✅ `sitemap.ts`, `robots.ts`, metadata, hreflang
-9. ✅ Contact page — channels plus a `mailto:`-backed form; swapping in a
-   real endpoint touches only `submit` in `components/sections/ContactForm`
+9. ✅ Contact page — channels plus a form that posts to `/api/contact` and
+   sends server-side
 10. Deploy to Vercel on mock data
 11. Swap mock → WordPress (WPGraphQL) behind an env var, add ISR
 
-`NEXT_PUBLIC_SITE_URL` must be set in the deploy environment: canonical
-tags, hreflang and the sitemap are only honoured as absolute URLs, and the
+## Contact form
+
+`POST /api/contact` sends the message server-side. The visitor needs no mail
+client, and the sending credential never reaches the browser — which is the
+whole reason this is a route handler rather than a client-side call to an
+email service. Any browser-side integration has to ship its key in the
+bundle, where anyone can read it and spend the quota.
+
+The endpoint validates, silently accepts and drops anything that fills the
+honeypot field, and rate-limits per IP as a best effort — that counter lives
+in one server instance's memory, so it is a speed bump rather than a
+guarantee.
+
+Everything provider-specific is in `src/lib/email.ts`. There are three
+transports, chosen from the environment:
+
+| `CONTACT_TRANSPORT` | Uses | Good for |
+|---|---|---|
+| `smtp` | Any SMTP server via nodemailer | Your own domain's mailbox, an Iranian host, or Gmail with an App Password. Nothing to sign up for that may be unavailable to you. |
+| `resend` | Resend's REST API | One POST, no dependency. Needs a Resend account. |
+| `log` | The server console | Local development with no provider and no outbound network. |
+
+Unset, SMTP wins when `SMTP_HOST` is set, otherwise Resend when
+`RESEND_API_KEY` is. Adding a provider means one more branch here and nothing
+above it.
+
+`from` is always a mailbox you control, never the visitor's address: sending
+as somebody else's domain fails SPF and DKIM and lands in spam. The visitor's
+address goes in `Reply-To`, so hitting reply answers them directly.
+
+`log` is **refused when `NODE_ENV=production`**, and that refusal is the point
+of it. A form that reports "sent" while dropping the message is worse than no
+form — the visitor believes they reached you and neither of you finds out
+otherwise. In production, an unconfigured transport returns 503 and the page
+tells the visitor the send failed and shows the direct address. Every failure
+path ends with the address on screen.
+
+### Testing it locally
+
+The outbound connection is made by whatever machine runs the server. Under
+`npm run dev` that is your own, so a provider your network cannot reach will
+fail locally and work perfectly once deployed. To exercise the form without
+that variable:
+
+```bash
+echo "CONTACT_TRANSPORT=log" >> .env.local
+npm run dev
+```
+
+The submitted message is printed to the terminal running the dev server.
+
+## Environment
+
+See `.env.example`. None of these may be prefixed `NEXT_PUBLIC_` — that
+inlines them into the browser bundle, where a credential is readable and
+spendable by anyone.
+
+`NEXT_PUBLIC_SITE_URL` must be set in the deploy environment: canonical tags,
+hreflang and the sitemap are only honoured as absolute URLs, and the
 localhost fallback in `lib/site.ts` would be wrong in production.
