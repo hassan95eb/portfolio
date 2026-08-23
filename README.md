@@ -88,11 +88,41 @@ Then open http://localhost:3000 — it redirects to `/en` or `/fa`.
 7. 🚧 Blog — placeholder page is live and `noindex`; the index and
    `blog/[slug]` are still to build
 8. ✅ `sitemap.ts`, `robots.ts`, metadata, hreflang
-9. ✅ Contact page — channels plus a `mailto:`-backed form; swapping in a
-   real endpoint touches only `submit` in `components/sections/ContactForm`
+9. ✅ Contact page — channels plus a form that posts to `/api/contact` and
+   sends server-side
 10. Deploy to Vercel on mock data
 11. Swap mock → WordPress (WPGraphQL) behind an env var, add ISR
 
-`NEXT_PUBLIC_SITE_URL` must be set in the deploy environment: canonical
-tags, hreflang and the sitemap are only honoured as absolute URLs, and the
+## Contact form
+
+`POST /api/contact` sends the message server-side. The visitor needs no mail
+client, and the sending credential never reaches the browser — which is the
+whole reason this is a route handler rather than a client-side call to an
+email service. Any browser-side integration has to ship its key in the
+bundle, where anyone can read it and spend the quota.
+
+The endpoint validates, silently accepts and drops anything that fills the
+honeypot field, and rate-limits per IP as a best effort — that counter lives
+in one server instance's memory, so it is a speed bump rather than a
+guarantee.
+
+Everything provider-specific is in `src/lib/email.ts`, called over Resend's
+REST API rather than through the `resend` package: the integration is a
+single POST, and a dependency would need auditing and upgrading for the life
+of the project to save a dozen lines. Changing provider means rewriting
+`sendContactEmail` and nothing above it.
+
+Every failure path ends with the direct address on screen. A missing key
+returns 503, and the page then says the send failed and shows the email — it
+fails visibly, never silently.
+
+## Environment
+
+See `.env.example`.
+
+`NEXT_PUBLIC_SITE_URL` must be set in the deploy environment: canonical tags,
+hreflang and the sitemap are only honoured as absolute URLs, and the
 localhost fallback in `lib/site.ts` would be wrong in production.
+
+`RESEND_API_KEY` is required for the contact form to send. It must never be
+prefixed `NEXT_PUBLIC_` — that would inline it into the browser bundle.

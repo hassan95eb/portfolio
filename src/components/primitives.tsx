@@ -99,6 +99,8 @@ type ButtonProps = {
   variant?: "primary" | "outline" | "ghost" | "light";
   className?: string;
   type?: "button" | "submit";
+  /** Button variant only — a disabled link is not a thing HTML has. */
+  disabled?: boolean;
 };
 
 export function CTAButton({
@@ -110,6 +112,7 @@ export function CTAButton({
   variant = "primary",
   className = "",
   type = "button",
+  disabled = false,
 }: ButtonProps) {
   const base =
     "inline-flex items-center justify-center gap-2 rounded-md px-5 py-2.5 text-sm transition-all duration-200 select-none";
@@ -144,7 +147,15 @@ export function CTAButton({
     );
   }
   return (
-    <button type={type} onClick={onClick} className={cls}>
+    <button
+      type={type}
+      onClick={onClick}
+      disabled={disabled}
+      // The hover lift is in the variant classes, so it has to be cancelled
+      // here rather than merely dimmed — a disabled button that still rises
+      // under the cursor reads as clickable.
+      className={`${cls} disabled:pointer-events-none disabled:opacity-60`}
+    >
       {children}
     </button>
   );

@@ -175,19 +175,18 @@ const en = {
       projectTypePlaceholder: "Select a project type",
       message: "Message",
       messagePlaceholder: "Tell me about your project, timeline, and goals…",
-      send: "Compose Email",
+      send: "Send Message",
+      sending: "Sending…",
       downloadResume: "Or download my resume",
     },
-    // Named for what the form actually does today. There is no backend
-    // behind it yet, so it hands the message to the visitor's own mail
-    // client rather than claiming a delivery it cannot make.
-    /** `{name}` is substituted at send time. */
-    mailSubject: "New project enquiry — {name}",
-    mailtoNote: "This opens your email app with the message filled in — nothing is sent until you press send there.",
+    formNote: "Sent straight to my inbox — no email app needed. I only use your address to reply.",
     toastError: "Please fill in your name, email, and message.",
     toastInvalidEmail: "That email address doesn't look right — please check it.",
-    toastSuccess: "Your email app should now be open with the message ready. Send it and it reaches me directly.",
-    toastBlocked: "Your browser blocked the email app. Write to me at {email} instead.",
+    toastSuccess: "Thank you — your message is on its way. I'll be in touch shortly.",
+    // Both carry `{email}`, substituted at render time: every failure path
+    // ends with the direct address on screen rather than a dead end.
+    toastFailed: "That message didn't go through. Please write to me at {email} instead — I'll see it either way.",
+    toastRateLimited: "That's several messages in quick succession. Please try again a little later, or write to me at {email}.",
   },
   contactCTA: {
     eyebrow: "Contact",
@@ -421,15 +420,16 @@ const fa: typeof en = {
       projectTypePlaceholder: "نوع پروژه را انتخاب کنید",
       message: "پیام",
       messagePlaceholder: "درباره‌ی پروژه، زمان‌بندی و اهدافتان بگویید…",
-      send: "نوشتن ایمیل",
+      send: "ارسال پیام",
+      sending: "در حال ارسال…",
       downloadResume: "یا رزومه‌ی من را دانلود کنید",
     },
-    mailSubject: "درخواست پروژه‌ی جدید — {name}",
-    mailtoNote: "این دکمه برنامه‌ی ایمیل شما را با پیامِ آماده باز می‌کند — تا وقتی آنجا «ارسال» را نزنید چیزی فرستاده نمی‌شود.",
+    formNote: "پیام مستقیم به صندوق ورودی من می‌رسد — نیازی به برنامه‌ی ایمیل ندارید. نشانی شما فقط برای پاسخ‌دادن استفاده می‌شود.",
     toastError: "لطفاً نام، ایمیل و پیام خود را وارد کنید.",
     toastInvalidEmail: "به‌نظر می‌رسد نشانی ایمیل درست نیست — لطفاً بررسی کنید.",
-    toastSuccess: "برنامه‌ی ایمیل شما باید با پیامِ آماده باز شده باشد. آن را بفرستید تا مستقیم به دست من برسد.",
-    toastBlocked: "مرورگر شما اجازه‌ی باز شدن برنامه‌ی ایمیل را نداد. به‌جای آن به {email} بنویسید.",
+    toastSuccess: "ممنون — پیام شما در راه است. به‌زودی با شما در تماس خواهم بود.",
+    toastFailed: "این پیام ارسال نشد. لطفاً به‌جایش به {email} بنویسید — به هر حال آن را می‌بینم.",
+    toastRateLimited: "چند پیام پشت‌سرهم فرستاده شده. کمی بعد دوباره تلاش کنید، یا به {email} بنویسید.",
   },
   contactCTA: {
     eyebrow: "تماس",
