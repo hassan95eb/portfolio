@@ -1,34 +1,38 @@
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Github, Lock } from "lucide-react";
 import { Reveal, Tag } from "@/components/primitives";
 import type { Lang } from "@/lib/i18n/config";
 import type { Project } from "@/lib/cms/types";
+import type { Ui } from "@/i18n/ui";
 
 /**
  * Grid card for the projects index.
  *
  * The visual area is a drawn mock tinted with the project's own accent —
  * the same no-screenshots approach as `home/ProjectPreview`, but flattened
- * to one generic composition because a grid of five distinct illustrations
- * would compete with the titles.
+ * to one generic composition because a grid of distinct illustrations would
+ * compete with the titles.
+ *
+ * The card itself is no longer a link. It now carries a second one — the
+ * repository — and an anchor nested inside another anchor is invalid HTML
+ * that browsers silently unnest. Instead the title link stretches over the
+ * card with a pseudo-element: the whole surface stays clickable while the
+ * title remains the link's accessible name, and the repo link sits above it.
  */
 export function ProjectCard({
   lang,
   project,
-  viewCaseStudy,
+  copy,
   index = 0,
 }: {
   lang: Lang;
   project: Project;
-  viewCaseStudy: string;
+  copy: Ui["projects"]["card"];
   index?: number;
 }) {
   return (
     <Reveal delay={index * 0.08}>
-      <Link
-        href={`/${lang}/projects/${project.slug}`}
-        className="group block h-full overflow-hidden rounded-xl border border-border bg-surface transition-all duration-300 hover:-translate-y-1 hover:border-accent/50 hover:shadow-xl"
-      >
+      <div className="group relative h-full overflow-hidden rounded-xl border border-border bg-surface transition-all duration-300 hover:-translate-y-1 hover:border-accent/50 hover:shadow-xl">
         <div
           className="relative h-44 overflow-hidden border-b border-border"
           style={{ backgroundColor: project.accent }}
@@ -66,10 +70,15 @@ export function ProjectCard({
         </div>
 
         <div className="flex flex-col gap-4 p-6">
-          <div className="flex items-center justify-between text-xs text-text-muted">
+          <div className="flex items-center justify-between gap-3 text-xs text-text-muted">
             <span>{project.role}</span>
-            <span>{project.year}</span>
+            {project.sourcePrivate && (
+              <span className="inline-flex items-center gap-1.5">
+                <Lock size={12} /> {copy.privateRepo}
+              </span>
+            )}
           </div>
+
           <h2
             className="text-[1.35rem] text-text-main transition-colors group-hover:text-accent"
             style={{
@@ -78,19 +87,43 @@ export function ProjectCard({
               letterSpacing: "-0.01em",
             }}
           >
-            {project.title}
+            <Link
+              href={`/${lang}/projects/${project.slug}`}
+              className="after:absolute after:inset-0 after:content-['']"
+            >
+              {project.title}
+            </Link>
           </h2>
+
           <p className="text-sm text-text-muted">{project.summary}</p>
+
           <div className="flex flex-wrap gap-2">
             {project.stack.slice(0, 4).map((s) => (
               <Tag key={s}>{s}</Tag>
             ))}
           </div>
-          <span className="mt-1 inline-flex items-center gap-1 text-sm text-accent">
-            {viewCaseStudy} <ArrowUpRight size={15} />
-          </span>
+
+          <div className="mt-1 flex items-center justify-between gap-3">
+            <span className="inline-flex items-center gap-1 text-sm text-accent">
+              {copy.viewCaseStudy} <ArrowUpRight size={15} />
+            </span>
+            {project.repoUrl && (
+              /* `relative z-10` lifts this above the title link's stretched
+                 pseudo-element, which would otherwise swallow the click. */
+              <a
+                href={project.repoUrl}
+                target="_blank"
+                rel="noreferrer"
+                aria-label={copy.viewSource}
+                title={copy.viewSource}
+                className="relative z-10 grid h-8 w-8 place-items-center rounded-md border border-border text-text-muted transition-colors hover:border-accent hover:text-accent"
+              >
+                <Github size={15} />
+              </a>
+            )}
+          </div>
         </div>
-      </Link>
+      </div>
     </Reveal>
   );
 }

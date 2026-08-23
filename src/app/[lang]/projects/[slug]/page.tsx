@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, ArrowUpRight, Check } from "lucide-react";
+import { ArrowLeft, ArrowUpRight, Check, Github, Lock } from "lucide-react";
 import { isLang, LANGS } from "@/lib/i18n/config";
 import { getUi } from "@/i18n/ui";
 import { cms } from "@/lib/cms";
@@ -97,7 +97,7 @@ export default async function Page({
           </Link>
           <div className="flex max-w-2xl flex-col gap-5">
             <span className="text-xs uppercase tracking-[0.2em] text-white/70">
-              {project.role} · {project.year}
+              {project.role}
             </span>
             <h1
               className="text-[2.4rem] leading-[1.1] text-[#FBF6EF] md:text-[3.4rem]"
@@ -159,12 +159,26 @@ export default async function Page({
                       <dt className="text-text-muted">{detail.role}</dt>
                       <dd className="text-end text-text-main">{project.role}</dd>
                     </div>
-                    <div className="flex justify-between gap-4">
-                      <dt className="text-text-muted">{detail.year}</dt>
-                      <dd className="text-end text-text-main">{project.year}</dd>
-                    </div>
+                    {project.sourcePrivate && (
+                      <div className="flex justify-between gap-4">
+                        <dt className="text-text-muted">{detail.source}</dt>
+                        <dd className="inline-flex items-center gap-1.5 text-end text-text-main">
+                          <Lock size={13} className="text-text-muted" />
+                          {detail.privateRepo}
+                        </dd>
+                      </div>
+                    )}
                   </dl>
                 </div>
+                {project.repoUrl && (
+                  <CTAButton
+                    external={project.repoUrl}
+                    variant="outline"
+                    className="w-full"
+                  >
+                    <Github size={16} /> {detail.viewSource}
+                  </CTAButton>
+                )}
                 <CTAButton href={`/${lang}/contact`} className="w-full">
                   {detail.discussSimilar} <ArrowUpRight size={16} />
                 </CTAButton>
