@@ -195,6 +195,7 @@ const en = {
     ],
     workWithMe: "Work With Me",
     atAGlance: "At a glance",
+    education: "Education",
     howIWork: "How I Work",
     principlesTitle: "Principles behind the work",
   },
@@ -219,6 +220,13 @@ const en = {
     readArticle: "Read Article",
     allWriting: "All Writing",
     noArticles: "No articles in this topic yet — new notes are on the way.",
+    comingSoon: {
+      badge: "In progress",
+      title: "The writing is on its way.",
+      description: "The blog is being built. The first notes will cover the same ground as the work: frontend architecture, performance under real data volumes, and the API decisions underneath.",
+      meanwhile: "In the meantime, the projects page shows the engineering these notes will be about.",
+      seeProjects: "See the projects",
+    },
     pillars: {
       eyebrow: "What I Write About",
       title: "Writing about the decisions behind better interfaces.",
@@ -419,6 +427,7 @@ const fa: typeof en = {
     ],
     workWithMe: "با من همکاری کنید",
     atAGlance: "در یک نگاه",
+    education: "تحصیلات",
     howIWork: "روش کار من",
     principlesTitle: "اصولِ پشتِ کار",
   },
@@ -443,6 +452,13 @@ const fa: typeof en = {
     readArticle: "خواندن مقاله",
     allWriting: "همه‌ی نوشته‌ها",
     noArticles: "هنوز مقاله‌ای در این موضوع نیست — یادداشت‌های جدید در راه‌اند.",
+    comingSoon: {
+      badge: "در دست انجام",
+      title: "نوشته‌ها در راه‌اند.",
+      description: "بلاگ در حال ساخت است. نخستین یادداشت‌ها همان زمینی را پوشش می‌دهند که کار روی آن انجام می‌شود: معماری فرانت‌اند، عملکرد زیر حجم واقعی داده، و تصمیم‌های API در لایه‌ی زیرین.",
+      meanwhile: "تا آن زمان، صفحه‌ی پروژه‌ها همان مهندسی‌ای را نشان می‌دهد که این یادداشت‌ها درباره‌اش خواهند بود.",
+      seeProjects: "دیدن پروژه‌ها",
+    },
     pillars: {
       eyebrow: "درباره‌ی چه می‌نویسم",
       title: "نوشتن درباره‌ی تصمیم‌های پشتِ رابط‌های بهتر.",
