@@ -50,13 +50,13 @@ export async function generateMetadata({
     ),
     title: {
       default: fa
-        ? "حسن امینی — مهندس ارشد فرانت‌اند"
-        : "Hassan Amini — Senior Frontend Engineer",
+        ? "حسن امینی — توسعه‌دهنده‌ی ارشد فول‌استک"
+        : "Hassan Amini — Senior Full-Stack Developer",
       template: fa ? "%s | حسن امینی" : "%s | Hassan Amini",
     },
     description: fa
-      ? "طراحی و ساخت رابط‌های کاربری داده‌محور، سریع و قابل اتکا."
-      : "Building fast, reliable, data-heavy interfaces for complex products.",
+      ? "ساخت رابط‌های کاربری داده‌محور و سریع، به‌همراه APIها و سرویس‌های ASP.NET Core پشتِ آن‌ها."
+      : "Building fast, data-heavy interfaces for complex products — and the ASP.NET Core APIs behind them.",
     alternates: {
       canonical: `/${lang}`,
       languages: {
