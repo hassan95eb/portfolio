@@ -47,10 +47,10 @@ const en = {
     switchToPersian: "تغییر به فارسی",
   },
   hero: {
-    eyebrow: "Senior Frontend Engineer · Solutions Architect",
+    eyebrow: "Senior Full-Stack Developer · .NET & React",
     titleA: "Building high-performance interfaces for ",
     titleAccent: "complex digital products.",
-    description: "I design and engineer scalable frontend systems, real-time dashboards, and polished web experiences with a focus on performance, architecture, and product clarity.",
+    description: "I own features end to end — from RESTful APIs and data models in ASP.NET Core through to polished, data-intensive admin panels in React, Next.js, and Vue.",
     available: "Available for select projects",
   },
   heroVisual: {
@@ -65,12 +65,12 @@ const en = {
     titleA: "I build products that feel ",
     titleAccent: "senior.",
     titleB: "",
-    paragraph: "I combine frontend engineering, systems architecture, and technical leadership to ship products that are fast, reliable, and precise. As a former CTO, I bring product-level thinking to every decision.",
+    paragraph: "A senior-level frontend foundation on top of production-grade backend capability. I design the API and data model, then build the interface that consumes it — so the seam between them is never where things break.",
   },
   skills: {
     eyebrow: "Skills & Expertise",
-    title: "A complete frontend engineering toolkit",
-    description: "From core frameworks to real-time systems and technical leadership — the full stack of a senior frontend engineer.",
+    title: "A full-stack toolkit, backend included",
+    description: "From ASP.NET Core services and SQL Server data models to React, Next.js, and real-time interfaces — both sides of the API, in production.",
   },
   featuredProjects: {
     eyebrow: "Featured Projects",
@@ -104,12 +104,12 @@ const en = {
     header: {
       eyebrow: "Experience",
       title: "A track record of ownership and delivery.",
-      description: "From a frontend internship to a CTO role — years spent building performant, real-time, product-grade frontend systems.",
+      description: "From a frontend internship to senior full-stack — years spent building performant, real-time, product-grade systems on both sides of the API.",
     },
     timeline: {
       eyebrow: "Experience",
       title: "A track record of ownership",
-      description: "From intern to CTO — a progression built on performance, architecture, and delivery.",
+      description: "From intern to senior full-stack — a progression built on performance, architecture, and delivery.",
       fullTimeline: "Full Timeline",
     },
   },
@@ -151,7 +151,7 @@ const en = {
     header: {
       eyebrow: "Contact",
       title: "Let's build something reliable.",
-      description: "Available for senior frontend, dashboard, real-time, and product engineering projects. Tell me what you're building.",
+      description: "Available for senior full-stack, backend, dashboard, and real-time engineering projects. Tell me what you're building.",
     },
     getInTouch: "Get in touch",
     getInTouchDesc: "Prefer a direct channel? Reach out any of these ways — I read everything and respond quickly.",
@@ -177,21 +177,21 @@ const en = {
   contactCTA: {
     eyebrow: "Contact",
     title: "Let's build something reliable.",
-    description: "Available for senior frontend, dashboard, real-time, and product engineering work.",
+    description: "Available for senior full-stack, backend, dashboard, and real-time engineering work.",
     startProject: "Start a Project",
     viewProjects: "View Projects",
   },
   about: {
     header: {
       eyebrow: "About",
-      title: "Senior frontend engineer with C-level thinking.",
-      description: "I build the interfaces behind complex, data-intensive products — and I bring architecture and leadership experience to every engagement.",
+      title: "Senior full-stack developer, .NET and React.",
+      description: "I build the interfaces behind complex, data-intensive products — and the APIs and data models underneath them.",
     },
     intro: [
-      "I'm Hassan Amini — a Senior Frontend Engineer and Solutions Architect based in Tehran.",
-      "My focus is the demanding end of frontend: real-time dashboards, data visualization, and applications where performance and correctness genuinely matter. I've optimized interfaces handling millions of data points, implemented Web Workers to keep experiences smooth, and led framework migrations without disrupting delivery.",
-      "As a former CTO, I think beyond the component. I care about how systems scale, how teams stay productive, and how a product feels to the person using it. That combination — hands-on engineering plus architectural and leadership experience — is what lets me own complex frontend work with confidence.",
-      "I work across React, Next.js, Vue, and React Native, with deep experience in state management, real-time systems, and visualization libraries like D3.js and Sigma.js. Whatever the stack, the goal is the same: reliable, precise, product-ready frontend.",
+      "I'm Hassan Amini — a Senior Full-Stack Developer based in Tehran, with a strong frontend foundation and solid, production-grade backend capability.",
+      "My focus is the demanding end of the stack: management panels rendering millions of continuous data points, real-time interfaces, and applications where performance and correctness genuinely matter. I've kept a heavy panel at a stutter-free 60fps by moving computation into Web Workers, and led a Vue 2 to Vue 3 migration without disrupting delivery.",
+      "On the server I design and build RESTful APIs and server-side services in ASP.NET Core (C#) with Entity Framework Core and SQL Server, applying clean, maintainable patterns such as Onion Architecture. Owning a feature from the database and API layer through to the rendered UI is what lets me answer for the whole path rather than half of it.",
+      "I work across React, Next.js, Vue, Angular, and React Native, with deep experience in state management, real-time systems, and visualization libraries like Sigma.js, Graphology, and D3.js. Whatever the stack, the goal is the same: reliable, precise, product-ready software.",
     ],
     workWithMe: "Work With Me",
     atAGlance: "At a glance",
@@ -199,7 +199,7 @@ const en = {
     principlesTitle: "Principles behind the work",
   },
   footer: {
-    description: "Senior Frontend Engineer & Solutions Architect building high-performance interfaces, real-time dashboards, and product-minded frontend systems.",
+    description: "Senior Full-Stack Developer building high-performance interfaces, data-intensive management panels, and the ASP.NET Core services behind them.",
     navigation: "Navigation",
     connect: "Connect",
     email: "Email",
@@ -271,10 +271,10 @@ const fa: typeof en = {
     switchToPersian: "تغییر به فارسی",
   },
   hero: {
-    eyebrow: "مهندس ارشد فرانت‌اند · معمار راهکار",
+    eyebrow: "توسعه‌دهنده‌ی ارشد فول‌استک · ‏.NET و React",
     titleA: "ساخت رابط‌های کاربریِ پرسرعت برای ",
     titleAccent: "محصولات دیجیتالِ پیچیده.",
-    description: "من سیستم‌های فرانت‌اندِ مقیاس‌پذیر، داشبوردهای Real-time و تجربه‌های وبِ صیقل‌خورده را با تمرکز بر عملکرد، معماری و شفافیت محصول طراحی و مهندسی می‌کنم.",
+    description: "قابلیت‌ها را سرتاسری تحویل می‌دهم — از APIهای RESTful و مدل‌های داده در ASP.NET Core تا پنل‌های مدیریتیِ داده‌محور و صیقل‌خورده در React، Next.js و Vue.",
     available: "آماده‌ی همکاری در پروژه‌های منتخب",
   },
   heroVisual: {
@@ -289,12 +289,12 @@ const fa: typeof en = {
     titleA: "محصولاتی می‌سازم که حسِ ",
     titleAccent: "پختگی",
     titleB: " می‌دهند.",
-    paragraph: "من مهندسیِ فرانت‌اند، معماریِ سیستم و رهبریِ فنی را کنار هم به کار می‌گیرم تا محصولاتی سریع، قابل‌اعتماد و دقیق ارائه دهم. به‌عنوان یک CTOِ سابق، نگاه محصولی را به هر تصمیم می‌آورم.",
+    paragraph: "یک پایه‌ی قویِ فرانت‌اند در سطح ارشد، روی توانِ بک‌اندی در حد محیط عملیاتی. API و مدل داده را طراحی می‌کنم و سپس رابطی را می‌سازم که آن را مصرف می‌کند — تا درزِ میان این دو، هیچ‌وقت نقطه‌ی شکست نباشد.",
   },
   skills: {
     eyebrow: "مهارت‌ها و تخصص‌ها",
-    title: "یک جعبه‌ابزار کامل برای مهندسی فرانت‌اند",
-    description: "از فریم‌ورک‌های اصلی تا سیستم‌های Real-time و رهبری فنی — مجموعه‌ی کامل مهارت‌های یک مهندس ارشد فرانت‌اند.",
+    title: "یک جعبه‌ابزار فول‌استک، با بک‌اند",
+    description: "از سرویس‌های ASP.NET Core و مدل‌های داده‌ی SQL Server تا React، Next.js و رابط‌های Real-time — هر دو سوی API، در محیط عملیاتی.",
   },
   featuredProjects: {
     eyebrow: "پروژه‌های منتخب",
@@ -328,12 +328,12 @@ const fa: typeof en = {
     header: {
       eyebrow: "تجربه‌ها",
       title: "کارنامه‌ای از مالکیت و تحویل.",
-      description: "از یک کارآموزیِ فرانت‌اند تا نقش CTO — سال‌هایی صرفِ ساخت سیستم‌های فرانت‌اندِ پرسرعت، Real-time و در سطح محصول.",
+      description: "از یک کارآموزیِ فرانت‌اند تا فول‌استکِ ارشد — سال‌هایی صرفِ ساخت سیستم‌های پرسرعت، Real-time و در سطح محصول، در هر دو سوی API.",
     },
     timeline: {
       eyebrow: "تجربه‌ها",
       title: "کارنامه‌ای از مالکیت",
-      description: "از کارآموز تا CTO — مسیری بنا‌شده بر عملکرد، معماری و تحویل.",
+      description: "از کارآموز تا فول‌استکِ ارشد — مسیری بنا‌شده بر عملکرد، معماری و تحویل.",
       fullTimeline: "خط زمانی کامل",
     },
   },
@@ -375,7 +375,7 @@ const fa: typeof en = {
     header: {
       eyebrow: "تماس",
       title: "بیایید چیزی قابل‌اعتماد بسازیم.",
-      description: "آماده‌ی همکاری در پروژه‌های فرانت‌اندِ ارشد، داشبورد، Real-time و مهندسی محصول. بگویید چه می‌سازید.",
+      description: "آماده‌ی همکاری در پروژه‌های فول‌استکِ ارشد، بک‌اند، داشبورد و Real-time. بگویید چه می‌سازید.",
     },
     getInTouch: "در تماس باشید",
     getInTouchDesc: "کانال مستقیم را ترجیح می‌دهید؟ از هر یک از این راه‌ها با من در ارتباط باشید — همه را می‌خوانم و سریع پاسخ می‌دهم.",
@@ -401,21 +401,21 @@ const fa: typeof en = {
   contactCTA: {
     eyebrow: "تماس",
     title: "بیایید چیزی قابل‌اعتماد بسازیم.",
-    description: "آماده‌ی همکاری در کارهای فرانت‌اندِ ارشد، داشبورد، Real-time و مهندسی محصول.",
+    description: "آماده‌ی همکاری در کارهای فول‌استکِ ارشد، بک‌اند، داشبورد و Real-time.",
     startProject: "شروع یک پروژه",
     viewProjects: "مشاهده پروژه‌ها",
   },
   about: {
     header: {
       eyebrow: "درباره من",
-      title: "مهندس ارشد فرانت‌اند با نگاهی در سطح مدیریت ارشد.",
-      description: "من رابط‌های پشتِ محصولات پیچیده و داده‌محور را می‌سازم — و تجربه‌ی معماری و رهبری را به هر همکاری می‌آورم.",
+      title: "توسعه‌دهنده‌ی ارشد فول‌استک، ‏.NET و React.",
+      description: "من رابط‌های پشتِ محصولات پیچیده و داده‌محور را می‌سازم — و APIها و مدل‌های داده‌ی زیرِ آن‌ها را.",
     },
     intro: [
-      "من حسن امینی هستم — مهندس ارشد فرانت‌اند و معمار راهکار، مستقر در تهران.",
-      "تمرکز من روی بخش پرچالشِ فرانت‌اند است: داشبوردهای Real-time، بصری‌سازی داده و اپلیکیشن‌هایی که در آن‌ها عملکرد و درستی واقعاً اهمیت دارد. رابط‌هایی با میلیون‌ها نقطه‌داده را بهینه کرده‌ام، Web Workers را برای روان‌ماندنِ تجربه به کار گرفته‌ام و مهاجرت‌های فریم‌ورک را بدون اختلال در تحویل هدایت کرده‌ام.",
-      "به‌عنوان یک CTOِ سابق، فراتر از کامپوننت فکر می‌کنم. برایم مهم است که سیستم‌ها چگونه مقیاس می‌گیرند، تیم‌ها چگونه بهره‌ور می‌مانند و محصول برای کاربر چه حسی دارد. همین ترکیب — مهندسیِ عملی به‌همراه تجربه‌ی معماری و رهبری — است که به من اجازه می‌دهد کارهای پیچیده‌ی فرانت‌اند را با اطمینان در اختیار بگیرم.",
-      "با React، Next.js، Vue و React Native کار می‌کنم و در مدیریت state، سیستم‌های Real-time و کتابخانه‌های بصری‌سازی مانند D3.js و Sigma.js تجربه‌ی عمیق دارم. پشته هرچه باشد، هدف یکسان است: فرانت‌اندی قابل‌اعتماد، دقیق و آماده‌ی محصول.",
+      "من حسن امینی هستم — توسعه‌دهنده‌ی ارشد فول‌استک، مستقر در تهران؛ با پایه‌ای قوی در فرانت‌اند و توانی بک‌اندی در حد محیط عملیاتی.",
+      "تمرکز من روی بخش پرچالشِ استک است: پنل‌های مدیریتی با رندر میلیون‌ها نقطه‌داده‌ی پیوسته، رابط‌های Real-time و اپلیکیشن‌هایی که در آن‌ها عملکرد و درستی واقعاً اهمیت دارد. یک پنل سنگین را با انتقال محاسبات به Web Workers روی ۶۰fps یکنواخت نگه داشته‌ام و مهاجرت Vue 2 به Vue 3 را بدون اختلال در تحویل هدایت کرده‌ام.",
+      "در سمت سرور، APIهای RESTful و سرویس‌های سمت سرور را در ASP.NET Core (C#) با Entity Framework Core و SQL Server طراحی و پیاده‌سازی می‌کنم و الگوهای تمیز و قابل‌نگهداری مانند Onion Architecture را به کار می‌گیرم. همین که یک قابلیت را از لایه‌ی پایگاه‌داده و API تا رابطِ رندرشده در اختیار بگیرم، اجازه می‌دهد پاسخ‌گوی کل مسیر باشم، نه نیمی از آن.",
+      "با React، Next.js، Vue، Angular و React Native کار می‌کنم و در مدیریت state، سیستم‌های Real-time و کتابخانه‌های بصری‌سازی مانند Sigma.js، Graphology و D3.js تجربه‌ی عمیق دارم. پشته هرچه باشد، هدف یکسان است: نرم‌افزاری قابل‌اعتماد، دقیق و آماده‌ی محصول.",
     ],
     workWithMe: "با من همکاری کنید",
     atAGlance: "در یک نگاه",
@@ -423,7 +423,7 @@ const fa: typeof en = {
     principlesTitle: "اصولِ پشتِ کار",
   },
   footer: {
-    description: "مهندس ارشد فرانت‌اند و معمار راهکار؛ سازنده‌ی رابط‌های پرسرعت، داشبوردهای Real-time و سیستم‌های فرانت‌اندِ محصول‌محور.",
+    description: "توسعه‌دهنده‌ی ارشد فول‌استک؛ سازنده‌ی رابط‌های پرسرعت، پنل‌های مدیریتیِ داده‌محور و سرویس‌های ASP.NET Core پشتِ آن‌ها.",
     navigation: "ناوبری",
     connect: "ارتباط",
     email: "ایمیل",

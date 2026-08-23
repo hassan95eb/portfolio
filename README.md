@@ -46,6 +46,7 @@ src/
 │  ├─ globals.css        Tailwind + brand tokens (light/dark/RTL)
 │  └─ [lang]/            root layout — owns <html lang dir>
 ├─ components/
+│  └─ home/              the seven home sections, one file each
 ├─ content/profile.ts    standing profile content
 ├─ i18n/ui.ts            interface copy (en/fa, fa typed as typeof en)
 ├─ lib/
@@ -74,8 +75,8 @@ Then open http://localhost:3000 — it redirects to `/en` or `/fa`.
 1. ✅ Scaffold: Next.js, Tailwind v4, brand tokens, fonts, `[lang]` routing
 2. ✅ Content layer: UI copy, profile content and CMS entities separated
 3. ✅ Shared chrome: Header, Footer, theme and language toggles
-4. Static pages: About, Experience, Achievements, Testimonials, Certifications
-5. Home
+4. ✅ Home — the seven sections of the Figma home frame
+5. Static pages: About, Experience, Achievements, Testimonials, Certifications
 6. Projects + `projects/[slug]`
 7. Blog + `blog/[slug]`
 8. `sitemap.ts`, `robots.ts`, metadata, hreflang
