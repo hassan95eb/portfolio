@@ -5,6 +5,7 @@ import { fontVariables } from "@/lib/fonts";
 import { getUi } from "@/i18n/ui";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { SITE_URL } from "@/lib/site";
 import "../globals.css";
 
 /**
@@ -45,9 +46,7 @@ export async function generateMetadata({
   return {
     // Canonical and hreflang have to be absolute URLs to be honoured.
     // Set NEXT_PUBLIC_SITE_URL in Vercel to the real domain.
-    metadataBase: new URL(
-      process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
-    ),
+    metadataBase: new URL(SITE_URL),
     title: {
       default: fa
         ? "حسن امینی — توسعه‌دهنده‌ی ارشد فول‌استک"

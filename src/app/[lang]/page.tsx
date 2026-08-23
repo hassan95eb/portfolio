@@ -5,11 +5,11 @@ import { getProfile } from "@/content/profile";
 import { cms } from "@/lib/cms";
 import { Hero } from "@/components/home/Hero";
 import { WhoIAm } from "@/components/home/WhoIAm";
-import { Skills } from "@/components/home/Skills";
 import { FeaturedProjects } from "@/components/home/FeaturedProjects";
-import { ExperienceTimeline } from "@/components/home/ExperienceTimeline";
-import { Testimonials } from "@/components/home/Testimonials";
-import { ContactCTA } from "@/components/home/ContactCTA";
+import { Skills } from "@/components/sections/Skills";
+import { ExperienceTimeline } from "@/components/sections/ExperienceTimeline";
+import { Testimonials } from "@/components/sections/Testimonials";
+import { ContactCTA } from "@/components/sections/ContactCTA";
 
 /**
  * Home.

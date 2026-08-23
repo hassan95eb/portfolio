@@ -46,7 +46,8 @@ src/
 │  ├─ globals.css        Tailwind + brand tokens (light/dark/RTL)
 │  └─ [lang]/            root layout — owns <html lang dir>
 ├─ components/
-│  └─ home/              the seven home sections, one file each
+│  ├─ home/              sections only Home renders
+│  └─ sections/          sections shared across pages
 ├─ content/profile.ts    standing profile content
 ├─ i18n/ui.ts            interface copy (en/fa, fa typed as typeof en)
 ├─ lib/
@@ -76,9 +77,15 @@ Then open http://localhost:3000 — it redirects to `/en` or `/fa`.
 2. ✅ Content layer: UI copy, profile content and CMS entities separated
 3. ✅ Shared chrome: Header, Footer, theme and language toggles
 4. ✅ Home — the seven sections of the Figma home frame
-5. Static pages: About, Experience, Achievements, Testimonials, Certifications
-6. Projects + `projects/[slug]`
-7. Blog + `blog/[slug]`
-8. `sitemap.ts`, `robots.ts`, metadata, hreflang
-9. Deploy to Vercel on mock data
-10. Swap mock → WordPress (WPGraphQL) behind an env var, add ISR
+5. ✅ Static pages: About, Experience, Achievements, Testimonials, Certifications
+6. ✅ Projects + `projects/[slug]`
+7. 🚧 Blog — placeholder page is live and `noindex`; the index and
+   `blog/[slug]` are still to build
+8. ✅ `sitemap.ts`, `robots.ts`, metadata, hreflang
+9. Contact page — linked from the header, footer and every CTA, not built yet
+10. Deploy to Vercel on mock data
+11. Swap mock → WordPress (WPGraphQL) behind an env var, add ISR
+
+`NEXT_PUBLIC_SITE_URL` must be set in the deploy environment: canonical
+tags, hreflang and the sitemap are only honoured as absolute URLs, and the
+localhost fallback in `lib/site.ts` would be wrong in production.
