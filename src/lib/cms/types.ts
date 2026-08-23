@@ -22,11 +22,21 @@ export type Project = {
   summary: string;
   description: string;
   role: string;
-  year: string;
   stack: string[];
   highlights: string[];
   /** Hex colour driving the card treatment. */
   accent: string;
+  /**
+   * Public source, when there is one. A repository, or a branch within one
+   * for a contribution to somebody else's project.
+   */
+  repoUrl?: string;
+  /**
+   * Set instead of `repoUrl` when the work is real but the repository is
+   * private. Mutually exclusive with it: the UI shows a plain "private
+   * repository" note rather than a link that would 404 for every visitor.
+   */
+  sourcePrivate?: boolean;
 };
 
 export type BlogPost = {

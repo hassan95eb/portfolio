@@ -132,7 +132,7 @@ export function FeaturedProjects({
                 className="mt-3 w-full max-w-[620px] text-xs leading-relaxed md:text-sm"
                 style={{ color: activeStage.muted }}
               >
-                {activeProject.role} · {activeProject.year}
+                {activeProject.role}
               </p>
               <div className="mt-5 flex flex-col items-center gap-3 self-center md:self-start">
                 <Link

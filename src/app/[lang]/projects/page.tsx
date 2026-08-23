@@ -57,7 +57,7 @@ export default async function Page({
                 key={project.slug}
                 lang={lang}
                 project={project}
-                viewCaseStudy={ui.projects.card.viewCaseStudy}
+                copy={ui.projects.card}
                 index={i}
               />
             ))}

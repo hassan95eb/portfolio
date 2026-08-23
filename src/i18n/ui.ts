@@ -85,6 +85,9 @@ const en = {
     },
     card: {
       viewCaseStudy: "View Case Study",
+      /** Icon-only on the card, so this is the accessible name. */
+      viewSource: "View source on GitHub",
+      privateRepo: "Private repo",
     },
     detail: {
       allProjects: "All Projects",
@@ -93,7 +96,9 @@ const en = {
       techStack: "Tech Stack",
       details: "Details",
       role: "Role",
-      year: "Year",
+      source: "Source",
+      viewSource: "View on GitHub",
+      privateRepo: "Private repository",
       discussSimilar: "Discuss a Similar Project",
       nextProject: "Next Project",
       notFound: "Project not found",
@@ -327,6 +332,8 @@ const fa: typeof en = {
     },
     card: {
       viewCaseStudy: "مشاهده نمونه‌کار",
+      viewSource: "مشاهده‌ی سورس در گیت‌هاب",
+      privateRepo: "مخزن خصوصی",
     },
     detail: {
       allProjects: "همه‌ی پروژه‌ها",
@@ -335,7 +342,9 @@ const fa: typeof en = {
       techStack: "پشته‌ی فناوری",
       details: "جزئیات",
       role: "نقش",
-      year: "سال",
+      source: "سورس",
+      viewSource: "مشاهده در گیت‌هاب",
+      privateRepo: "مخزن خصوصی",
       discussSimilar: "درباره‌ی پروژه‌ای مشابه صحبت کنیم",
       nextProject: "پروژه‌ی بعدی",
       notFound: "پروژه‌ای یافت نشد",
