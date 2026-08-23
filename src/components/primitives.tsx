@@ -89,6 +89,12 @@ type ButtonProps = {
   href?: string;
   /** External or protocol link (mailto:, https://…). Opens in a new tab. */
   external?: string;
+  /**
+   * Serve `external` as a file download rather than a navigation. It also
+   * drops the new tab: with `download` set the browser starts the transfer
+   * and abandons the window it just opened, leaving a blank tab behind.
+   */
+  download?: boolean;
   onClick?: () => void;
   variant?: "primary" | "outline" | "ghost" | "light";
   className?: string;
@@ -99,6 +105,7 @@ export function CTAButton({
   children,
   href,
   external,
+  download = false,
   onClick,
   variant = "primary",
   className = "",
@@ -125,7 +132,13 @@ export function CTAButton({
   }
   if (external) {
     return (
-      <a href={external} className={cls} target="_blank" rel="noreferrer">
+      <a
+        href={external}
+        className={cls}
+        {...(download
+          ? { download: true }
+          : { target: "_blank", rel: "noreferrer" })}
+      >
         {children}
       </a>
     );

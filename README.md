@@ -19,6 +19,12 @@ has its own indexable URL, its own `<html lang>`/`dir`, and shareable links.
 `src/middleware.ts` redirects unprefixed paths, preferring a stored choice,
 then `Accept-Language`, then English.
 
+The header's EN / فارسی switch is currently hidden behind
+`SHOW_LANGUAGE_TOGGLE` in `src/lib/site.ts` while the Persian copy is under
+review. Both languages are still built, served and listed in the sitemap —
+only the control is hidden, so shared `/fa` links keep working. Set the flag
+back to `true` to bring the switch back.
+
 ## Content layers
 
 Text lives in one of three places, and which one is not a matter of taste:
@@ -82,7 +88,8 @@ Then open http://localhost:3000 — it redirects to `/en` or `/fa`.
 7. 🚧 Blog — placeholder page is live and `noindex`; the index and
    `blog/[slug]` are still to build
 8. ✅ `sitemap.ts`, `robots.ts`, metadata, hreflang
-9. Contact page — linked from the header, footer and every CTA, not built yet
+9. ✅ Contact page — channels plus a `mailto:`-backed form; swapping in a
+   real endpoint touches only `submit` in `components/sections/ContactForm`
 10. Deploy to Vercel on mock data
 11. Swap mock → WordPress (WPGraphQL) behind an env var, add ISR
 

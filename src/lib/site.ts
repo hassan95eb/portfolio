@@ -23,6 +23,28 @@ export const CONTACT = {
   linkedin: "https://www.linkedin.com/in/hassan-amini",
 } as const;
 
+/**
+ * The CV, served straight out of `public/`.
+ *
+ * Language-independent on purpose: it is one English PDF, so /en and /fa
+ * both link to the same file rather than 404ing on a Persian variant that
+ * does not exist.
+ */
+export const RESUME_PATH = "/Hassan_Amini_Resume.pdf";
+
+/**
+ * Whether the header shows the EN / فارسی switch.
+ *
+ * Off while the Persian copy is still being reviewed. The /fa routes stay
+ * built and reachable by URL — this hides the control, it does not remove
+ * the language, so nothing already shared breaks. Flipping it back to
+ * `true` is the whole of re-enabling it.
+ *
+ * Annotated `boolean` rather than inferred: as a literal `false` TypeScript
+ * narrows the guard at the call site to dead code and lint flags it.
+ */
+export const SHOW_LANGUAGE_TOGGLE: boolean = false;
+
 /** Nav order, shared by the header and the footer. Paths exclude the language. */
 export const NAV_PATHS = [
   { key: "home", path: "" },

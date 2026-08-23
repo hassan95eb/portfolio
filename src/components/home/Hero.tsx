@@ -4,6 +4,7 @@ import { motion } from "motion/react";
 import { ArrowUpRight, Download, MapPin } from "lucide-react";
 import { Container, CTAButton, Eyebrow } from "@/components/primitives";
 import { HeroVisual } from "./HeroVisual";
+import { RESUME_PATH } from "@/lib/site";
 import type { Lang } from "@/lib/i18n/config";
 import type { Ui } from "@/i18n/ui";
 
@@ -70,9 +71,10 @@ export function Hero({
             <CTAButton href={`/${lang}/projects`}>
               {common.viewProjects} <ArrowUpRight size={16} />
             </CTAButton>
-            {/* TODO: point at the real CV once it is published. The Figma
-                export carried the same placeholder. */}
-            <CTAButton href="#" variant="outline">
+            {/* `external` rather than `href`: the PDF is a static asset in
+                public/, not a route, so it must not go through the client
+                router. */}
+            <CTAButton external={RESUME_PATH} download variant="outline">
               <Download size={16} /> {common.downloadResume}
             </CTAButton>
           </motion.div>
