@@ -1,6 +1,11 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { LANGS, dirOf, isLang, type Lang } from "@/lib/i18n/config";
+import {
+    LANGS,
+    dirOf,
+    isLang,
+    type Lang,
+} from "@/lib/i18n/config";
 import { fontVariables } from "@/lib/fonts";
 import { getUi } from "@/i18n/ui";
 import { Header } from "@/components/Header";
@@ -15,7 +20,7 @@ import "../globals.css";
  */
 
 export function generateStaticParams() {
-  return LANGS.map((lang) => ({ lang }));
+    return LANGS.map((lang) => ({ lang }));
 }
 
 /**
@@ -36,76 +41,86 @@ const themeScript = `
 `;
 
 export async function generateMetadata({
-  params,
+    params,
 }: {
-  params: Promise<{ lang: string }>;
+    params: Promise<{ lang: string }>;
 }): Promise<Metadata> {
-  const { lang } = await params;
-  const fa = lang === "fa";
+    const { lang } = await params;
+    const fa = lang === "fa";
 
-  return {
-    // Canonical and hreflang have to be absolute URLs to be honoured.
-    // Set NEXT_PUBLIC_SITE_URL in Vercel to the real domain.
-    metadataBase: new URL(SITE_URL),
-    title: {
-      default: fa
-        ? "حسن امینی — توسعه‌دهنده‌ی ارشد فول‌استک"
-        : "Hassan Amini — Senior Full-Stack Developer",
-      template: fa ? "%s | حسن امینی" : "%s | Hassan Amini",
-    },
-    description: fa
-      ? "ساخت رابط‌های کاربری داده‌محور و سریع، به‌همراه APIها و سرویس‌های ASP.NET Core پشتِ آن‌ها."
-      : "Building fast, data-heavy interfaces for complex products — and the ASP.NET Core APIs behind them.",
-    alternates: {
-      canonical: `/${lang}`,
-      languages: {
-        en: "/en",
-        fa: "/fa",
-        "x-default": "/en",
-      },
-    },
-    openGraph: {
-      type: "website",
-      locale: fa ? "fa_IR" : "en_US",
-    },
-  };
+    return {
+        // Canonical and hreflang have to be absolute URLs to be honoured.
+        // Set NEXT_PUBLIC_SITE_URL in Vercel to the real domain.
+        metadataBase: new URL(SITE_URL),
+        title: {
+            default: fa
+                ? "حسن امینی — توسعه‌دهنده‌ی ارشد فول‌استک"
+                : "Hassan Amini — Senior Full-Stack Developer",
+            template: fa
+                ? "%s | حسن امینی"
+                : "%s | Hassan Amini",
+        },
+        description: fa
+            ? "ساخت رابط‌های کاربری داده‌محور و سریع، به‌همراه APIها و سرویس‌های ASP.NET Core پشتِ آن‌ها."
+            : "Building fast, data-heavy interfaces for complex products — and the ASP.NET Core APIs behind them.",
+        alternates: {
+            canonical: `/${lang}`,
+            languages: {
+                en: "/en",
+                fa: "/fa",
+                "x-default": "/en",
+            },
+        },
+        openGraph: {
+            type: "website",
+            locale: fa ? "fa_IR" : "en_US",
+        },
+    };
 }
 
 export default async function RootLayout({
-  children,
-  params,
+    children,
+    params,
 }: {
-  children: React.ReactNode;
-  params: Promise<{ lang: string }>;
+    children: React.ReactNode;
+    params: Promise<{ lang: string }>;
 }) {
-  const { lang } = await params;
-  if (!isLang(lang)) notFound();
+    const { lang } = await params;
+    if (!isLang(lang)) notFound();
 
-  const typed: Lang = lang;
-  const ui = getUi(typed);
+    const typed: Lang = lang;
+    const ui = getUi(typed);
 
-  return (
-    <html
-      lang={typed}
-      dir={dirOf(typed)}
-      suppressHydrationWarning
-      className={fontVariables}
-    >
-      <head>
-        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
-      </head>
-      <body className="flex min-h-screen flex-col bg-background antialiased">
-        {/* Only the strings the header actually renders cross into the client
+    return (
+        <html
+            lang={typed}
+            dir={dirOf(typed)}
+            suppressHydrationWarning
+            className={fontVariables}
+        >
+            <head>
+                <script
+                    dangerouslySetInnerHTML={{
+                        __html: themeScript,
+                    }}
+                />
+                <meta
+                    name="google-site-verification"
+                    content="94_9I-uP5eV22BaMAuZxHEd3_5R_EaxRkaj6RpuYtns"
+                />
+            </head>
+            <body className="flex min-h-screen flex-col bg-background antialiased">
+                {/* Only the strings the header actually renders cross into the client
             bundle, rather than the whole ui object. */}
-        <Header
-          lang={typed}
-          nav={ui.nav}
-          common={ui.common}
-          languageToggle={ui.languageToggle}
-        />
-        <main className="flex-1">{children}</main>
-        <Footer lang={typed} />
-      </body>
-    </html>
-  );
+                <Header
+                    lang={typed}
+                    nav={ui.nav}
+                    common={ui.common}
+                    languageToggle={ui.languageToggle}
+                />
+                <main className="flex-1">{children}</main>
+                <Footer lang={typed} />
+            </body>
+        </html>
+    );
 }
