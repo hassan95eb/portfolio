@@ -241,6 +241,16 @@ const en = {
       meanwhile: "In the meantime, the projects page shows the engineering these notes will be about.",
       seeProjects: "See the projects",
     },
+    detail: {
+      allArticles: "All Writing",
+      details: "Details",
+      published: "Published",
+      readTime: "Read time",
+      topic: "Topic",
+      moreInTopic: "More in this topic",
+      nextArticle: "Next Article",
+      notFound: "Article not found",
+    },
     pillars: {
       eyebrow: "What I Write About",
       title: "Writing about the decisions behind better interfaces.",
@@ -483,6 +493,16 @@ const fa: typeof en = {
       description: "بلاگ در حال ساخت است. نخستین یادداشت‌ها همان زمینی را پوشش می‌دهند که کار روی آن انجام می‌شود: معماری فرانت‌اند، عملکرد زیر حجم واقعی داده، و تصمیم‌های API در لایه‌ی زیرین.",
       meanwhile: "تا آن زمان، صفحه‌ی پروژه‌ها همان مهندسی‌ای را نشان می‌دهد که این یادداشت‌ها درباره‌اش خواهند بود.",
       seeProjects: "دیدن پروژه‌ها",
+    },
+    detail: {
+      allArticles: "همه‌ی نوشته‌ها",
+      details: "جزئیات",
+      published: "انتشار",
+      readTime: "زمان مطالعه",
+      topic: "موضوع",
+      moreInTopic: "بیشتر در این موضوع",
+      nextArticle: "نوشته‌ی بعدی",
+      notFound: "مقاله پیدا نشد",
     },
     pillars: {
       eyebrow: "درباره‌ی چه می‌نویسم",

@@ -11,9 +11,10 @@ import { cms } from "@/lib/cms";
  * sees /en/about and /fa/about as competing pages rather than as two
  * languages of one page.
  *
- * Only routes that exist and are indexable are listed. `/blog` stays out
- * while it is a placeholder carrying `noindex` — listing it would advertise
- * a URL that should not rank.
+ * Only routes that exist and are indexable are listed. `/blog` (the index)
+ * is in; individual `/blog/<slug>` articles stay out while they are rich
+ * previews carrying `noindex` — listing one would advertise a URL that
+ * should not rank yet.
  *
  * The /fa entries stay listed even though the header's language switch is
  * hidden: the routes are still built and served, and dropping them from the
@@ -29,6 +30,7 @@ const STATIC_PATHS = [
   "/achievements",
   "/testimonials",
   "/certifications",
+  "/blog",
   "/contact",
 ] as const;
 

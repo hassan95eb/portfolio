@@ -11,9 +11,9 @@ import { SITE_URL } from "@/lib/site";
  *   middleware, and a crawler following that redirect lands on the canonical
  *   URL, which is the behaviour we want.
  *
- * The blog placeholder is kept out of the index by its own `robots` metadata
- * rather than here — a per-page `noindex` survives being linked to, whereas a
- * Disallow only stops the crawl.
+ * Individual blog articles are kept out of the index by their own `robots`
+ * metadata rather than here — a per-page `noindex` survives being linked to,
+ * whereas a Disallow only stops the crawl.
  */
 export default function robots(): MetadataRoute.Robots {
   return {
