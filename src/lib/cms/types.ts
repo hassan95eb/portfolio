@@ -75,6 +75,16 @@ export type Certification = {
   title: string;
   provider: string;
   date: string;
+  /**
+   * Issuer's public verification page. When set, the card's "Verify" label
+   * becomes a real outbound link instead of inert text.
+   */
+  url?: string;
+  /**
+   * Path under `public/` to the certificate image. When set, the card shows
+   * it as a preview that opens the full credential.
+   */
+  image?: string;
 };
 
 /** Everything one language's content set contains. */
