@@ -323,6 +323,13 @@ const en: CmsData = {
   ],
   certifications: [
     {
+      title: "Building Web APIs with ASP.NET Core 8",
+      provider: "LinkedIn Learning",
+      date: "Aug 2026",
+      url: "https://www.linkedin.com/learning/certificates/2c8f16182e4efa75cb5742d9a0e77e560fe495a836667876ef3b2e1fbc881678",
+      image: "/certificates/building-web-apis-aspnet-core-8.png",
+    },
+    {
       title: "Advanced React Patterns",
       provider: "To be added",
       date: "—",
@@ -655,6 +662,13 @@ const fa: CmsData = {
     },
   ],
   certifications: [
+    {
+      title: "Building Web APIs with ASP.NET Core 8",
+      provider: "LinkedIn Learning",
+      date: "اوت ۲۰۲۶",
+      url: "https://www.linkedin.com/learning/certificates/2c8f16182e4efa75cb5742d9a0e77e560fe495a836667876ef3b2e1fbc881678",
+      image: "/certificates/building-web-apis-aspnet-core-8.png",
+    },
     {
       title: "الگوهای پیشرفته React",
       provider: "به‌زودی افزوده می‌شود",

@@ -13,14 +13,15 @@
  * value belongs in one place rather than inlined at each call site.
  */
 export const SITE_URL = (
-  process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"
+    process.env.NEXT_PUBLIC_SITE_URL ??
+    "http://localhost:3000"
 ).replace(/\/$/, "");
 
 export const CONTACT = {
-  email: "hassanaminidev@gmail.com",
-  github: "https://github.com/hassan95eb",
-  // TODO: confirm — the Figma export carried a placeholder handle.
-  linkedin: "https://www.linkedin.com/in/hassan-amini",
+    email: "hassanaminidev@gmail.com",
+    github: "https://github.com/hassan95eb",
+    // TODO: confirm — the Figma export carried a placeholder handle.
+    linkedin: "https://www.linkedin.com/in/hassanaminidev",
 } as const;
 
 /**
@@ -47,13 +48,13 @@ export const SHOW_LANGUAGE_TOGGLE: boolean = false;
 
 /** Nav order, shared by the header and the footer. Paths exclude the language. */
 export const NAV_PATHS = [
-  { key: "home", path: "" },
-  { key: "about", path: "/about" },
-  { key: "projects", path: "/projects" },
-  { key: "experience", path: "/experience" },
-  { key: "achievements", path: "/achievements" },
-  { key: "blog", path: "/blog" },
-  { key: "contact", path: "/contact" },
+    { key: "home", path: "" },
+    { key: "about", path: "/about" },
+    { key: "projects", path: "/projects" },
+    { key: "experience", path: "/experience" },
+    { key: "achievements", path: "/achievements" },
+    { key: "blog", path: "/blog" },
+    { key: "contact", path: "/contact" },
 ] as const;
 
 export type NavKey = (typeof NAV_PATHS)[number]["key"];
