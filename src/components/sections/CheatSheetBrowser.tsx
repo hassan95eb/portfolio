@@ -12,12 +12,21 @@ import {
   X,
 } from "lucide-react";
 import { Container, Reveal, SectionHeading } from "@/components/primitives";
+import { CONTACT, SITE_URL } from "@/lib/site";
 import type {
   CheatSheetCategory,
   CheatSheetPlaceholder,
   CheatSheetStack,
 } from "@/content/cheatsheets";
 import type { Ui } from "@/i18n/ui";
+
+/** Author credit stamped onto every exported PDF and Excel file. */
+const AUTHOR_NAME = "Hassan Amini";
+const AUTHOR_TITLE = "Senior Full-Stack Developer";
+/** `SITE_URL` already excludes a trailing slash — only the protocol is stripped for display. */
+const SITE_DISPLAY = SITE_URL.replace(/^https?:\/\//, "");
+const SITE_HREF = SITE_URL.startsWith("http") ? SITE_URL : `https://${SITE_DISPLAY}`;
+const GITHUB_DISPLAY = CONTACT.github.replace(/^https?:\/\//, "");
 
 /**
  * The interactive part of the cheat sheets page: stack switching, search,
@@ -105,7 +114,10 @@ export function CheatSheetBrowser({
           head: [[category.title, ""]],
           body: category.entries.map((entry) => [entry.command, entry.description]),
           startY: cursorY,
-          margin: { left: 14, right: 14 },
+          // Bottom margin reserves room for the footer credit line drawn after
+          // every table is done, so autoTable breaks to a new page instead of
+          // running the last rows into it.
+          margin: { left: 14, right: 14, bottom: 22 },
           styles: { fontSize: 8.5, cellPadding: 3, overflow: "linebreak" },
           headStyles: { fillColor: [185, 107, 74], textColor: 255, fontSize: 9 },
           columnStyles: { 0: { cellWidth: 70, font: "courier" }, 1: { cellWidth: "auto" } },
@@ -121,6 +133,42 @@ export function CheatSheetBrowser({
         cursorY = (doc as any).lastAutoTable.finalY + 8;
       }
 
+      // Credit + links, stamped on every page rather than only the first —
+      // a cheat sheet is likely to be printed or shared as a lone page.
+      const pageWidth = doc.internal.pageSize.getWidth();
+      const pageHeight = doc.internal.pageSize.getHeight();
+      const pageCount = doc.getNumberOfPages();
+      const footerTopY = pageHeight - 16;
+      const footerLine1Y = pageHeight - 11;
+      const footerLine2Y = pageHeight - 6;
+
+      for (let page = 1; page <= pageCount; page += 1) {
+        doc.setPage(page);
+
+        doc.setDrawColor(216, 203, 190);
+        doc.line(14, footerTopY, pageWidth - 14, footerTopY);
+
+        doc.setFont("helvetica", "italic");
+        doc.setFontSize(8.5);
+        doc.setTextColor(90);
+        doc.text(`${AUTHOR_NAME} — ${AUTHOR_TITLE}`, 14, footerLine1Y);
+        doc.setFont("helvetica", "normal");
+
+        let linkX = 14;
+        doc.setTextColor(185, 107, 74);
+        doc.textWithLink(SITE_DISPLAY, linkX, footerLine2Y, { url: SITE_HREF });
+        linkX += doc.getTextWidth(SITE_DISPLAY);
+        doc.setTextColor(150);
+        doc.text("  ·  ", linkX, footerLine2Y);
+        linkX += doc.getTextWidth("  ·  ");
+        doc.setTextColor(185, 107, 74);
+        doc.textWithLink(GITHUB_DISPLAY, linkX, footerLine2Y, { url: CONTACT.github });
+
+        doc.setTextColor(150);
+        doc.setFontSize(8);
+        doc.text(`${page} / ${pageCount}`, pageWidth - 14, footerLine2Y, { align: "right" });
+      }
+
       doc.save(`${source.slug}-cheatsheet.pdf`);
     } finally {
       setExporting(null);
@@ -132,15 +180,35 @@ export function CheatSheetBrowser({
     setExporting("excel");
     try {
       const XLSX = await import("xlsx");
-      const rows = activeStack.categories.flatMap((category) =>
-        category.entries.map((entry) => ({
-          [copy.columns.category]: category.title,
-          [copy.columns.command]: entry.command,
-          [copy.columns.description]: entry.description,
-        })),
+
+      const headerRow = [copy.columns.category, copy.columns.command, copy.columns.description];
+      const dataRows = activeStack.categories.flatMap((category) =>
+        category.entries.map((entry) => [category.title, entry.command, entry.description]),
       );
-      const sheet = XLSX.utils.json_to_sheet(rows);
-      sheet["!cols"] = [{ wch: 24 }, { wch: 42 }, { wch: 60 }];
+
+      // Rows 1-3 are the credit block (title, signature, links); row 4 is
+      // blank; the real table starts at row 5. Built as an array-of-arrays
+      // rather than `json_to_sheet` so those rows can be placed and merged
+      // explicitly.
+      const aoa: (string | undefined)[][] = [
+        [`${activeStack.name} Cheat Sheet`],
+        [`${AUTHOR_NAME} — ${AUTHOR_TITLE}`],
+        [SITE_DISPLAY, GITHUB_DISPLAY],
+        [],
+        headerRow,
+        ...dataRows,
+      ];
+
+      const sheet = XLSX.utils.aoa_to_sheet(aoa);
+      sheet["!cols"] = [{ wch: 26 }, { wch: 42 }, { wch: 60 }];
+      sheet["!merges"] = [
+        { s: { r: 0, c: 0 }, e: { r: 0, c: 2 } },
+        { s: { r: 1, c: 0 }, e: { r: 1, c: 2 } },
+      ];
+      // Live links on the site/GitHub cells rather than plain text.
+      if (sheet.A3) sheet.A3.l = { Target: SITE_HREF, Tooltip: SITE_DISPLAY };
+      if (sheet.B3) sheet.B3.l = { Target: CONTACT.github, Tooltip: "GitHub" };
+
       const workbook = XLSX.utils.book_new();
       const sheetName = activeStack.name.slice(0, 31);
       XLSX.utils.book_append_sheet(workbook, sheet, sheetName);
