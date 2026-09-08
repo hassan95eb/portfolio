@@ -23,6 +23,7 @@ export function Footer({ lang }: { lang: Lang }) {
     })),
     { label: ui.footer.testimonials, href: `/${lang}/testimonials` },
     { label: ui.footer.certifications, href: `/${lang}/certifications` },
+    { label: ui.footer.cheatSheets, href: `/${lang}/cheatsheets` },
   ];
 
   return (

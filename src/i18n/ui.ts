@@ -152,6 +152,26 @@ const en = {
     verify: "Verify",
     note: "More certificates and licenses will be added here over time.",
   },
+  cheatSheets: {
+    header: {
+      eyebrow: "Cheat Sheets",
+      title: "Quick reference, ready to copy.",
+      description: "Command references for the stacks I use day to day. Click any cell to copy it, or export the whole sheet as a PDF or an Excel file.",
+    },
+    searchPlaceholder: "Search commands or descriptions…",
+    noResults: "No commands match your search.",
+    columns: { category: "Category", command: "Command", description: "Description" },
+    copy: "Copy",
+    copied: "Copied",
+    exportPdf: "Export PDF",
+    exportExcel: "Export Excel",
+    exporting: "Exporting…",
+    comingSoon: {
+      eyebrow: "More on the Way",
+      title: "Reserved for the rest of the stack",
+      description: "New cheat sheets are added as they're written — this space is ready to receive them.",
+    },
+  },
   contact: {
     header: {
       eyebrow: "Contact",
@@ -221,6 +241,7 @@ const en = {
     startProject: "Start a project",
     testimonials: "Testimonials",
     certifications: "Certifications",
+    cheatSheets: "Cheat Sheets",
     rights: "All rights reserved.",
     tagline: "Designed & engineered with precision.",
   },
@@ -397,6 +418,26 @@ const fa: typeof en = {
     verify: "بررسی",
     note: "گواهی‌نامه‌ها و مجوزهای بیشتری به‌مرور اینجا اضافه خواهند شد.",
   },
+  cheatSheets: {
+    header: {
+      eyebrow: "چیت‌شیت‌ها",
+      title: "مرجع سریع، آماده‌ی کپی.",
+      description: "مرجع دستورهای استک‌هایی که روزمره با آن‌ها کار می‌کنم. روی هر سلول کلیک کنید تا کپی شود، یا کل چیت‌شیت را به‌صورت PDF یا اکسل خروجی بگیرید.",
+    },
+    searchPlaceholder: "جست‌وجوی دستور یا توضیح…",
+    noResults: "هیچ دستوری با جست‌وجوی شما مطابقت ندارد.",
+    columns: { category: "دسته", command: "دستور", description: "توضیح" },
+    copy: "کپی",
+    copied: "کپی شد",
+    exportPdf: "خروجی PDF",
+    exportExcel: "خروجی اکسل",
+    exporting: "در حال خروجی گرفتن…",
+    comingSoon: {
+      eyebrow: "به‌زودی",
+      title: "جای رزروشده برای بقیه‌ی استک",
+      description: "چیت‌شیت‌های جدید به‌مرور که نوشته می‌شوند اضافه می‌شوند — این فضا آماده‌ی دریافت آن‌هاست.",
+    },
+  },
   contact: {
     header: {
       eyebrow: "تماس",
@@ -464,6 +505,7 @@ const fa: typeof en = {
     startProject: "شروع یک پروژه",
     testimonials: "توصیه‌نامه‌ها",
     certifications: "گواهی‌نامه‌ها",
+    cheatSheets: "چیت‌شیت‌ها",
     rights: "تمامی حقوق محفوظ است.",
     tagline: "طراحی و مهندسی‌شده با دقت.",
   },
