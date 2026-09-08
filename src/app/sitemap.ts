@@ -30,7 +30,7 @@ const STATIC_PATHS = [
   "/achievements",
   "/testimonials",
   "/certifications",
-  "/blog",
+  "/cheatsheets",
   "/contact",
 ] as const;
 
