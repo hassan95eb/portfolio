@@ -157,11 +157,230 @@ const en = {
         },
       ],
     },
+    {
+      slug: "react",
+      name: "React",
+      tagline: "Hooks-first patterns for everyday component work — state, effects, and the pieces that trip people up.",
+      categories: [
+        {
+          title: "State & Effects",
+          entries: [
+            { command: "const [value, setValue] = useState(initialValue);", description: "Declare a piece of local state and its setter." },
+            { command: "useEffect(() => { /* effect */ return () => { /* cleanup */ }; }, [deps]);", description: "Run a side effect after render; the returned function cleans up before the next run or on unmount." },
+            { command: "useEffect(() => { /* runs once */ }, []);", description: "Run an effect only on mount, by passing an empty dependency array." },
+            { command: "const value = useMemo(() => computeExpensive(a, b), [a, b]);", description: "Recompute a value only when its dependencies change." },
+            { command: "const handleClick = useCallback(() => doSomething(id), [id]);", description: "Keep a function reference stable across renders unless its dependencies change." },
+            { command: "const ref = useRef(initialValue);", description: "Hold a mutable value that doesn't trigger a re-render when it changes." },
+            { command: "const [state, dispatch] = useReducer(reducer, initialState);", description: "Manage more complex state transitions with a reducer instead of several useState calls." },
+          ],
+        },
+        {
+          title: "Component Basics",
+          entries: [
+            { command: "function Button({ label, onClick }: { label: string; onClick: () => void }) { return <button onClick={onClick}>{label}</button>; }", description: "A typed function component — the standard shape for almost everything." },
+            { command: "export default function Page() { return <main>...</main>; }", description: "Default export, the usual shape for a page or route component." },
+            { command: "function Card({ children }: { children: React.ReactNode }) { return <div className='card'>{children}</div>; }", description: "Accept and render arbitrary children." },
+            { command: "<> <Header /> <Body /> </>", description: "Fragment — group elements without adding a wrapper DOM node." },
+            { command: "{condition && <Banner />}", description: "Render an element only when a condition is true." },
+            { command: "{condition ? <A /> : <B />}", description: "Render one of two elements based on a condition." },
+          ],
+        },
+        {
+          title: "Lists & Keys",
+          entries: [
+            { command: "items.map((item) => <li key={item.id}>{item.name}</li>)", description: "Render a list; `key` must be stable and unique per item — never regenerated on every render." },
+            { command: "items.filter((item) => item.active).map((item) => <Row key={item.id} item={item} />)", description: "Filter before mapping, rather than returning `null` from inside the map." },
+            { command: "items.length === 0 ? <Empty /> : items.map((item) => <Row key={item.id} item={item} />)", description: "Handle the empty-list case explicitly instead of rendering nothing." },
+            { command: "items.map((item, index) => <li key={index}>{item}</li>) // avoid if the list can reorder", description: "Using the array index as `key` breaks state and animations once items are added, removed, or reordered." },
+          ],
+        },
+        {
+          title: "Events & Forms",
+          entries: [
+            { command: "<input value={value} onChange={(e) => setValue(e.target.value)} />", description: "A controlled input — React owns the value, not the DOM." },
+            { command: "<form onSubmit={(e) => { e.preventDefault(); handleSubmit(); }}>", description: "Prevent the browser's default full-page submit." },
+            { command: "<button onClick={() => handleClick(id)}>Delete</button>", description: "Wrap in an inline arrow function so the handler can take an argument." },
+            { command: "<input type='checkbox' onChange={(e) => console.log(e.target.checked)} />", description: "Checkboxes report state through `.checked`, not `.value`." },
+          ],
+        },
+        {
+          title: "Context & Refs",
+          entries: [
+            { command: "const ThemeContext = createContext<Theme>('light');", description: "Create a context with a default value." },
+            { command: "<ThemeContext.Provider value={theme}>{children}</ThemeContext.Provider>", description: "Provide a value to everything below in the tree." },
+            { command: "const theme = useContext(ThemeContext);", description: "Read the nearest provided value." },
+            { command: "const Input = forwardRef<HTMLInputElement, Props>((props, ref) => <input ref={ref} {...props} />);", description: "Forward a ref through a component down to a real DOM node." },
+          ],
+        },
+        {
+          title: "Performance",
+          entries: [
+            { command: "const MemoCard = React.memo(Card);", description: "Skip re-rendering a component when its props haven't changed." },
+            { command: "const LazyModal = lazy(() => import('./Modal'));", description: "Code-split a component and load it on demand." },
+            { command: "<Suspense fallback={<Spinner />}>{children}</Suspense>", description: "Show a fallback while a lazy component — or Suspense-enabled data fetch — is loading." },
+          ],
+        },
+        {
+          title: "Custom Hooks",
+          entries: [
+            { command: "function useToggle(initial = false) { const [on, setOn] = useState(initial); const toggle = useCallback(() => setOn((v) => !v), []); return [on, toggle] as const; }", description: "A small reusable stateful toggle." },
+            { command: "function useDebounce<T>(value: T, delay = 300) { const [debounced, setDebounced] = useState(value); useEffect(() => { const id = setTimeout(() => setDebounced(value), delay); return () => clearTimeout(id); }, [value, delay]); return debounced; }", description: "Debounce a fast-changing value, such as search input, before acting on it." },
+            { command: "function useLocalStorage<T>(key: string, initial: T) { const [value, setValue] = useState<T>(() => JSON.parse(localStorage.getItem(key) ?? 'null') ?? initial); useEffect(() => { localStorage.setItem(key, JSON.stringify(value)); }, [key, value]); return [value, setValue] as const; }", description: "Persist a piece of state to localStorage, mirroring `useState`'s API." },
+          ],
+        },
+      ],
+    },
+    {
+      slug: "vue",
+      name: "Vue",
+      tagline: "Composition API patterns — `<script setup>`, reactivity, and the composables that replace mixins.",
+      categories: [
+        {
+          title: "Reactivity",
+          entries: [
+            { command: "const count = ref(0);", description: "A reactive primitive value; read and write it through `.value`." },
+            { command: "const state = reactive({ count: 0 });", description: "A reactive object; access its properties directly, no `.value` needed." },
+            { command: "const double = computed(() => count.value * 2);", description: "A derived, cached value that updates whenever its dependencies change." },
+            { command: "watch(count, (newVal, oldVal) => { /* ... */ });", description: "Run a callback when a specific reactive source changes." },
+            { command: "watchEffect(() => { console.log(count.value); });", description: "Run a callback immediately, then again whenever any reactive value it reads changes." },
+            { command: "const { x, y } = toRefs(state);", description: "Destructure a reactive object into individual refs without losing reactivity." },
+          ],
+        },
+        {
+          title: "Component Basics (<script setup>)",
+          entries: [
+            { command: "<script setup lang='ts'>", description: "Compile-time sugar — top-level bindings are exposed to the template automatically." },
+            { command: "const props = defineProps<{ title: string; count?: number }>();", description: "Declare typed props." },
+            { command: "const emit = defineEmits<{ (e: 'update', value: number): void }>();", description: "Declare typed events the component can emit." },
+            { command: "emit('update', newValue);", description: "Emit an event up to the parent." },
+            { command: "defineExpose({ focus });", description: "Expose methods or properties to a parent holding a template ref on this component." },
+            { command: "const model = defineModel<string>();", description: "A two-way bindable prop (Vue 3.4+) — replaces the old `modelValue` prop plus `update:modelValue` emit pair." },
+          ],
+        },
+        {
+          title: "Template Syntax",
+          entries: [
+            { command: "<div v-if='isOpen'>...</div>", description: "Conditionally render — and destroy — an element." },
+            { command: "<div v-else-if='isLoading'>...</div>", description: "Chain another condition onto a `v-if`." },
+            { command: "<div v-else>...</div>", description: "The fallback branch of a `v-if` chain." },
+            { command: "<li v-for='item in items' :key='item.id'>{{ item.name }}</li>", description: "Render a list; `:key` should be stable and unique per item, same as in React." },
+            { command: "<img :src='avatarUrl' :alt='user.name' />", description: "`:` is shorthand for `v-bind` — binds an attribute to an expression." },
+            { command: "<button @click='handleClick'>Save</button>", description: "`@` is shorthand for `v-on` — binds an event listener." },
+            { command: "<input v-model='query' />", description: "Two-way binding between an input and reactive state." },
+            { command: "<div v-show='isVisible'>...</div>", description: "Toggle CSS `display` instead of adding/removing the element from the DOM — cheaper for frequent toggles." },
+          ],
+        },
+        {
+          title: "Lifecycle Hooks",
+          entries: [
+            { command: "onMounted(() => { /* ... */ });", description: "Run after the component is mounted and the DOM is ready." },
+            { command: "onUpdated(() => { /* ... */ });", description: "Run after a reactive dependency change has updated the DOM." },
+            { command: "onUnmounted(() => { /* ... */ });", description: "Run cleanup right before the component is removed." },
+            { command: "onBeforeMount(() => { /* ... */ });", description: "Run just before the component mounts, before the DOM exists." },
+          ],
+        },
+        {
+          title: "Composables & Provide/Inject",
+          entries: [
+            { command: "provide('theme', theme);", description: "Make a value available to every descendant component." },
+            { command: "const theme = inject('theme', 'light');", description: "Read a provided value, with a fallback default." },
+            { command: "function useCounter(initial = 0) { const count = ref(initial); const increment = () => count.value++; return { count, increment }; }", description: "A reusable composable — the Composition API's replacement for mixins." },
+          ],
+        },
+        {
+          title: "Router & State (Vue Router / Pinia)",
+          entries: [
+            { command: "const router = useRouter();", description: "Get the router instance inside `<script setup>`." },
+            { command: "const route = useRoute();", description: "Get the current route, reactively." },
+            { command: "router.push('/dashboard');", description: "Navigate programmatically." },
+            { command: "const id = route.params.id;", description: "Read a dynamic route parameter." },
+            { command: "export const useUserStore = defineStore('user', { state: () => ({ name: '' }), actions: { setName(n: string) { this.name = n; } } });", description: "Define a Pinia store with typed state and actions." },
+            { command: "const userStore = useUserStore();", description: "Use the store inside a component." },
+            { command: "const { name } = storeToRefs(userStore);", description: "Destructure store state while keeping reactivity — plain destructuring loses it." },
+          ],
+        },
+      ],
+    },
+    {
+      slug: "tailwind",
+      name: "Tailwind CSS",
+      tagline: "The utility classes reached for most — layout, spacing, and the responsive/state prefixes that combine with everything.",
+      categories: [
+        {
+          title: "Flexbox & Layout",
+          entries: [
+            { command: "flex", description: "display: flex." },
+            { command: "flex flex-col", description: "A flex container, stacked vertically." },
+            { command: "items-center justify-between", description: "Vertically center items and spread them across the main axis." },
+            { command: "flex-1", description: "Grow to fill the available space." },
+            { command: "flex-wrap gap-3", description: "Wrap onto new lines, with a consistent gap between items." },
+            { command: "shrink-0", description: "Prevent an item from shrinking below its content size." },
+          ],
+        },
+        {
+          title: "Grid",
+          entries: [
+            { command: "grid grid-cols-3 gap-4", description: "A 3-column grid with gaps between cells." },
+            { command: "col-span-2", description: "Span two columns." },
+            { command: "grid-cols-1 md:grid-cols-3", description: "One column on mobile, three from the `md` breakpoint up." },
+            { command: "place-items-center", description: "Center items on both axes inside their grid cell." },
+          ],
+        },
+        {
+          title: "Spacing & Sizing",
+          entries: [
+            { command: "p-4", description: "Padding on all sides." },
+            { command: "px-6 py-2", description: "Horizontal and vertical padding." },
+            { command: "m-auto", description: "Center a block element horizontally — needs a defined width." },
+            { command: "w-full max-w-lg", description: "Full width, capped at a maximum." },
+            { command: "h-screen", description: "Full viewport height." },
+            { command: "space-y-4", description: "Vertical gap between direct children, without a flex or grid container." },
+          ],
+        },
+        {
+          title: "Typography",
+          entries: [
+            { command: "text-sm font-semibold", description: "Font size and weight." },
+            { command: "tracking-wide leading-relaxed", description: "Letter spacing and line height." },
+            { command: "truncate", description: "Single-line overflow ellipsis." },
+            { command: "line-clamp-3", description: "Clamp text to 3 lines, with a trailing ellipsis." },
+            { command: "text-start", description: "Logical start alignment — respects the document's LTR/RTL direction, unlike `text-left`." },
+          ],
+        },
+        {
+          title: "Colors & Backgrounds",
+          entries: [
+            { command: "bg-accent text-white", description: "Background and text color from the theme palette." },
+            { command: "bg-accent/10", description: "Background color at 10% opacity, via Tailwind's slash opacity syntax." },
+            { command: "border border-border", description: "A themed 1px border." },
+            { command: "bg-gradient-to-r from-accent to-transparent", description: "A left-to-right gradient." },
+          ],
+        },
+        {
+          title: "Responsive & State Variants",
+          entries: [
+            { command: "md:flex-row", description: "Apply a utility from the `md` breakpoint up — Tailwind is mobile-first." },
+            { command: "hover:border-accent focus-visible:border-accent", description: "Style on mouse hover and keyboard focus." },
+            { command: "disabled:opacity-60 disabled:pointer-events-none", description: "Style a disabled control and block interaction with it." },
+            { command: "dark:bg-surface", description: "Apply only when dark mode is active." },
+            { command: "group-hover:opacity-100", description: "Style a child element based on hovering its ancestor marked `group`." },
+          ],
+        },
+        {
+          title: "Effects & Transitions",
+          entries: [
+            { command: "rounded-xl shadow-sm", description: "Corner radius and a subtle drop shadow." },
+            { command: "transition-all duration-300 ease-out", description: "Animate property changes smoothly." },
+            { command: "hover:-translate-y-0.5", description: "Lift an element slightly on hover." },
+            { command: "backdrop-blur-md", description: "Blur whatever sits behind a translucent element." },
+          ],
+        },
+      ],
+    },
   ] satisfies CheatSheetStack[],
   comingSoon: [
     { name: "ASP.NET Core & C#" },
-    { name: "React & Next.js" },
-    { name: "Vue" },
+    { name: "Next.js" },
     { name: "SQL Server & EF Core" },
     { name: "TypeScript" },
     { name: "Docker" },
@@ -286,11 +505,230 @@ const fa: typeof en = {
         },
       ],
     },
+    {
+      slug: "react",
+      name: "React",
+      tagline: "الگوهای مبتنی بر Hook برای کار روزمره با کامپوننت‌ها — state، effect، و نکاتی که معمولاً گیر می‌اندازند.",
+      categories: [
+        {
+          title: "State و Effect",
+          entries: [
+            { command: "const [value, setValue] = useState(initialValue);", description: "یک تکه state محلی و setter آن را تعریف می‌کند." },
+            { command: "useEffect(() => { /* effect */ return () => { /* cleanup */ }; }, [deps]);", description: "یک side effect بعد از رندر اجرا می‌کند؛ تابع بازگشتی، پیش از اجرای بعدی یا هنگام unmount پاک‌سازی می‌کند." },
+            { command: "useEffect(() => { /* runs once */ }, []);", description: "با آرایه‌ی وابستگی خالی، effect را فقط یک‌بار هنگام mount اجرا می‌کند." },
+            { command: "const value = useMemo(() => computeExpensive(a, b), [a, b]);", description: "یک مقدار را فقط زمانی که وابستگی‌هایش تغییر کنند دوباره محاسبه می‌کند." },
+            { command: "const handleClick = useCallback(() => doSomething(id), [id]);", description: "رفرنس یک تابع را بین رندرها ثابت نگه می‌دارد، مگر وابستگی‌هایش تغییر کنند." },
+            { command: "const ref = useRef(initialValue);", description: "یک مقدار قابل‌تغییر نگه می‌دارد که تغییرش باعث رندر مجدد نمی‌شود." },
+            { command: "const [state, dispatch] = useReducer(reducer, initialState);", description: "به‌جای چند useState، انتقال‌های پیچیده‌ترِ state را با یک reducer مدیریت می‌کند." },
+          ],
+        },
+        {
+          title: "پایه‌های کامپوننت",
+          entries: [
+            { command: "function Button({ label, onClick }: { label: string; onClick: () => void }) { return <button onClick={onClick}>{label}</button>; }", description: "یک function component تایپ‌شده — شکل استاندارد اکثر کامپوننت‌ها." },
+            { command: "export default function Page() { return <main>...</main>; }", description: "export پیش‌فرض؛ شکل معمولِ یک کامپوننتِ صفحه یا مسیر." },
+            { command: "function Card({ children }: { children: React.ReactNode }) { return <div className='card'>{children}</div>; }", description: "دریافت و رندر children دلخواه." },
+            { command: "<> <Header /> <Body /> </>", description: "Fragment — گروه‌بندی عناصر بدون اضافه‌کردن یک نود DOM اضافه." },
+            { command: "{condition && <Banner />}", description: "یک عنصر را فقط وقتی شرطی درست است رندر می‌کند." },
+            { command: "{condition ? <A /> : <B />}", description: "بر اساس یک شرط، یکی از دو عنصر را رندر می‌کند." },
+          ],
+        },
+        {
+          title: "لیست‌ها و Key",
+          entries: [
+            { command: "items.map((item) => <li key={item.id}>{item.name}</li>)", description: "یک لیست را رندر می‌کند؛ `key` باید برای هر آیتم پایدار و یکتا باشد — نه در هر رندر از نو ساخته شود." },
+            { command: "items.filter((item) => item.active).map((item) => <Row key={item.id} item={item} />)", description: "پیش از map کردن فیلتر می‌کند، به‌جای برگرداندن `null` از داخل map." },
+            { command: "items.length === 0 ? <Empty /> : items.map((item) => <Row key={item.id} item={item} />)", description: "حالت لیست خالی را به‌صراحت مدیریت می‌کند، به‌جای رندر هیچ‌چیز." },
+            { command: "items.map((item, index) => <li key={index}>{item}</li>) // avoid if the list can reorder", description: "استفاده از index آرایه به‌عنوان key، به‌محض اضافه/حذف/جابه‌جایی آیتم‌ها state و انیمیشن‌ها را خراب می‌کند." },
+          ],
+        },
+        {
+          title: "رویدادها و فرم‌ها",
+          entries: [
+            { command: "<input value={value} onChange={(e) => setValue(e.target.value)} />", description: "یک input کنترل‌شده — مقدار در اختیار React است، نه DOM." },
+            { command: "<form onSubmit={(e) => { e.preventDefault(); handleSubmit(); }}>", description: "از رفتار پیش‌فرض مرورگر (رفرش کامل صفحه) جلوگیری می‌کند." },
+            { command: "<button onClick={() => handleClick(id)}>Delete</button>", description: "برای اینکه handler بتواند آرگومان بگیرد، در یک تابع پیکانی inline پیچیده می‌شود." },
+            { command: "<input type='checkbox' onChange={(e) => console.log(e.target.checked)} />", description: "چک‌باکس‌ها وضعیت را از طریق `.checked` گزارش می‌دهند، نه `.value`." },
+          ],
+        },
+        {
+          title: "Context و Ref",
+          entries: [
+            { command: "const ThemeContext = createContext<Theme>('light');", description: "یک context با مقدار پیش‌فرض می‌سازد." },
+            { command: "<ThemeContext.Provider value={theme}>{children}</ThemeContext.Provider>", description: "یک مقدار را در اختیار همه‌ی زیردرخت قرار می‌دهد." },
+            { command: "const theme = useContext(ThemeContext);", description: "نزدیک‌ترین مقدار فراهم‌شده را می‌خواند." },
+            { command: "const Input = forwardRef<HTMLInputElement, Props>((props, ref) => <input ref={ref} {...props} />);", description: "یک ref را از میان یک کامپوننت تا یک نود واقعی DOM پاس می‌دهد." },
+          ],
+        },
+        {
+          title: "عملکرد (Performance)",
+          entries: [
+            { command: "const MemoCard = React.memo(Card);", description: "وقتی props تغییر نکرده، از رندر مجدد کامپوننت صرف‌نظر می‌کند." },
+            { command: "const LazyModal = lazy(() => import('./Modal'));", description: "یک کامپوننت را code-split کرده و در صورت نیاز بارگذاری می‌کند." },
+            { command: "<Suspense fallback={<Spinner />}>{children}</Suspense>", description: "در زمان بارگذاری یک کامپوننت lazy — یا واکشی داده‌ی سازگار با Suspense — یک fallback نشان می‌دهد." },
+          ],
+        },
+        {
+          title: "Hookهای سفارشی",
+          entries: [
+            { command: "function useToggle(initial = false) { const [on, setOn] = useState(initial); const toggle = useCallback(() => setOn((v) => !v), []); return [on, toggle] as const; }", description: "یک toggle کوچک و قابل‌استفاده‌ی مجدد." },
+            { command: "function useDebounce<T>(value: T, delay = 300) { const [debounced, setDebounced] = useState(value); useEffect(() => { const id = setTimeout(() => setDebounced(value), delay); return () => clearTimeout(id); }, [value, delay]); return debounced; }", description: "یک مقدارِ سریع‌التغییر، مثل ورودی جست‌وجو، را پیش از استفاده debounce می‌کند." },
+            { command: "function useLocalStorage<T>(key: string, initial: T) { const [value, setValue] = useState<T>(() => JSON.parse(localStorage.getItem(key) ?? 'null') ?? initial); useEffect(() => { localStorage.setItem(key, JSON.stringify(value)); }, [key, value]); return [value, setValue] as const; }", description: "یک تکه state را در localStorage نگه می‌دارد، با APIای شبیه `useState`." },
+          ],
+        },
+      ],
+    },
+    {
+      slug: "vue",
+      name: "Vue",
+      tagline: "الگوهای Composition API — `<script setup>`، reactivity، و composableهایی که جایگزین mixin شده‌اند.",
+      categories: [
+        {
+          title: "Reactivity",
+          entries: [
+            { command: "const count = ref(0);", description: "یک مقدار اولیه‌ی reactive؛ خواندن و نوشتنش از طریق `.value`." },
+            { command: "const state = reactive({ count: 0 });", description: "یک آبجکت reactive؛ به property‌هایش مستقیم دسترسی دارید، بدون نیاز به `.value`." },
+            { command: "const double = computed(() => count.value * 2);", description: "یک مقدار مشتق‌شده و کش‌شده که با تغییر وابستگی‌هایش به‌روز می‌شود." },
+            { command: "watch(count, (newVal, oldVal) => { /* ... */ });", description: "با تغییر یک منبع reactive مشخص، یک callback اجرا می‌کند." },
+            { command: "watchEffect(() => { console.log(count.value); });", description: "بلافاصله و سپس با هر تغییر در هر مقدار reactiveای که می‌خواند، دوباره اجرا می‌شود." },
+            { command: "const { x, y } = toRefs(state);", description: "یک آبجکت reactive را بدون از دست دادن reactivity به refهای جداگانه تجزیه می‌کند." },
+          ],
+        },
+        {
+          title: "پایه‌های کامپوننت (<script setup>)",
+          entries: [
+            { command: "<script setup lang='ts'>", description: "شکر نحوی در زمان کامپایل — bindingهای سطح بالا خودکار در اختیار template قرار می‌گیرند." },
+            { command: "const props = defineProps<{ title: string; count?: number }>();", description: "propهای تایپ‌شده را تعریف می‌کند." },
+            { command: "const emit = defineEmits<{ (e: 'update', value: number): void }>();", description: "رویدادهایی که کامپوننت می‌تواند emit کند را با تایپ تعریف می‌کند." },
+            { command: "emit('update', newValue);", description: "یک رویداد را به والد emit می‌کند." },
+            { command: "defineExpose({ focus });", description: "متدها یا propertyها را در اختیار والدی که روی این کامپوننت template ref دارد قرار می‌دهد." },
+            { command: "const model = defineModel<string>();", description: "یک prop دوطرفه‌بایند (Vue 3.4+) — جایگزین جفتِ قدیمیِ prop به‌نام `modelValue` و emit به‌نام `update:modelValue`." },
+          ],
+        },
+        {
+          title: "نحو Template",
+          entries: [
+            { command: "<div v-if='isOpen'>...</div>", description: "یک عنصر را به‌صورت شرطی رندر — و حذف — می‌کند." },
+            { command: "<div v-else-if='isLoading'>...</div>", description: "یک شرط دیگر را به زنجیره‌ی `v-if` اضافه می‌کند." },
+            { command: "<div v-else>...</div>", description: "شاخه‌ی پیش‌فرضِ زنجیره‌ی `v-if`." },
+            { command: "<li v-for='item in items' :key='item.id'>{{ item.name }}</li>", description: "یک لیست را رندر می‌کند؛ `:key` باید برای هر آیتم پایدار و یکتا باشد، درست مثل React." },
+            { command: "<img :src='avatarUrl' :alt='user.name' />", description: "`:` مخفف `v-bind` است — یک attribute را به یک expression بایند می‌کند." },
+            { command: "<button @click='handleClick'>Save</button>", description: "`@` مخفف `v-on` است — یک event listener را بایند می‌کند." },
+            { command: "<input v-model='query' />", description: "بایند دوطرفه بین یک input و state reactive." },
+            { command: "<div v-show='isVisible'>...</div>", description: "به‌جای اضافه/حذف عنصر از DOM، فقط `display` CSS را تغییر می‌دهد — برای toggle‌های مکرر ارزان‌تر است." },
+          ],
+        },
+        {
+          title: "Lifecycle Hookها",
+          entries: [
+            { command: "onMounted(() => { /* ... */ });", description: "بعد از mount شدن کامپوننت و آماده‌شدن DOM اجرا می‌شود." },
+            { command: "onUpdated(() => { /* ... */ });", description: "بعد از اینکه تغییر یک وابستگی reactive، DOM را به‌روزرسانی کرد اجرا می‌شود." },
+            { command: "onUnmounted(() => { /* ... */ });", description: "درست پیش از حذف کامپوننت، برای پاک‌سازی اجرا می‌شود." },
+            { command: "onBeforeMount(() => { /* ... */ });", description: "درست پیش از mount شدن کامپوننت، پیش از وجود DOM اجرا می‌شود." },
+          ],
+        },
+        {
+          title: "Composable و Provide/Inject",
+          entries: [
+            { command: "provide('theme', theme);", description: "یک مقدار را در اختیار همه‌ی کامپوننت‌های زیردست قرار می‌دهد." },
+            { command: "const theme = inject('theme', 'light');", description: "یک مقدار فراهم‌شده را می‌خواند، همراه با یک مقدار پیش‌فرض." },
+            { command: "function useCounter(initial = 0) { const count = ref(initial); const increment = () => count.value++; return { count, increment }; }", description: "یک composable قابل‌استفاده‌ی مجدد — جایگزینِ Composition API برای mixin." },
+          ],
+        },
+        {
+          title: "Router و State (Vue Router / Pinia)",
+          entries: [
+            { command: "const router = useRouter();", description: "نمونه‌ی router را داخل `<script setup>` می‌گیرد." },
+            { command: "const route = useRoute();", description: "مسیر جاری را به‌صورت reactive می‌گیرد." },
+            { command: "router.push('/dashboard');", description: "به‌صورت برنامه‌ای ناوبری می‌کند." },
+            { command: "const id = route.params.id;", description: "یک پارامتر پویای مسیر را می‌خواند." },
+            { command: "export const useUserStore = defineStore('user', { state: () => ({ name: '' }), actions: { setName(n: string) { this.name = n; } } });", description: "یک استور Pinia با state و action تایپ‌شده تعریف می‌کند." },
+            { command: "const userStore = useUserStore();", description: "استور را داخل یک کامپوننت استفاده می‌کند." },
+            { command: "const { name } = storeToRefs(userStore);", description: "state استور را با حفظ reactivity تجزیه می‌کند — تجزیه‌ی معمولی reactivity را از بین می‌برد." },
+          ],
+        },
+      ],
+    },
+    {
+      slug: "tailwind",
+      name: "Tailwind CSS",
+      tagline: "پراستفاده‌ترین کلاس‌های utility — چیدمان، فاصله‌گذاری، و پیشوندهای responsive/state که با همه چیز ترکیب می‌شوند.",
+      categories: [
+        {
+          title: "Flexbox و چیدمان",
+          entries: [
+            { command: "flex", description: "display: flex." },
+            { command: "flex flex-col", description: "یک کانتینر flex، چیده‌شده به‌صورت عمودی." },
+            { command: "items-center justify-between", description: "آیتم‌ها را عمودی وسط‌چین می‌کند و در طول محور اصلی پخش‌شان می‌کند." },
+            { command: "flex-1", description: "فضای موجود را پر می‌کند (رشد می‌کند)." },
+            { command: "flex-wrap gap-3", description: "در خطوط جدید می‌شکند، با فاصله‌ی یکسان بین آیتم‌ها." },
+            { command: "shrink-0", description: "از کوچک‌شدن یک آیتم کمتر از اندازه‌ی محتوایش جلوگیری می‌کند." },
+          ],
+        },
+        {
+          title: "Grid",
+          entries: [
+            { command: "grid grid-cols-3 gap-4", description: "یک گرید سه‌ستونه با فاصله بین سلول‌ها." },
+            { command: "col-span-2", description: "دو ستون را اشغال می‌کند." },
+            { command: "grid-cols-1 md:grid-cols-3", description: "در موبایل یک ستون، از breakpoint مربوط به `md` به بعد سه ستون." },
+            { command: "place-items-center", description: "آیتم‌ها را در هر دو محور، وسطِ سلول گرید قرار می‌دهد." },
+          ],
+        },
+        {
+          title: "فاصله‌گذاری و اندازه",
+          entries: [
+            { command: "p-4", description: "padding در همه‌ی جهت‌ها." },
+            { command: "px-6 py-2", description: "padding افقی و عمودی." },
+            { command: "m-auto", description: "یک عنصر بلاک را به‌صورت افقی وسط‌چین می‌کند — نیازمند عرض مشخص است." },
+            { command: "w-full max-w-lg", description: "عرض کامل، با یک سقف حداکثری." },
+            { command: "h-screen", description: "ارتفاع کامل viewport." },
+            { command: "space-y-4", description: "فاصله‌ی عمودی بین فرزندان مستقیم، بدون نیاز به کانتینر flex یا grid." },
+          ],
+        },
+        {
+          title: "تایپوگرافی",
+          entries: [
+            { command: "text-sm font-semibold", description: "اندازه و وزن فونت." },
+            { command: "tracking-wide leading-relaxed", description: "فاصله‌ی حروف و ارتفاع خط." },
+            { command: "truncate", description: "سرریز تک‌خطی با سه‌نقطه." },
+            { command: "line-clamp-3", description: "متن را به ۳ خط محدود می‌کند، با سه‌نقطه در انتها." },
+            { command: "text-start", description: "چینش منطقیِ start — برخلاف `text-left`، جهت LTR/RTL سند را رعایت می‌کند." },
+          ],
+        },
+        {
+          title: "رنگ و پس‌زمینه",
+          entries: [
+            { command: "bg-accent text-white", description: "رنگ پس‌زمینه و متن از پالت تم." },
+            { command: "bg-accent/10", description: "رنگ پس‌زمینه با ۱۰٪ شفافیت، از طریق نحو opacity با اسلش در Tailwind." },
+            { command: "border border-border", description: "یک border ۱ پیکسلیِ تم‌دار." },
+            { command: "bg-gradient-to-r from-accent to-transparent", description: "یک گرادیان از چپ به راست." },
+          ],
+        },
+        {
+          title: "متغیرهای Responsive و State",
+          entries: [
+            { command: "md:flex-row", description: "یک utility را از breakpoint مربوط به `md` به بعد اعمال می‌کند — Tailwind اول-موبایل است." },
+            { command: "hover:border-accent focus-visible:border-accent", description: "استایل روی هاور موس و فوکوس کیبورد." },
+            { command: "disabled:opacity-60 disabled:pointer-events-none", description: "یک کنترل غیرفعال را استایل می‌دهد و تعامل با آن را مسدود می‌کند." },
+            { command: "dark:bg-surface", description: "فقط وقتی حالت تاریک فعال است اعمال می‌شود." },
+            { command: "group-hover:opacity-100", description: "یک عنصر فرزند را بر اساس هاور روی نیای علامت‌خورده با `group` استایل می‌دهد." },
+          ],
+        },
+        {
+          title: "افکت و ترنزیشن",
+          entries: [
+            { command: "rounded-xl shadow-sm", description: "شعاع گوشه و یک سایه‌ی ملایم." },
+            { command: "transition-all duration-300 ease-out", description: "تغییرات property را به‌آرامی متحرک می‌کند." },
+            { command: "hover:-translate-y-0.5", description: "روی هاور، عنصر را کمی بالا می‌برد." },
+            { command: "backdrop-blur-md", description: "هرچه پشت یک عنصر نیمه‌شفاف است را بلر می‌کند." },
+          ],
+        },
+      ],
+    },
   ],
   comingSoon: [
     { name: "ASP.NET Core و #C" },
-    { name: "React و Next.js" },
-    { name: "Vue" },
+    { name: "Next.js" },
     { name: "SQL Server و EF Core" },
     { name: "TypeScript" },
     { name: "Docker" },
