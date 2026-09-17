@@ -1,12 +1,18 @@
+import Image from "next/image";
 import type { Project } from "@/lib/cms/types";
 
 /**
- * A drawn mock of each project's interface — no screenshots.
+ * A drawn mock of each project's interface — no screenshots — used as the
+ * fallback for any project that doesn't carry a real one.
  *
  * One variant per featured project, keyed by position rather than by slug,
  * because the illustration belongs to the stage in the scroll sequence, not
  * to the project record. The chrome labels inside are deliberately generic
  * and stay untranslated: they are part of the drawing, like the fake bars.
+ *
+ * A project with `media.thumbnail` (a real screenshot) shows that instead,
+ * keyed off the project record itself rather than `variant` — reordering
+ * the featured stages must never change which image a project shows.
  */
 export function ProjectPreview({
   project,
@@ -16,6 +22,22 @@ export function ProjectPreview({
   variant: number;
 }) {
   const bars = [34, 56, 44, 72, 60, 82];
+
+  if (project.media?.thumbnail) {
+    const { src, alt, width, height } = project.media.thumbnail;
+    return (
+      <div className="relative aspect-[16/8.5] overflow-hidden rounded-xl border border-black/15 bg-white shadow-[0_24px_60px_rgba(28,24,21,0.28)]">
+        <Image
+          src={src}
+          alt={alt}
+          width={width}
+          height={height}
+          sizes="(min-width: 768px) 580px, 100vw"
+          className="h-full w-full object-contain"
+        />
+      </div>
+    );
+  }
 
   return (
     <div className="relative aspect-[16/8.5] overflow-hidden rounded-xl border border-black/15 bg-surface shadow-[0_24px_60px_rgba(28,24,21,0.28)]">
