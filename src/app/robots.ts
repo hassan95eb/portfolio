@@ -6,7 +6,11 @@ import { SITE_URL } from "@/lib/site";
  * exceptions:
  *
  * - `/_next/` is build output. Blocking it saves crawl budget on hashed
- *   chunks that will never be a search result.
+ *   chunks that will never be a search result. `/_next/image` is carved
+ *   back out: it is the image-optimisation endpoint, not a build chunk, and
+ *   blocking it stops crawlers from ever fetching an optimised `next/image`
+ *   — including project screenshots — even though the page itself is
+ *   allowed.
  * - Unprefixed paths are not blocked: `/about` redirects to `/en/about` via
  *   middleware, and a crawler following that redirect lands on the canonical
  *   URL, which is the behaviour we want.
@@ -19,7 +23,7 @@ export default function robots(): MetadataRoute.Robots {
   return {
     rules: {
       userAgent: "*",
-      allow: "/",
+      allow: ["/", "/_next/image"],
       disallow: ["/_next/"],
     },
     sitemap: `${SITE_URL}/sitemap.xml`,

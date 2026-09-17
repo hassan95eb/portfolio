@@ -16,6 +16,66 @@ export type Category = {
   name: string;
 };
 
+/** A real, dimensioned image — never a placeholder or a drawn mock. */
+export type ProjectImage = {
+  /** Path under `public/`. */
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+  /** Shown under the image. Must describe what is actually in the frame. */
+  caption?: string;
+};
+
+export type ProjectFeature = {
+  title: string;
+  body: string;
+};
+
+export type ProjectFaqItem = {
+  question: string;
+  answer: string;
+};
+
+export type ProjectLink = {
+  label: string;
+  href: string;
+};
+
+/**
+ * Long-form case-study content for a project's detail page, beyond the
+ * summary/description/highlights every project already carries. Entirely
+ * optional: a project without one renders the page exactly as it did
+ * before this existed.
+ */
+export type ProjectCaseStudy = {
+  /** Shown under the hero H1, instead of the shorter `summary`. */
+  tagline?: string;
+  /** Verified current release version, e.g. "2.7.0". Omit once stale. */
+  version?: string;
+  primaryCta?: ProjectLink;
+  secondaryCta?: ProjectLink;
+  gallery?: ProjectImage[];
+  features?: ProjectFeature[];
+  /** Ordered steps for a "how to use it" walkthrough. */
+  howToUse?: string[];
+  installNote?: string;
+  privacy?: string;
+  /** Caveats to read before trusting a score or a measurement. */
+  limitations?: string[];
+  roleNote?: string;
+  faq?: ProjectFaqItem[];
+};
+
+/** Real, verifiable facts for a `SoftwareApplication` JSON-LD block. */
+export type ProjectStructuredData = {
+  applicationCategory: string;
+  operatingSystem: string;
+  softwareVersion: string;
+  downloadUrl: string;
+  license: string;
+};
+
 export type Project = {
   slug: string;
   title: string;
@@ -37,6 +97,22 @@ export type Project = {
    * repository" note rather than a link that would 404 for every visitor.
    */
   sourcePrivate?: boolean;
+  /**
+   * A real screenshot to use in place of the drawn mock on the home stage
+   * and the projects grid card. Keyed to the project record, not to its
+   * position in the array, so reordering projects never changes which
+   * image a card shows.
+   */
+  media?: {
+    thumbnail: ProjectImage;
+  };
+  caseStudy?: ProjectCaseStudy;
+  /** SEO overrides. Falls back to `title` / `summary` when absent. */
+  seo?: {
+    title?: string;
+    description?: string;
+  };
+  structuredData?: ProjectStructuredData;
 };
 
 export type BlogPost = {
