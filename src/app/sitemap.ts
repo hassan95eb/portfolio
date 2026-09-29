@@ -82,6 +82,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
             lastModified: new Date(post!.article!.modifiedAt ?? post!.article!.publishedAt),
             changeFrequency: "monthly" as const,
             priority: 0.8,
+            alternates: alternatesFor(`/blog/${post!.slug}`),
           }));
       }),
     )

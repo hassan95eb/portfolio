@@ -1,5 +1,6 @@
-import type { CmsData } from "./types";
+import type { BlogPost, CmsData } from "./types";
 import type { Lang } from "@/lib/i18n/config";
+import { aiCodingTools2026En } from "@/content/blog/ai-coding-tools-2026.en";
 import { aiCodingTools2026Fa } from "@/content/blog/ai-coding-tools-2026.fa";
 
 /**
@@ -12,6 +13,30 @@ import { aiCodingTools2026Fa } from "@/content/blog/ai-coding-tools-2026.fa";
  * Slugs are identical across languages on purpose — that is what lets the
  * language switcher stay on the same project or post.
  */
+
+const publishedArticleEn: BlogPost = {
+  slug: "cursor-vs-copilot-vs-claude-code-2026",
+  title: "Cursor vs Copilot vs Claude Code: A Practical 2026 Comparison",
+  description: "A practical comparison in a realistic React workflow, from codebase context and multi-file edits to testing, security, pricing, and choosing the right tool.",
+  category: "ai-development",
+  readTime: "20 min read",
+  date: "Sep 2026",
+  tone: "wide",
+  accent: "#69533F",
+  article: aiCodingTools2026En,
+};
+
+const publishedArticleFa: BlogPost = {
+  slug: "cursor-vs-copilot-vs-claude-code-2026",
+  title: "مقایسه Cursor، Copilot و Claude Code در ۲۰۲۶",
+  description: "مقایسه‌ای تجربه‌محور در یک سناریوی واقعی React؛ از شناخت کدبیس و ویرایش چندفایلی تا تست، امنیت، هزینه و انتخاب ابزار مناسب.",
+  category: "ai-development",
+  readTime: "۲۰ دقیقه مطالعه",
+  date: "مهر ۱۴۰۵",
+  tone: "wide",
+  accent: "#69533F",
+  article: aiCodingTools2026Fa,
+};
 
 const en: CmsData = {
   projects: [
@@ -218,104 +243,9 @@ const en: CmsData = {
       sourcePrivate: true,
     },
   ],
-  featuredPost: {
-    slug: "designing-frontend-systems-for-high-scale-dashboards",
-    title: "Designing Frontend Systems for High-Scale Dashboards",
-    description: "How architecture, rendering strategy, state management, and performance decisions shape reliable data-heavy products.",
-    category: "frontend-architecture",
-    readTime: "8 min read",
-    date: "Aug 2026",
-    tone: "wide",
-    accent: "#25201C",
-  },
-  posts: [
-    {
-      slug: "when-frontend-architecture-becomes-product-strategy",
-      title: "When Frontend Architecture Becomes Product Strategy",
-      description: "Where the line between engineering structure and product direction quietly disappears — and why senior teams treat them as one.",
-      category: "technical-leadership",
-      readTime: "6 min read",
-      date: "Jul 2026",
-      tone: "wide",
-      accent: "#BFAF9F",
-    },
-    {
-      slug: "rendering-millions-of-data-points-without-breaking-the-ui",
-      title: "Rendering Millions of Data Points Without Breaking the UI",
-      description: "Virtualization, memoization, Web Workers, and the rendering budget behind interfaces that stay smooth under real load.",
-      category: "performance",
-      readTime: "9 min read",
-      date: "Jul 2026",
-      tone: "dark",
-      accent: "#B96B4A",
-    },
-    {
-      slug: "a-practical-approach-to-real-time-dashboards",
-      title: "A Practical Approach to Real-Time Dashboards",
-      description: "Designing resilient WebSocket flows, reconnect states, and update strategies that keep live data trustworthy.",
-      category: "real-time-systems",
-      readTime: "7 min read",
-      date: "Jun 2026",
-      tone: "default",
-      accent: "#25201C",
-    },
-    {
-      slug: "state-management-decisions-that-actually-matter",
-      title: "State Management Decisions That Actually Matter",
-      description: "Cutting through the library debate to the choices that genuinely shape maintainability and performance.",
-      category: "frontend-architecture",
-      readTime: "5 min read",
-      date: "Jun 2026",
-      tone: "default",
-      accent: "#BFAF9F",
-    },
-    {
-      slug: "from-vue-2-to-vue-3-refactoring-without-chaos",
-      title: "From Vue 2 to Vue 3: Refactoring Without Chaos",
-      description: "A staged migration playbook that keeps a production app shipping while the framework moves underneath it.",
-      category: "react-next-js",
-      readTime: "6 min read",
-      date: "May 2026",
-      tone: "default",
-      accent: "#B96B4A",
-    },
-    {
-      slug: "what-makes-a-frontend-feel-reliable",
-      title: "What Makes a Frontend Feel Reliable?",
-      description: "The small, deliberate details — loading, error, and empty states — that make an interface feel trustworthy.",
-      category: "ui-engineering",
-      readTime: "4 min read",
-      date: "May 2026",
-      tone: "default",
-      accent: "#25201C",
-    },
-  ],
-  categories: [
-    {
-      slug: "frontend-architecture",
-      name: "Frontend Architecture",
-    },
-    {
-      slug: "performance",
-      name: "Performance",
-    },
-    {
-      slug: "react-next-js",
-      name: "React & Next.js",
-    },
-    {
-      slug: "real-time-systems",
-      name: "Real-Time Systems",
-    },
-    {
-      slug: "ui-engineering",
-      name: "UI Engineering",
-    },
-    {
-      slug: "technical-leadership",
-      name: "Technical Leadership",
-    },
-  ],
+  featuredPost: publishedArticleEn,
+  posts: [],
+  categories: [{ slug: "ai-development", name: "AI-assisted development" }],
   experience: [
     {
       role: "Senior Frontend Developer",
@@ -666,119 +596,9 @@ const fa: CmsData = {
       sourcePrivate: true,
     },
   ],
-  featuredPost: {
-    slug: "cursor-vs-copilot-vs-claude-code-2026",
-    title: "مقایسه Cursor، Copilot و Claude Code در ۲۰۲۶",
-    description: "مقایسه‌ای تجربه‌محور در یک سناریوی واقعی React؛ از شناخت کدبیس و ویرایش چندفایلی تا تست، امنیت، هزینه و انتخاب ابزار مناسب.",
-    category: "ai-development",
-    readTime: "۲۰ دقیقه مطالعه",
-    date: "مهر ۱۴۰۵",
-    tone: "wide",
-    accent: "#69533F",
-    article: aiCodingTools2026Fa,
-  },
-  posts: [
-    {
-      slug: "designing-frontend-systems-for-high-scale-dashboards",
-      title: "طراحی سیستم‌های فرانت‌اند برای داشبوردهای در مقیاس بالا",
-      description: "چگونه معماری، استراتژی رندر، مدیریت state و تصمیم‌های عملکردی، محصولات داده‌محورِ قابل‌اعتماد را شکل می‌دهند.",
-      category: "frontend-architecture",
-      readTime: "۸ دقیقه مطالعه",
-      date: "Aug 2026",
-      tone: "wide",
-      accent: "#25201C",
-    },
-    {
-      slug: "when-frontend-architecture-becomes-product-strategy",
-      title: "وقتی معماری فرانت‌اند به استراتژی محصول تبدیل می‌شود",
-      description: "جایی که مرز میان ساختار مهندسی و جهت‌گیری محصول بی‌صدا محو می‌شود — و چرا تیم‌های حرفه‌ای آن‌ها را یکی می‌دانند.",
-      category: "technical-leadership",
-      readTime: "۶ دقیقه مطالعه",
-      date: "Jul 2026",
-      tone: "wide",
-      accent: "#BFAF9F",
-    },
-    {
-      slug: "rendering-millions-of-data-points-without-breaking-the-ui",
-      title: "رندر میلیون‌ها نقطه‌داده بدون شکستنِ رابط کاربری",
-      description: "virtualization، memoization، Web Workers و بودجه‌ی رندری که پشتِ رابط‌هایی است که زیر بارِ واقعی روان می‌مانند.",
-      category: "performance",
-      readTime: "۹ دقیقه مطالعه",
-      date: "Jul 2026",
-      tone: "dark",
-      accent: "#B96B4A",
-    },
-    {
-      slug: "a-practical-approach-to-real-time-dashboards",
-      title: "رویکردی کاربردی به داشبوردهای Real-time",
-      description: "طراحی جریان‌های مقاومِ WebSocket، حالت‌های اتصال مجدد و استراتژی‌های به‌روزرسانی که داده‌ی زنده را قابل‌اعتماد نگه می‌دارند.",
-      category: "real-time-systems",
-      readTime: "۷ دقیقه مطالعه",
-      date: "Jun 2026",
-      tone: "default",
-      accent: "#25201C",
-    },
-    {
-      slug: "state-management-decisions-that-actually-matter",
-      title: "تصمیم‌های مدیریت state که واقعاً اهمیت دارند",
-      description: "عبور از بحثِ کتابخانه‌ها و رسیدن به انتخاب‌هایی که واقعاً قابلیت نگهداری و عملکرد را شکل می‌دهند.",
-      category: "frontend-architecture",
-      readTime: "۵ دقیقه مطالعه",
-      date: "Jun 2026",
-      tone: "default",
-      accent: "#BFAF9F",
-    },
-    {
-      slug: "from-vue-2-to-vue-3-refactoring-without-chaos",
-      title: "از Vue 2 به Vue 3: بازنویسی بدون آشوب",
-      description: "یک راهنمای مهاجرت مرحله‌ای که یک اپِ تولیدی را در حال انتشار نگه می‌دارد، در حالی که فریم‌ورک زیر آن جابه‌جا می‌شود.",
-      category: "react-next-js",
-      readTime: "۶ دقیقه مطالعه",
-      date: "May 2026",
-      tone: "default",
-      accent: "#B96B4A",
-    },
-    {
-      slug: "what-makes-a-frontend-feel-reliable",
-      title: "چه چیزی یک فرانت‌اند را قابل‌اعتماد جلوه می‌دهد؟",
-      description: "جزئیات کوچک و عامدانه — حالت‌های بارگذاری، خطا و خالی — که یک رابط را قابل‌اعتماد نشان می‌دهند.",
-      category: "ui-engineering",
-      readTime: "۴ دقیقه مطالعه",
-      date: "May 2026",
-      tone: "default",
-      accent: "#25201C",
-    },
-  ],
-  categories: [
-    {
-      slug: "ai-development",
-      name: "توسعه نرم‌افزار و هوش مصنوعی",
-    },
-    {
-      slug: "frontend-architecture",
-      name: "معماری فرانت‌اند",
-    },
-    {
-      slug: "performance",
-      name: "عملکرد",
-    },
-    {
-      slug: "react-next-js",
-      name: "React و Next.js",
-    },
-    {
-      slug: "real-time-systems",
-      name: "سیستم‌های Real-time",
-    },
-    {
-      slug: "ui-engineering",
-      name: "مهندسی رابط کاربری",
-    },
-    {
-      slug: "technical-leadership",
-      name: "رهبری فنی",
-    },
-  ],
+  featuredPost: publishedArticleFa,
+  posts: [],
+  categories: [{ slug: "ai-development", name: "توسعه نرم‌افزار و هوش مصنوعی" }],
   experience: [
     {
       role: "توسعه‌دهنده‌ی ارشد فرانت‌اند",

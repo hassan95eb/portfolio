@@ -44,15 +44,11 @@ export async function generateMetadata({
     robots: { index: Boolean(article), follow: true },
     alternates: {
       canonical: `/${lang}/blog/${slug}`,
-      ...(article
-        ? {}
-        : {
-            languages: {
-              en: `/en/blog/${slug}`,
-              fa: `/fa/blog/${slug}`,
-              "x-default": `/en/blog/${slug}`,
-            },
-          }),
+      languages: {
+        en: `/en/blog/${slug}`,
+        fa: `/fa/blog/${slug}`,
+        "x-default": `/en/blog/${slug}`,
+      },
     },
     openGraph: article
       ? {

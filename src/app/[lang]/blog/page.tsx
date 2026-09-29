@@ -78,17 +78,19 @@ export default async function Page({
         </Container>
       </section>
 
-      <BlogIndex
-        lang={lang}
-        posts={posts}
-        categories={categories}
-        copy={{
-          heading: ui.blog.allWriting,
-          allTopics: ui.blog.allTopics,
-          readArticle: ui.blog.readArticle,
-          noArticles: ui.blog.noArticles,
-        }}
-      />
+      {posts.length > 0 && (
+        <BlogIndex
+          lang={lang}
+          posts={posts}
+          categories={categories}
+          copy={{
+            heading: ui.blog.allWriting,
+            allTopics: ui.blog.allTopics,
+            readArticle: ui.blog.readArticle,
+            noArticles: ui.blog.noArticles,
+          }}
+        />
+      )}
 
       {/* The pillars are real standing content, not placeholder text — they
           say what the writing covers, which is the one thing a reader

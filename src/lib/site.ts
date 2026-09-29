@@ -44,7 +44,7 @@ export const RESUME_PATH = "/Hassan_Amini_Resume.pdf";
  * Annotated `boolean` rather than inferred: as a literal `false` TypeScript
  * narrows the guard at the call site to dead code and lint flags it.
  */
-export const SHOW_LANGUAGE_TOGGLE: boolean = false;
+export const SHOW_LANGUAGE_TOGGLE: boolean = true;
 
 /** Nav order, shared by the header and the footer. Paths exclude the language. */
 export const NAV_PATHS = [

@@ -23,6 +23,9 @@
 # production
 /build
 
+# local generated artifacts
+/outputs/
+
 # misc
 .DS_Store
 *.pem
