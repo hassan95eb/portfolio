@@ -31,6 +31,7 @@ const STATIC_PATHS = [
   "/testimonials",
   "/certifications",
   "/cheatsheets",
+  "/blog",
   "/contact",
 ] as const;
 
@@ -47,7 +48,6 @@ function alternatesFor(path: string) {
 }
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  // Slugs are identical across languages, so one read covers both.
   const projectSlugs = await cms().getProjectSlugs(DEFAULT_LANG);
 
   const paths = [
@@ -57,7 +57,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const lastModified = new Date();
 
-  return paths.flatMap((path) =>
+  const staticEntries = paths.flatMap((path) =>
     LANGS.map((lang) => ({
       url: urlFor(lang, path),
       lastModified,
@@ -68,4 +68,24 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       alternates: alternatesFor(path),
     })),
   );
+
+  const publishedArticleEntries = (
+    await Promise.all(
+      LANGS.map(async (lang) => {
+        const slugs = await cms().getPostSlugs(lang);
+        const posts = await Promise.all(slugs.map((slug) => cms().getPost(lang, slug)));
+
+        return posts
+          .filter((post) => post?.article)
+          .map((post) => ({
+            url: urlFor(lang, `/blog/${post!.slug}`),
+            lastModified: new Date(post!.article!.modifiedAt ?? post!.article!.publishedAt),
+            changeFrequency: "monthly" as const,
+            priority: 0.8,
+          }));
+      }),
+    )
+  ).flat();
+
+  return [...staticEntries, ...publishedArticleEntries];
 }

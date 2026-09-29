@@ -126,6 +126,46 @@ export type BlogPost = {
   /** Layout intent for the curated grid. */
   tone: BlogTone;
   accent: string;
+  /** Full article content. Posts without it remain non-indexable previews. */
+  article?: BlogArticle;
+};
+
+export type BlogTable = {
+  caption?: string;
+  headers: string[];
+  rows: string[][];
+};
+
+export type BlogSection = {
+  id: string;
+  title: string;
+  paragraphs: string[];
+  bullets?: string[];
+  table?: BlogTable;
+  note?: string;
+};
+
+export type BlogFaqItem = {
+  question: string;
+  answer: string;
+};
+
+export type BlogSource = {
+  label: string;
+  href: string;
+};
+
+export type BlogArticle = {
+  seoTitle: string;
+  seoDescription: string;
+  publishedAt: string;
+  modifiedAt?: string;
+  keywords: string[];
+  intro: string[];
+  sections: BlogSection[];
+  conclusion: string[];
+  faq: BlogFaqItem[];
+  sources: BlogSource[];
 };
 
 export type ExperienceItem = {

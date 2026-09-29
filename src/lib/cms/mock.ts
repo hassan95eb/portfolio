@@ -1,5 +1,6 @@
 import type { CmsData } from "./types";
 import type { Lang } from "@/lib/i18n/config";
+import { aiCodingTools2026Fa } from "@/content/blog/ai-coding-tools-2026.fa";
 
 /**
  * Content extracted verbatim from the Figma export's translations.ts.
@@ -666,16 +667,27 @@ const fa: CmsData = {
     },
   ],
   featuredPost: {
-    slug: "designing-frontend-systems-for-high-scale-dashboards",
-    title: "طراحی سیستم‌های فرانت‌اند برای داشبوردهای در مقیاس بالا",
-    description: "چگونه معماری، استراتژی رندر، مدیریت state و تصمیم‌های عملکردی، محصولات داده‌محورِ قابل‌اعتماد را شکل می‌دهند.",
-    category: "frontend-architecture",
-    readTime: "۸ دقیقه مطالعه",
-    date: "Aug 2026",
+    slug: "cursor-vs-copilot-vs-claude-code-2026",
+    title: "مقایسه Cursor، Copilot و Claude Code در ۲۰۲۶",
+    description: "مقایسه‌ای تجربه‌محور در یک سناریوی واقعی React؛ از شناخت کدبیس و ویرایش چندفایلی تا تست، امنیت، هزینه و انتخاب ابزار مناسب.",
+    category: "ai-development",
+    readTime: "۲۰ دقیقه مطالعه",
+    date: "مهر ۱۴۰۵",
     tone: "wide",
-    accent: "#25201C",
+    accent: "#69533F",
+    article: aiCodingTools2026Fa,
   },
   posts: [
+    {
+      slug: "designing-frontend-systems-for-high-scale-dashboards",
+      title: "طراحی سیستم‌های فرانت‌اند برای داشبوردهای در مقیاس بالا",
+      description: "چگونه معماری، استراتژی رندر، مدیریت state و تصمیم‌های عملکردی، محصولات داده‌محورِ قابل‌اعتماد را شکل می‌دهند.",
+      category: "frontend-architecture",
+      readTime: "۸ دقیقه مطالعه",
+      date: "Aug 2026",
+      tone: "wide",
+      accent: "#25201C",
+    },
     {
       slug: "when-frontend-architecture-becomes-product-strategy",
       title: "وقتی معماری فرانت‌اند به استراتژی محصول تبدیل می‌شود",
@@ -738,6 +750,10 @@ const fa: CmsData = {
     },
   ],
   categories: [
+    {
+      slug: "ai-development",
+      name: "توسعه نرم‌افزار و هوش مصنوعی",
+    },
     {
       slug: "frontend-architecture",
       name: "معماری فرانت‌اند",
