@@ -136,10 +136,18 @@ export type BlogTable = {
   rows: string[][];
 };
 
+/** Ordered, semantic article content; strings support inline code and links. */
+export type BlogBlock =
+  | { type: "paragraph"; text: string }
+  | { type: "heading"; text: string }
+  | { type: "code"; language: string; code: string }
+  | { type: "table"; table: BlogTable };
+
 export type BlogSection = {
   id: string;
   title: string;
   paragraphs: string[];
+  blocks?: BlogBlock[];
   bullets?: string[];
   table?: BlogTable;
   note?: string;
@@ -160,6 +168,10 @@ export type BlogArticle = {
   seoDescription: string;
   publishedAt: string;
   modifiedAt?: string;
+  sourcesCheckedAt?: string;
+  wordCount?: number;
+  conclusionTitle?: string;
+  image?: ProjectImage;
   keywords: string[];
   intro: string[];
   sections: BlogSection[];

@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
+import { ArticleBlocks, ArticleText } from "@/components/sections/ArticleContent";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowUpRight, Check, ExternalLink, PenLine } from "lucide-react";
 import { isLang, LANGS } from "@/lib/i18n/config";
@@ -38,10 +40,16 @@ export async function generateMetadata({
   const article = post.article;
 
   return {
-    title: article?.seoTitle ?? post.title,
+    title: article ? { absolute: article.seoTitle } : post.title,
     description: article?.seoDescription ?? post.description,
     keywords: article?.keywords,
-    robots: { index: Boolean(article), follow: true },
+    authors: article ? [{ name: "Hassan Amini", url: `${SITE_URL}/${lang}/about` }] : undefined,
+    category: post.category,
+    robots: {
+      index: Boolean(article),
+      follow: true,
+      ...(article ? { "max-image-preview": "large" as const } : {}),
+    },
     alternates: {
       canonical: `/${lang}/blog/${slug}`,
       languages: {
@@ -58,9 +66,11 @@ export async function generateMetadata({
           url: `/${lang}/blog/${slug}`,
           publishedTime: article.publishedAt,
           modifiedTime: article.modifiedAt,
-          authors: ["Hassan Amini"],
+          authors: [`${SITE_URL}/${lang}/about`],
           tags: article.keywords,
           locale: lang === "fa" ? "fa_IR" : "en_US",
+          alternateLocale: lang === "fa" ? "en_US" : "fa_IR",
+          images: article.image ? [{ url: `${SITE_URL}${article.image.src}`, width: article.image.width, height: article.image.height, alt: article.image.alt }] : undefined,
         }
       : undefined,
     twitter: article
@@ -68,6 +78,7 @@ export async function generateMetadata({
           card: "summary_large_image",
           title: article.seoTitle,
           description: article.seoDescription,
+          images: article.image ? [{ url: `${SITE_URL}${article.image.src}`, alt: article.image.alt }] : undefined,
         }
       : undefined,
   };
@@ -109,20 +120,32 @@ export default async function Page({
 
   const article = post.article;
   const articleUrl = `${SITE_URL}/${lang}/blog/${slug}`;
+  const sourcesCheckedAt = article?.sourcesCheckedAt ?? article?.publishedAt;
+  const checkedDate = sourcesCheckedAt
+    ? new Intl.DateTimeFormat(lang === "fa" ? "fa-IR" : "en-US", {
+        year: "numeric", month: "long", day: "numeric", timeZone: "Asia/Tehran",
+      }).format(new Date(sourcesCheckedAt))
+    : null;
   const structuredData = article
     ? {
         "@context": "https://schema.org",
         "@graph": [
           {
-            "@type": "Article",
+            "@type": "BlogPosting",
+            "@id": `${articleUrl}#article`,
+            url: articleUrl,
             headline: post.title,
             description: article.seoDescription,
             datePublished: article.publishedAt,
             dateModified: article.modifiedAt ?? article.publishedAt,
             inLanguage: lang,
-            mainEntityOfPage: articleUrl,
+            mainEntityOfPage: { "@type": "WebPage", "@id": articleUrl },
+            articleSection: categoryName(post.category),
+            wordCount: article.wordCount,
+            image: article.image ? `${SITE_URL}${article.image.src}` : undefined,
             author: {
               "@type": "Person",
+              "@id": `${SITE_URL}/${lang}/about#person`,
               name: "Hassan Amini",
               url: `${SITE_URL}/${lang}/about`,
             },
@@ -134,15 +157,13 @@ export default async function Page({
             keywords: article.keywords.join(", "),
           },
           {
-            "@type": "FAQPage",
-            mainEntity: article.faq.map((item) => ({
-              "@type": "Question",
-              name: item.question,
-              acceptedAnswer: {
-                "@type": "Answer",
-                text: item.answer,
-              },
-            })),
+            "@type": "BreadcrumbList",
+            "@id": `${articleUrl}#breadcrumbs`,
+            itemListElement: [
+              { "@type": "ListItem", position: 1, name: lang === "fa" ? "خانه" : "Home", item: `${SITE_URL}/${lang}` },
+              { "@type": "ListItem", position: 2, name: lang === "fa" ? "مقاله‌ها" : "Articles", item: `${SITE_URL}/${lang}/blog` },
+              { "@type": "ListItem", position: 3, name: post.title, item: articleUrl },
+            ],
           },
         ],
       }
@@ -150,13 +171,8 @@ export default async function Page({
 
   return (
     <>
-      {structuredData && (
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-        />
-      )}
-      <section
+      <article aria-labelledby="article-title">
+      <header
         className="relative overflow-hidden border-b border-border"
         style={{ backgroundColor: post.accent }}
       >
@@ -182,32 +198,42 @@ export default async function Page({
               {categoryName(post.category)}
             </span>
             <h1
+              id="article-title"
               className="text-[2.2rem] leading-[1.12] text-[#FBF6EF] md:text-[3.1rem]"
               style={{ fontWeight: 600, letterSpacing: "-0.025em" }}
             >
               {post.title}
             </h1>
             <p className="text-sm text-white/70">
-              {post.date} · {post.readTime}
+              <time dateTime={article?.publishedAt}>{post.date}</time> · {post.readTime}
             </p>
+            <Link href={`/${lang === "fa" ? "en" : "fa"}/blog/${slug}`} hrefLang={lang === "fa" ? "en" : "fa"} className="w-fit text-sm text-white/80 underline underline-offset-4 hover:text-white">
+              {lang === "fa" ? "Read this article in English" : "این مقاله را فارسی بخوانید"}
+            </Link>
           </div>
         </Container>
-      </section>
+      </header>
 
       <section className="py-20 md:py-28">
         <Container>
           <div className="grid gap-12 lg:grid-cols-[1.5fr_0.5fr]">
-            <Reveal>
+            <div>
               {article ? (
-                <article className="min-w-0 text-text-main">
+                <div className="min-w-0 text-text-main">
                   <div className="mb-12 border-b border-border pb-10">
                     <p className="text-xl leading-9 text-text-main">{post.description}</p>
                     <div className="mt-7 space-y-6 text-[1.06rem] leading-9 text-text-muted">
                       {article.intro.map((paragraph) => (
-                        <p key={paragraph}>{paragraph}</p>
+                        <p key={paragraph}><ArticleText text={paragraph} /></p>
                       ))}
                     </div>
                   </div>
+
+                  {article.image && (
+                    <figure className="mb-12 overflow-hidden rounded-xl border border-border">
+                      <Image src={article.image.src} alt={article.image.alt} width={article.image.width} height={article.image.height} sizes="(max-width: 1024px) 100vw, 800px" className="h-auto w-full" />
+                    </figure>
+                  )}
 
                   <nav
                     aria-label={lang === "fa" ? "فهرست مقاله" : "Table of contents"}
@@ -240,11 +266,13 @@ export default async function Page({
                         >
                           {section.title}
                         </h2>
+                        {section.blocks ? <ArticleBlocks blocks={section.blocks} /> : (
                         <div className="space-y-6 text-[1.03rem] leading-9 text-text-muted">
                           {section.paragraphs.map((paragraph) => (
-                            <p key={paragraph}>{paragraph}</p>
+                            <p key={paragraph}><ArticleText text={paragraph} /></p>
                           ))}
                         </div>
+                        )}
 
                         {section.bullets && (
                           <ul className="mt-7 space-y-3 rounded-xl border border-border bg-surface p-6">
@@ -268,7 +296,7 @@ export default async function Page({
                               <thead className="bg-surface">
                                 <tr>
                                   {section.table.headers.map((header) => (
-                                    <th key={header} className="border-b border-border px-5 py-4 text-start font-semibold text-text-main">
+                                    <th key={header} scope="col" className="border-b border-border px-5 py-4 text-start font-semibold text-text-main">
                                       {header}
                                     </th>
                                   ))}
@@ -300,11 +328,11 @@ export default async function Page({
 
                   <section className="mt-16 rounded-xl bg-[#25201C] p-7 text-[#FBF6EF] md:p-10">
                     <h2 className="mb-5 text-2xl font-semibold">
-                      {lang === "fa" ? "نتیجه نهایی" : "Final takeaway"}
+                      {article.conclusionTitle ?? (lang === "fa" ? "نتیجه نهایی" : "Final takeaway")}
                     </h2>
                     <div className="space-y-5 leading-8 text-white/75">
                       {article.conclusion.map((paragraph) => (
-                        <p key={paragraph}>{paragraph}</p>
+                        <p key={paragraph}><ArticleText text={paragraph} /></p>
                       ))}
                     </div>
                   </section>
@@ -317,7 +345,7 @@ export default async function Page({
                       {article.faq.map((item) => (
                         <details key={item.question} className="group py-5">
                           <summary className="cursor-pointer list-none font-medium leading-7 text-text-main">
-                            {item.question}
+                            <h3 className="inline">{item.question}</h3>
                           </summary>
                           <p className="pt-4 leading-8 text-text-muted">{item.answer}</p>
                         </details>
@@ -330,9 +358,7 @@ export default async function Page({
                       {lang === "fa" ? "منابع رسمی و تاریخ بررسی" : "Official sources"}
                     </h2>
                     <p className="mb-5 text-sm leading-7 text-text-muted">
-                      {lang === "fa"
-                        ? "قابلیت‌ها و قیمت‌ها در ۷ مهر ۱۴۰۵ بررسی شده‌اند و ممکن است بعداً تغییر کنند."
-                        : "Features and prices were checked on September 29, 2026 and may change."}
+                      {checkedDate && (lang === "fa" ? `منابع در ${checkedDate} بررسی شده‌اند.` : `Sources checked on ${checkedDate}.`)}
                     </p>
                     <ul className="grid gap-3 md:grid-cols-2">
                       {article.sources.map((source) => (
@@ -350,7 +376,7 @@ export default async function Page({
                       ))}
                     </ul>
                   </section>
-                </article>
+                </div>
               ) : (
                 <div className="flex flex-col gap-8">
                   <p className="text-lg leading-relaxed text-text-main">{post.description}</p>
@@ -373,7 +399,7 @@ export default async function Page({
                   </div>
                 </div>
               )}
-            </Reveal>
+            </div>
 
             <Reveal delay={0.1}>
               <aside className="flex flex-col gap-6 rounded-xl border border-border bg-surface p-6">
@@ -448,6 +474,10 @@ export default async function Page({
         </Container>
       </section>
 
+      </article>
+      {structuredData && (
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, "\\u003c") }} />
+      )}
       <ContactCTA lang={lang} copy={ui.contactCTA} />
     </>
   );
