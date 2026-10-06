@@ -2,6 +2,8 @@ import type { BlogPost, CmsData } from "./types";
 import type { Lang } from "@/lib/i18n/config";
 import { aiCodingTools2026En } from "@/content/blog/ai-coding-tools-2026.en";
 import { aiCodingTools2026Fa } from "@/content/blog/ai-coding-tools-2026.fa";
+import { safeDeadCodeAuditEn } from "@/content/blog/safe-dead-code-audit.en";
+import { safeDeadCodeAuditFa } from "@/content/blog/safe-dead-code-audit.fa";
 
 /**
  * Content extracted verbatim from the Figma export's translations.ts.
@@ -36,6 +38,30 @@ const publishedArticleFa: BlogPost = {
   tone: "wide",
   accent: "#69533F",
   article: aiCodingTools2026Fa,
+};
+
+const deadCodeArticleEn: BlogPost = {
+  slug: "safe-dead-code-audit",
+  title: safeDeadCodeAuditEn.seoTitle,
+  description: safeDeadCodeAuditEn.seoDescription,
+  category: "ai-development",
+  readTime: "10 min read",
+  date: "October 6, 2026",
+  tone: "wide",
+  accent: "#174E45",
+  article: safeDeadCodeAuditEn,
+};
+
+const deadCodeArticleFa: BlogPost = {
+  slug: "safe-dead-code-audit",
+  title: safeDeadCodeAuditFa.seoTitle,
+  description: safeDeadCodeAuditFa.seoDescription,
+  category: "ai-development",
+  readTime: "۱۰ دقیقه مطالعه",
+  date: "۱۴ مهر ۱۴۰۵",
+  tone: "wide",
+  accent: "#174E45",
+  article: safeDeadCodeAuditFa,
 };
 
 const en: CmsData = {
@@ -243,8 +269,8 @@ const en: CmsData = {
       sourcePrivate: true,
     },
   ],
-  featuredPost: publishedArticleEn,
-  posts: [],
+  featuredPost: deadCodeArticleEn,
+  posts: [publishedArticleEn],
   categories: [{ slug: "ai-development", name: "AI-assisted development" }],
   experience: [
     {
@@ -596,8 +622,8 @@ const fa: CmsData = {
       sourcePrivate: true,
     },
   ],
-  featuredPost: publishedArticleFa,
-  posts: [],
+  featuredPost: deadCodeArticleFa,
+  posts: [publishedArticleFa],
   categories: [{ slug: "ai-development", name: "توسعه نرم‌افزار و هوش مصنوعی" }],
   experience: [
     {
